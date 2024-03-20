@@ -5,50 +5,31 @@
     <div class="form">
       <form @submit.prevent="updatePassword">
 
-        <div class="separate">
+
 
           <div class="space">
             <label>Enter Old Password</label>
             <input type="text" required="required"  class="form-input"/>
           </div>
 
-<!--          <div class="space">-->
-<!--            <label>Last Name</label>-->
-<!--            <input type="text"  class="form-input"/>-->
-<!--          </div>-->
 
-        </div>
 
-        <div class="separate">
 
           <div class="space">
             <label>Enter New Password</label>
             <input type="text" required="required" v-model="model.newPassword" class="form-input"/>
           </div>
 
-<!--          <div class="space">-->
-<!--            <label>Country</label>-->
-<!--            <input type="text"  class="form-input"/>-->
-<!--          </div>-->
 
-        </div>
-
-        <div class="separate">
 
           <div class="space">
             <label>Confirm New Password</label>
             <input type="text" required="required"  class="form-input"/>
           </div>
 
-<!--          <div class="space">-->
-<!--            <label>Phone Number</label>-->
-<!--            <input type="text"  class="form-input"/>-->
-<!--          </div>-->
 
-        </div>
 
         <div class="btn-alpha">
-<!--          <p class="btn">Update Details</p>-->
           <base-button style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Proceed</base-button>
         </div>
 
@@ -136,7 +117,8 @@ export default {
   background-color: #000000;
   border: 1px solid #000000;
   border-radius: 5px ;
-  width: 460px;
+  width: 100%;
+  max-width: 500px;
   height: 35px;
   color: white;
   padding: 5px 20px;
@@ -170,25 +152,34 @@ label{
   margin-top: 3%;
 }
 
-input{
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 10px;
-  background-color: rgba(247, 247, 249, 1);
-  border: none;
-  border-radius: 5px;
-}
-select{
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 10px;
-  background-color: rgba(247, 247, 249, 1);
-  border: none;
-  border-radius: 5px;
-}
+/*input{*/
+/*  padding-top: 14px;*/
+/*  padding-bottom: 14px;*/
+/*  padding-left: 10px;*/
+/*  background-color: rgba(247, 247, 249, 1);*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*}*/
+/*select{*/
+/*  padding-top: 14px;*/
+/*  padding-bottom: 14px;*/
+/*  padding-left: 10px;*/
+/*  background-color: rgba(247, 247, 249, 1);*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*}*/
 
 
-@media (max-width: 550px) {
-
+@media (max-width: 700px) {
+  .section-2-alpha{
+    margin-top: 5%;
+    float: unset;
+    background-color: #0f171c;
+    padding: 30px 40px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

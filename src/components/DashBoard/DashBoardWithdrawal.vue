@@ -127,7 +127,7 @@
               </div>
               <div class="copy-button">
                 <!--              <p  class="button">Proceed</p>-->
-                <base-button style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Proceed</base-button>
+                <base-button class="button" :loading="loading">Proceed</base-button>
               </div>
             </div>
           </div>
@@ -454,14 +454,15 @@ option{
   font-size: 17px;
   width: 150px;
   height: 42px;
-  border: 0.5px solid #3C4A57FF;
+  border: 0.5px solid #5d78ff;
+  background-color: #5d78ff;
   border-radius: 6px;
 }
 
 .button:hover{
   color: #ffffff;
-  background-color: #0f171c;
-  border: 0.5px solid #3C4A57FF;
+  border: 0.5px solid #5d78ff;
+  background-color: #5d78ff;
   border-radius: 6px;
 }
 
@@ -471,260 +472,36 @@ hr {
   margin-top: 20px;
 }
 
-@media (max-width: 550px) {
-  .bank-trans{
-    margin-right: unset;
-    margin-left: unset;
-  }
-  .header-alpha{
-    padding-top: 30px;
-    margin-left: unset;
-    font-size: 24px;
-    padding-bottom: 10px;
-    text-align: center;
-    padding-right: unset;
+@media (max-width: 700px) {
+  .header{
+    font-size: 16px;
   }
 
-  input{
-    padding-top: 12px;
-    padding-bottom: 12px;
+  .button{
+    padding: 5px 14px;
+    font-size: 13px;
+    width: 140px;
+    height: 36px;
   }
-  select{
-    padding-top: 12px;
-    padding-bottom: 12px;
+
+  hr {
+    margin-bottom: 15px;
+    margin-top: 15px;
   }
+
+  .dashboard-body-wrapper.align-center {
+    max-width: unset;
+    padding: 30px 20px;
+    width: 100%;
+  }
+
+  .text-2{
+    font-size: 13px;
+    width: 80%;
+    display: block;
+    margin-top: 10px;
+  }
+
 }
 </style>
 
-<!--<style scoped>-->
-<!--.body{-->
-<!--  padding: 32px;-->
-<!--}-->
-
-<!--.header{-->
-<!--  font-weight: 700;-->
-<!--  font-size: 19px;-->
-<!--  line-height: 25px;-->
-<!--  color: #ffffff;-->
-<!--}-->
-
-
-<!--.text-block-60 {-->
-<!--  color: #ffffff;-->
-<!--  font-size: 14px;-->
-<!--  font-weight: 500;-->
-<!--  letter-spacing: 2px;-->
-<!--}-->
-
-<!--.interac-card {-->
-<!--  display: -webkit-box;-->
-<!--  display: -webkit-flex;-->
-<!--  display: -ms-flexbox;-->
-<!--  display: flex;-->
-<!--  width: 100%;-->
-<!--  padding: 16px 24px 16px 16px;-->
-<!--  -webkit-box-pack: justify;-->
-<!--  -webkit-justify-content: space-between;-->
-<!--  -ms-flex-pack: justify;-->
-<!--  justify-content: space-between;-->
-<!--  -webkit-box-align: center;-->
-<!--  -webkit-align-items: center;-->
-<!--  -ms-flex-align: center;-->
-<!--  align-items: center;-->
-<!--  border-radius: 8px;-->
-<!--  background-color: #0f171c;-->
-<!--  border: 0.5px solid #3C4A57FF;-->
-<!--  text-decoration: none;-->
-<!--}-->
-
-<!--.setup-title-wrapper {-->
-<!--  display: -webkit-box;-->
-<!--  display: -webkit-flex;-->
-<!--  display: -ms-flexbox;-->
-<!--  display: flex;-->
-<!--  -webkit-box-align: center;-->
-<!--  -webkit-align-items: center;-->
-<!--  -ms-flex-align: center;-->
-<!--  align-items: center;-->
-<!--  grid-column-gap: 1rem;-->
-<!--  grid-row-gap: 1rem;-->
-<!--}-->
-
-<!--.text-block-51 {-->
-<!--  color: #FFFFFF;-->
-<!--  font-size: 14px;-->
-<!--}-->
-
-<!--.w-inline-block {-->
-<!--  max-width: 100%;-->
-<!--  display: inline-block;-->
-<!--}-->
-
-<!--h3 {margin: 40px 0 0; }-->
-<!--ul {list-style-type: none; padding: 0; }-->
-<!--li {display: inline-block; margin: 0 10px; }-->
-
-<!--strong{-->
-<!--  text-transform: lowercase;-->
-<!--}-->
-<!--.input-form-2{-->
-<!--  /*margin-top: 7%;*/-->
-<!--  display: block;-->
-<!--  /*justify-content: center;*/-->
-<!--}-->
-<!--.input-form-3{-->
-<!--  order: 1;-->
-<!--  width: 100%;-->
-<!--  padding: 12px 10px;-->
-<!--  /*margin: 8px 0;*/-->
-<!--  display: inline-block;-->
-<!--  box-sizing: border-box;-->
-<!--}-->
-
-<!--input{-->
-<!--  box-sizing: border-box;-->
-<!--  background-color: #0f171c;-->
-<!--  border: 0.5px solid #3C4A57FF;-->
-<!--  border-radius: 5px;-->
-<!--  -webkit-transition: 0.3s;-->
-<!--  padding-top: 30px;-->
-<!--  padding-bottom: 30px;-->
-<!--  height: 60px;-->
-<!--  transition: 0.3s;-->
-<!--  outline: none;-->
-<!--  color: #ffffff;-->
-<!--}-->
-
-<!--input:focus {-->
-<!--  border: 1px solid #3C4A57FF;-->
-<!--}-->
-
-<!--input::placeholder{-->
-<!--  color: #ffffff;-->
-<!--}-->
-
-<!--select{-->
-<!--  box-sizing: border-box;-->
-<!--  background-color: #0f171c;-->
-<!--  border: 0.5px solid #3C4A57FF;-->
-<!--  border-radius: 5px;-->
-<!--  -webkit-transition: 0.3s;-->
-<!--  padding-top: 30px;-->
-<!--  padding-bottom: 30px;-->
-<!--  height: 60px;-->
-<!--  transition: 0.3s;-->
-<!--  outline: none;-->
-<!--  color: #ffffff;-->
-<!--}-->
-
-<!--select:focus {-->
-<!--  border: 1px solid #3C4A57FF;-->
-<!--}-->
-
-<!--option{-->
-<!--  box-sizing: border-box;-->
-<!--  border: 1px solid #D0D5DD;-->
-<!--  border-radius: 8px;-->
-<!--  -webkit-transition: 0.3s;-->
-<!--  padding-top: 12px;-->
-<!--  padding-bottom: 12px;-->
-<!--  transition: 0.3s;-->
-<!--  outline: none;-->
-<!--  color: #667085;-->
-<!--}-->
-
-<!--.dashboard-body-wrapper.align-center {-->
-<!--  max-width: 630px;-->
-<!--  display: block;-->
-<!--  margin-left: auto;-->
-<!--  margin-right: auto;-->
-<!--  margin-top: 3%;-->
-<!--}-->
-
-<!--.interac-funding-steps{-->
-<!--  margin-bottom: 5%;-->
-<!--  margin-top: 5%;-->
-<!--}-->
-
-<!--.header{-->
-<!--  color: #FFFFFF;-->
-<!--  font-size: 20px;-->
-<!--}-->
-
-<!--.connected-banks-list{-->
-<!--  margin-top: 1%;-->
-<!--}-->
-
-<!--.payment-email-wrapper {-->
-<!--  display: -webkit-box;-->
-<!--  display: -webkit-flex;-->
-<!--  display: -ms-flexbox;-->
-<!--  display: flex;-->
-<!--  -webkit-box-pack: justify;-->
-<!--  -webkit-justify-content: space-between;-->
-<!--  -ms-flex-pack: justify;-->
-<!--  justify-content: space-between;-->
-<!--  -webkit-box-align: center;-->
-<!--  -webkit-align-items: center;-->
-<!--  -ms-flex-align: center;-->
-<!--  align-items: center;-->
-<!--  margin-top: 6%;-->
-<!--}-->
-
-<!--.text-block-61 {-->
-<!--  color: #ffffff;-->
-<!--  font-size: 17px;-->
-<!--}-->
-
-<!--.text-block-62 {-->
-<!--  color: #ffffff;-->
-<!--  font-weight: 700;-->
-<!--}-->
-
-<!--.button{-->
-<!--  color: #FFFFFF;-->
-<!--  text-align: center;-->
-<!--  align-items: center;-->
-<!--  align-content: center;-->
-<!--  padding: 8px 14px;-->
-<!--  gap: 8px;-->
-<!--  font-size: 17px;-->
-<!--  width: 150px;-->
-<!--  height: 42px;-->
-<!--  border: 0.5px solid #3C4A57FF;-->
-<!--  border-radius: 6px;-->
-<!--}-->
-
-<!--.button:hover{-->
-<!--  color: #ffffff;-->
-<!--  background-color: #0f171c;-->
-<!--  border: 0.5px solid #3C4A57FF;-->
-<!--  border-radius: 6px;-->
-<!--}-->
-
-
-<!--@media (max-width: 550px) {-->
-<!--  .bank-trans{-->
-<!--    margin-right: unset;-->
-<!--    margin-left: unset;-->
-<!--  }-->
-<!--  .header-alpha{-->
-<!--    padding-top: 30px;-->
-<!--    margin-left: unset;-->
-<!--    font-size: 24px;-->
-<!--    padding-bottom: 10px;-->
-<!--    text-align: center;-->
-<!--    padding-right: unset;-->
-<!--  }-->
-
-<!--  input{-->
-<!--    padding-top: 12px;-->
-<!--    padding-bottom: 12px;-->
-<!--  }-->
-<!--  select{-->
-<!--    padding-top: 12px;-->
-<!--    padding-bottom: 12px;-->
-<!--  }-->
-<!--}-->
-
-<!--</style>-->

@@ -362,7 +362,7 @@ export default {
     margin-right: 10%;
   }
   .section-header-1{
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .third-section{
@@ -374,6 +374,10 @@ export default {
 
   .third-section{
     width: 300px;
+  }
+
+  .section-header-1{
+    font-size: 20px;
   }
 }
 

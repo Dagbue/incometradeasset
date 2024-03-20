@@ -28,6 +28,58 @@
       </div>
 
       <div class="table" v-if="this.readUserTrade.trades.length > 0">
+<!--        <table>-->
+<!--          <tr style="background-color: #FFFFFF;">-->
+<!--            <th>Trade ID</th>-->
+<!--            <th>Trade Type</th>-->
+<!--            <th>Trade Time</th>-->
+<!--            <th>Symbol Traded</th>-->
+<!--            <th>Expected Payout</th>-->
+<!--            <th>Leverage</th>-->
+<!--            <th>End Price</th>-->
+<!--            <th>End Time</th>-->
+<!--            <th>Trade Status</th>-->
+<!--          </tr>-->
+
+<!--          <tbody v-for="child in paginatedItems" :key="child.key">-->
+<!--          <tr>-->
+<!--            <td>{{child.tradeReference}}</td>-->
+<!--            <td>{{child.tradeType}}</td>-->
+<!--            <td>{{child.tradeTime | formatDate2}}</td>-->
+<!--            <td>{{child.symbolTraded}}</td>-->
+<!--            <td>-->
+<!--              <div v-if="child.tradeStatus === 'won'" class="table-sep">-->
+<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
+<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
+<!--                <p>{{child.expectedPayout}}</p>-->
+<!--              </div>-->
+<!--              <div v-if="child.tradeStatus === 'lost'" class="table-sep">-->
+<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
+<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
+<!--                <p>{{child.expectedPayout}}</p>-->
+<!--              </div>-->
+<!--              <div v-if="child.tradeStatus === 'pending'" class="table-sep">-->
+<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
+<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
+<!--                <p style="font-size: 12px;"> $ PendingTrade</p>-->
+<!--              </div>-->
+<!--            </td>-->
+<!--            <td>{{child.leverage}}</td>-->
+<!--            <td>{{child.endPrice}}</td>-->
+<!--            <td>{{child.endTime | formatDate}}</td>-->
+<!--            <td>-->
+<!--              <div>-->
+<!--                <p class="status-won" v-show="child.tradeStatus === 'won'" >{{child.tradeStatus}}</p>-->
+<!--                <p class="status-lost" v-show="child.tradeStatus === 'lost'" >{{child.tradeStatus}}</p>-->
+<!--                <p class="status-pending" v-show="child.tradeStatus === 'pending'" >{{child.tradeStatus}}</p>-->
+<!--              </div>-->
+
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+
+<!--        </table>-->
+
         <table>
           <tr style="background-color: #FFFFFF;">
             <th>Trade ID</th>
@@ -43,11 +95,11 @@
 
           <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td>{{child.tradeReference}}</td>
-            <td>{{child.tradeType}}</td>
-            <td>{{child.tradeTime | formatDate2}}</td>
-            <td>{{child.symbolTraded}}</td>
-            <td>
+            <td data-label="Trade ID">{{child.tradeReference}}</td>
+            <td data-label="Trade Type">{{child.tradeType}}</td>
+            <td data-label="Trade Time">{{child.tradeTime | formatDate2}}</td>
+            <td data-label="Symbol Traded">{{child.symbolTraded}}</td>
+            <td data-label="Expected Payout">
               <div v-if="child.tradeStatus === 'won'" class="table-sep">
                 <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>
                 <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>
@@ -61,23 +113,21 @@
               <div v-if="child.tradeStatus === 'pending'" class="table-sep">
                 <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>
                 <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>
-                <p style="font-size: 12px;"> $ PendingTrade</p>
+                <p style="font-size: 12px;">$ PendingTrade</p>
               </div>
             </td>
-            <td>{{child.leverage}}</td>
-            <td>{{child.endPrice}}</td>
-            <td>{{child.endTime | formatDate}}</td>
-            <td>
+            <td data-label="Leverage">{{child.leverage}}</td>
+            <td data-label="End Price">{{child.endPrice}}</td>
+            <td data-label="End Time">{{child.endTime | formatDate}}</td>
+            <td data-label="Trade Status">
               <div>
-                <p class="status-won" v-show="child.tradeStatus === 'won'" >{{child.tradeStatus}}</p>
-                <p class="status-lost" v-show="child.tradeStatus === 'lost'" >{{child.tradeStatus}}</p>
-                <p class="status-pending" v-show="child.tradeStatus === 'pending'" >{{child.tradeStatus}}</p>
+                <p class="status-won" v-show="child.tradeStatus === 'won'">{{child.tradeStatus}}</p>
+                <p class="status-lost" v-show="child.tradeStatus === 'lost'">{{child.tradeStatus}}</p>
+                <p class="status-pending" v-show="child.tradeStatus === 'pending'">{{child.tradeStatus}}</p>
               </div>
-
             </td>
           </tr>
           </tbody>
-
         </table>
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -457,9 +507,58 @@ td {
 input::placeholder{
   color: #FFFFFF;
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .table{
     margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
   }
 }
 

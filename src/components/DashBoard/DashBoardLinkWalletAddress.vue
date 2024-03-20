@@ -133,7 +133,8 @@ export default {
   background-color: #000000;
   border: 1px solid #000000;
   border-radius: 5px ;
-  width: 460px;
+  width: 100%;
+  min-width: 460px;
   height: 35px;
   color: white;
   padding: 5px 20px;
@@ -167,25 +168,53 @@ label{
   margin-top: 5%;
 }
 
-input{
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 10px;
-  background-color: rgba(247, 247, 249, 1);
-  border: none;
-  border-radius: 5px;
+/*input{*/
+/*  padding-top: 14px;*/
+/*  padding-bottom: 14px;*/
+/*  padding-left: 10px;*/
+/*  background-color: rgba(247, 247, 249, 1);*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*}*/
+/*select{*/
+/*  padding-top: 14px;*/
+/*  padding-bottom: 14px;*/
+/*  padding-left: 10px;*/
+/*  background-color: rgba(247, 247, 249, 1);*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+
+@media (max-width: 700px) {
+  .section-2-alpha{
+    margin-top: 5%;
+    float: unset;
+    background-color: #0f171c;
+    padding: 30px 40px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
-select{
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 10px;
-  background-color: rgba(247, 247, 249, 1);
-  border: none;
-  border-radius: 5px;
-}
 
-
-@media (max-width: 550px) {
-
+@media (max-width: 500px) {
+  .section-2-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .section-1-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .form-input{
+    width: 100%;
+    min-width: 365px;
+  }
 }
 </style>

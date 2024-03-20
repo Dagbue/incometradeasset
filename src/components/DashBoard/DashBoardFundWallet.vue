@@ -2,13 +2,10 @@
   <div>
     <div class="body">
       <fund-wallet-modal @close="hideDialog" v-if="dialogIsVisible" :selected-item="selectedItem" />
-<!--      <h2 class="header">Select Payment Gateway</h2>-->
 
       <form @submit.prevent="showDialog" id="InteracFundingCard" class="dashboard-body-wrapper align-center">
-<!--        <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">-->
 
         <h4 class="header">Follow the instructions below to fund your wallet</h4>
-
 
         <hr/>
 
@@ -128,7 +125,6 @@
 
         </div>
 
-
         <div class="margin-top margin-medium">
           <div class="payment-email-wrapper">
             <div class="payment-email">
@@ -140,7 +136,7 @@
             </div>
             <div class="copy-button">
 <!--              <p  class="button">Proceed</p>-->
-              <base-button style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Proceed</base-button>
+              <base-button class="button" :loading="loading">Proceed</base-button>
             </div>
           </div>
         </div>
@@ -457,14 +453,15 @@ option{
   font-size: 17px;
   width: 150px;
   height: 42px;
-  border: 0.5px solid #3C4A57FF;
+  border: 0.5px solid #5d78ff;
+  background-color: #5d78ff;
   border-radius: 6px;
 }
 
 .button:hover{
   color: #ffffff;
-  background-color: #0f171c;
-  border: 0.5px solid #3C4A57FF;
+  border: 0.5px solid #5d78ff;
+  background-color: #5d78ff;
   border-radius: 6px;
 }
 
@@ -474,27 +471,28 @@ hr {
   margin-top: 20px;
 }
 
-@media (max-width: 550px) {
-  .bank-trans{
-    margin-right: unset;
-    margin-left: unset;
-  }
-  .header-alpha{
-    padding-top: 30px;
-    margin-left: unset;
-    font-size: 24px;
-    padding-bottom: 10px;
-    text-align: center;
-    padding-right: unset;
+@media (max-width: 700px) {
+  .header{
+    font-size: 18px;
   }
 
-  input{
-    padding-top: 12px;
-    padding-bottom: 12px;
+  .button{
+    padding: 5px 14px;
+    font-size: 13px;
+    width: 140px;
+    height: 36px;
   }
-  select{
-    padding-top: 12px;
-    padding-bottom: 12px;
+
+  hr {
+    margin-bottom: 15px;
+    margin-top: 15px;
   }
+
+  .dashboard-body-wrapper.align-center {
+    max-width: unset;
+    padding: 30px 20px;
+    width: 100%;
+  }
+
 }
 </style>

@@ -2,13 +2,19 @@
   <section class="home-section">
     <div class="home-content">
       <div class="section-1">
-<!--        <i class='bx bx-menu'></i>-->
-        <img  src="@/assets/log-out.svg" @click="handleClick" alt="Notification"/>&nbsp;&nbsp;
-        <img src="@/assets/Notification.svg" alt="Notification"/>
-        <div class="vl"></div>
-        <img v-if="userInfo.displayPicture === null" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
-        <img v-else :src="userInfo.displayPicture" alt="displayPicture"  class="displayPicture"/>
-        <p class="profile-name">{{this.userFirstName}} {{this.userLastName}}</p>
+
+        <div class="section-1-part-1">
+          <i  class='bx bx-menu' @click="triggerParentFunction" ></i>
+        </div>
+
+        <div class="section-1-part-2">
+          <img src="@/assets/Notification.svg" alt="Notification"/>
+          <div class="vl"></div>
+          <img v-if="userInfo.displayPicture === null" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
+          <img v-else :src="userInfo.displayPicture" alt="displayPicture"  class="displayPicture"/>
+          <p class="profile-name">{{this.userFirstName}} {{this.userLastName}}</p>
+        </div>
+
       </div>
       <slot>
       </slot>
@@ -51,6 +57,10 @@ export default {
         userId : this.userId,
       })
     },
+    triggerParentFunction() {
+      // Emit a custom event with an optional payload
+      this.$emit('customEvent');
+    }
   },
 
   created() {
@@ -86,9 +96,9 @@ export default {
 
 <style scoped>
 .bx-menu{
-  /*width: 90%;*/
   color: #FFFFFF;
-  padding-right: 40%;
+  font-size: 25px;
+  display: none;
 }
 
 /*.avatar{*/
@@ -107,13 +117,26 @@ export default {
 }
 .section-1{
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
-  padding-right: 3%;
+  /*padding-right: 3%;*/
   background-color: #0f171c;
+}
+.section-1-part-1{
+  width: 50%;
+  padding-left: 0.5%;
+}
+.section-1-part-2{
+  display: flex;
+  gap: 10px;
+  align-content: center;
+  align-items: center;
+  justify-content: right;
+  width: 50%;
+  padding-right: 2.5%;
 }
 .vl{
   border-left: 1.5px solid #E7E8F0;
@@ -131,11 +154,12 @@ export default {
 }
 
 .displayPicture{
-  width: 2.5%;
-  border-radius: 100px;
+  width: 5%;
+  border-radius: 100%;
   margin-right: 0;
   padding-right: 0;
 }
+
 
 @media (max-width: 990px) {
   .home-content{
@@ -145,7 +169,7 @@ export default {
     height: 100%;
     margin: unset;
     /*padding: 10px;*/
-    padding-left: 12px;
+    padding-left: unset;
     padding-right: unset;
     overflow-y: scroll;
   }
@@ -153,6 +177,13 @@ export default {
   .avatar{
     width: 9%;
     margin-left: 8px;
+  }
+
+  .displayPicture{
+    width: 9%;
+    border-radius: 100%;
+    margin-right: 0;
+    padding-right: 0;
   }
 
   .section-1{
@@ -163,6 +194,17 @@ export default {
     /*padding-left: 10px;*/
     padding-right: 10px;
   }
+  .bx-menu{
+    display: unset;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .displayPicture{
+    width: 14%;
+  }
+
 }
 
 </style>

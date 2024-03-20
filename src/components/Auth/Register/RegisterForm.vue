@@ -342,8 +342,6 @@
                 <a  class="terms" @click="showDialog">Terms And Conditions</a></label
               >
             </div>
-            {{this.base64}}
-            {{this.url}}
             <base-button :loading="loading" >Create Account</base-button>
 <!--            <div v-if="error">{{ error }}</div>-->
             <div class="separator">

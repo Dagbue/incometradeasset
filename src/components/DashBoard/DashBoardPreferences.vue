@@ -395,4 +395,35 @@ label{
   width: 1.7%;
   margin-right: 8px;
 }
+
+@media (max-width: 700px) {
+  .separate{
+    display: block;
+    justify-content: space-around;
+  }
+
+  .checkbox{
+    margin-top: 20px;
+    width: 2.5%;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+  .section-2-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .section-1-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .form-input{
+    width: 100%;
+  }
+}
 </style>

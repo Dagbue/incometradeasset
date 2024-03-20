@@ -30,6 +30,35 @@
       </div>
 
       <div class="table" v-if="this.UserWithdrawal.withdrawals.length >0">
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <th>S/N</th>-->
+<!--            <th>Amount</th>-->
+<!--            <th>Transaction Type</th>-->
+<!--            <th>Transaction Reference</th>-->
+<!--            <th>Date</th>-->
+<!--            <th>Status</th>-->
+<!--          </tr>-->
+
+<!--          <tbody v-for="child in paginatedItems" :key="child.key">-->
+<!--          <tr>-->
+<!--            <td></td>-->
+<!--            <td>{{child.amount}}</td>-->
+<!--            <td>{{child.transactionType}}</td>-->
+<!--            <td>{{child.transactionReference}}</td>-->
+<!--            <td>{{child.createdAt | formatDate}}</td>-->
+<!--            <td>-->
+<!--              <div>-->
+<!--                <p class="status-won" v-if="child.withdrawalStatus === 'approved'">{{child.withdrawalStatus | lowercase}}</p>-->
+<!--                <p class="status-lost" v-if="child.withdrawalStatus === 'declined'">{{child.withdrawalStatus | lowercase}}</p>-->
+<!--                <p class="status-pending" v-if="child.withdrawalStatus === 'pending'">{{child.withdrawalStatus | lowercase}}</p>-->
+<!--              </div>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+
+<!--        </table>-->
+
         <table>
           <tr>
             <th>S/N</th>
@@ -42,12 +71,12 @@
 
           <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td></td>
-            <td>{{child.amount}}</td>
-            <td>{{child.transactionType}}</td>
-            <td>{{child.transactionReference}}</td>
-            <td>{{child.createdAt | formatDate}}</td>
-            <td>
+            <td data-label="S/N">{{child.sn}}</td> <!-- Assuming there's a serial number (sn) property -->
+            <td data-label="Amount">{{child.amount}}</td>
+            <td data-label="Transaction Type">{{child.transactionType}}</td>
+            <td data-label="Transaction Reference">{{child.transactionReference}}</td>
+            <td data-label="Date">{{child.createdAt | formatDate}}</td>
+            <td data-label="Status">
               <div>
                 <p class="status-won" v-if="child.withdrawalStatus === 'approved'">{{child.withdrawalStatus | lowercase}}</p>
                 <p class="status-lost" v-if="child.withdrawalStatus === 'declined'">{{child.withdrawalStatus | lowercase}}</p>
@@ -56,7 +85,6 @@
             </td>
           </tr>
           </tbody>
-
         </table>
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -415,9 +443,58 @@ input::placeholder{
   color: #FFFFFF;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .table{
     margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
   }
 }
 

@@ -86,32 +86,14 @@ export default {
 
 
 @media (max-width: 990px) {
-  .header-settings{
-    font-size: 22px;
-    margin-left: 15px;
-  }
-  .content-sep, hr{
-    margin-left: unset;
-    margin-right: unset;
-    font-size: 14px;
-  }
+
 }
 @media (max-width: 550px) {
-  .header-settings{
-    font-size: 17px;
-  }
   .account-links{
-    padding: 15px 30px;
-    margin-right: unset;
+    padding: 12px 20px;
+    margin-right: 2%;
+    margin-left: 2%;
     font-size: 12px;
-  }
-  .account-links2{
-    padding: 15px 30px;
-    margin-right: unset;
-    font-size: 12px;
-  }
-  .foot{
-    font-size: 11px;
   }
 }
 </style>

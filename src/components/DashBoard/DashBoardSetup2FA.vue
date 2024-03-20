@@ -219,4 +219,29 @@ label{
   padding-top: 25px;
 }
 
+@media (max-width: 700px) {
+  .section-1-alpha{
+    margin-top: 5%;
+    float: unset;
+    background-color: #0f171c;
+    padding: 30px 40px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .referral-part{
+    margin-bottom: 3%;
+  }
+}
+
+@media (max-width: 500px) {
+  .section-1-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
 </style>

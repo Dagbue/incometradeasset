@@ -23,13 +23,12 @@
       </div>
     </div>
 
-    <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 100%; margin-bottom: 1%;"></iframe>
+    <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 99%; margin-bottom: 1%;"></iframe>
 
     <p v-show="this.userInfo.userStatus === 'unVerified'" class="text-2">Your Account is not verified.</p>
 
     <div class="law">
       <div class="section-3">
-
 
         <div class="section-3-content">
           <div class="content-1">
@@ -41,7 +40,7 @@
             </div>
           </div>
           <div class="content-2">
-            <img src="@/assets/wallet-balance-icon.svg" alt="wallet-balance-icon"/>
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
           </div>
         </div>
 
@@ -97,10 +96,19 @@
     </div>
 
     <div v-show="this.screen1 === 'Forex'"  class="separate">
-      <div class="tradingview_7a2ab-wrapper">
+      <div class="tradingview_7a2ab-wrapper"
+           style="position: relative;
+               box-sizing: content-box;
+               width: 98%;
+               display: block;
+               margin-left: auto;
+               margin-right: auto;
+               height: 560px;"
+      >
           <iframe title="advanced chart TradingView widget" lang="en" id="tradingview_7a2ab" frameborder="0"
                   allowtransparency="true" scrolling="no" allowfullscreen="true"
-                  src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en#%7B%22symbol%22%3A%22OANDA%3AUSDCAD%22%2C%22frameElementId%22%3A%22tradingview_7a2ab%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%221%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22withdateranges%22%3A%221%22%2C%22show_popup_button%22%3A%221%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22OANDA%3AUSDCAD%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2F%22%7D" style="width: 100%; height: 100%; margin: 0px !important; padding: 0px !important;"></iframe>
+                  src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en#%7B%22symbol%22%3A%22OANDA%3AUSDCAD%22%2C%22frameElementId%22%3A%22tradingview_7a2ab%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%221%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22withdateranges%22%3A%221%22%2C%22show_popup_button%22%3A%221%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22OANDA%3AUSDCAD%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2F%22%7D"
+                  style="width: 100%; height: 100%; margin: 0px !important; padding: 0px !important;"></iframe>
         </div>
       <form ref="myForm" class="form-part" @submit.prevent="placeTrade">
 
@@ -193,10 +201,15 @@
     <div v-show="this.screen1 === 'Crypto'"  class="separate">
 
 
-          <div id="tradingview_1a10b-wrapper" style="position: relative; box-sizing: content-box;
-          margin: 0px auto !important; padding: 0px !important;
-               width: 580px;
-               height: 560px;">
+          <div id="tradingview_1a10b-wrapper"
+               style="position: relative;
+               box-sizing: content-box;
+               width: 98%;
+               display: block;
+               margin-left: auto;
+               margin-right: auto;
+               height: 560px;"
+          >
             <iframe title="advanced chart TradingView widget" lang="en" id="tradingview_1a10b" frameborder="0"
                     allowtransparency="true" scrolling="no" allowfullscreen="true"
                     src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en#%7B%22symbol%22%3A%22BITSTAMP%3ABTCUSD%22%2C%22frameElementId%22%3A%22tradingview_1a10b%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%221%22%2C%22details%22%3A%221%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BITSTAMP%3ABTCUSD%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" style="width: 100%; height: 100%; margin: 0px !important; padding: 0px !important;"></iframe>
@@ -307,8 +320,15 @@
     <div v-show="this.screen1 === 'CFD'"  class="separate">
 
 
-      <div id="tradingview_512a5-wrapper" style="position: relative; box-sizing: content-box; margin: 0px auto
-       !important; padding: 0px !important;width: 580px;height: 560px;">
+      <div id="tradingview_512a5-wrapper"
+           style="position: relative;
+               box-sizing: content-box;
+               width: 98%;
+               display: block;
+               margin-left: auto;
+               margin-right: auto;
+               height: 560px;"
+      >
         <iframe title="advanced chart TradingView widget" lang="en" id="tradingview_512a5" frameborder="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en#%7B%22symbol%22%3A%22FX%3AUSDOLLAR%22%2C%22frameElementId%22%3A%22tradingview_512a5%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%221%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22withdateranges%22%3A%221%22%2C%22show_popup_button%22%3A%221%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22FX%3AUSDOLLAR%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCFD%22%7D" style="width: 100%; height: 100%; margin: 0px !important; padding: 0px !important;"></iframe>
       </div>
 
@@ -411,7 +431,15 @@
 
     <div v-show="this.screen1 === 'Stocks'"  class="separate">
 
-          <div id="tradingview_a28b8-wrapper" style="position: relative; box-sizing: content-box;  margin: 0px auto !important; padding: 0px !important;width: 580px;height: 560px;">
+          <div id="tradingview_a28b8-wrapper"
+               style="position: relative;
+               box-sizing: content-box;
+               width: 98%;
+               display: block;
+               margin-left: auto;
+               margin-right: auto;
+               height: 560px;"
+          >
             <iframe title="advanced chart TradingView widget" lang="en" id="tradingview_a28b8" frameborder="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en#%7B%22symbol%22%3A%22NYSE%3ASPXC%22%2C%22frameElementId%22%3A%22tradingview_a28b8%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%221%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22withdateranges%22%3A%221%22%2C%22show_popup_button%22%3A%221%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22NYSE%3ASPXC%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeStocks%22%7D" style="width: 100%; height: 100%; margin: 0px !important; padding: 0px !important;"></iframe>
           </div>
 
@@ -557,11 +585,11 @@
 
             <tbody v-for="child in paginatedItems" :key="child.key">
             <tr>
-              <td>{{child.tradeReference}}</td>
-              <td>{{child.tradeType}}</td>
-              <td>{{child.tradeTime | formatDate2}}</td>
-              <td>{{child.symbolTraded}}</td>
-              <td>
+              <td data-label="Trade ID">{{child.tradeReference}}</td>
+              <td data-label="Trade Type">{{child.tradeType}}</td>
+              <td data-label="Trade Time">{{child.tradeTime | formatDate2}}</td>
+              <td data-label="Symbol Traded">{{child.symbolTraded}}</td>
+              <td data-label="Expected Payout">
                 <div v-if="child.tradeStatus === 'won'" class="table-sep">
                   <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>
                   <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>
@@ -575,24 +603,23 @@
                 <div v-if="child.tradeStatus === 'pending'" class="table-sep">
                   <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>
                   <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>
-                  <p style="font-size: 12px;"> $ PendingTrade</p>
+                  <p style="font-size: 12px;">$ PendingTrade</p>
                 </div>
               </td>
-              <td>{{child.leverage}}</td>
-              <td>{{child.endPrice}}</td>
-              <td>{{child.endTime | formatDate}}</td>
-              <td>
+              <td data-label="Leverage">{{child.leverage}}</td>
+              <td data-label="End Price">{{child.endPrice}}</td>
+              <td data-label="End Time">{{child.endTime | formatDate}}</td>
+              <td data-label="Trade Status">
                 <div>
-                  <p class="status-won" v-show="child.tradeStatus === 'won'" >{{child.tradeStatus}}</p>
-                  <p class="status-lost" v-show="child.tradeStatus === 'lost'" >{{child.tradeStatus}}</p>
-                  <p class="status-pending" v-show="child.tradeStatus === 'pending'" >{{child.tradeStatus}}</p>
+                  <p class="status-won" v-show="child.tradeStatus === 'won'">{{child.tradeStatus}}</p>
+                  <p class="status-lost" v-show="child.tradeStatus === 'lost'">{{child.tradeStatus}}</p>
+                  <p class="status-pending" v-show="child.tradeStatus === 'pending'">{{child.tradeStatus}}</p>
                 </div>
-
               </td>
             </tr>
             </tbody>
-
           </table>
+
           <div class="pagination">
             <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
             <div class="page-indicator">
@@ -983,7 +1010,6 @@ i{
 }
 
 
-
 .section-3{
   display: flex;
   align-content: center;
@@ -1302,7 +1328,7 @@ td {
     display: flex;
     align-content: center;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 10px;
     gap: 24px;
     width: 100%;
     height: 100%;
@@ -1311,27 +1337,29 @@ td {
   }
 
   .form-part {
-    max-width: 580px;
-    width: 90%;
+    max-width: 615px;
+    width: 100%;
     padding: 22px 25px;
     margin-top: 5%;
   }
 
   .law{
-    margin-right: 2%;
+    margin-right: 1%;
   }
 
   .content-1-text-1{
-    font-size: 13px;
+    font-size: 12px;
+    width: 100%;
   }
 
   .content-1-text-2{
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .separate{
     display: block;
     margin-right: unset;
+    margin-left: unset;
     margin-top: 1%;
     margin-bottom: 1%;
   }
@@ -1352,76 +1380,143 @@ td {
     margin-left: auto;
   }
 
+  .last{
+    margin-top: 4%;
+  }
+
+  h2{
+    font-size: 15px;
+  }
+
+  .lawrence{
+    gap: 10px;
+  }
+
+  .trade-btn-1{
+    width: 110px;
+    height: 33px;
+  }
+
+  .trade-btn-2{
+    width: 110px;
+    height: 33px;
+  }
+
+  .trade-btn-3{
+    width: 110px;
+    height: 33px;
+  }
+
+  .trade-btn-4{
+    width: 110px;
+    height: 33px;
+  }
+
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+
 }
 
 @media (max-width: 500px) {
-  .section-3{
-    display: block;
-    align-content: center;
-    align-items: center;
-    padding: 15px 20px;
-    gap: 24px;
-    width: 92%;
-    height: 100%;
-    margin-bottom: 3%;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
+  .trade-btn-1{
+    width: 100px;
+    height: 30px;
+    font-size: 11px;
   }
 
-  .section-3-i{
-    display: block;
-    align-content: center;
-    align-items: center;
-    padding: 15px 25px;
-    gap: 24px;
-    width: 70%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+  .trade-btn-2{
+    width: 100px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .trade-btn-3{
+    width: 100px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .trade-btn-4{
+    width: 100px;
+    height: 30px;
+    font-size: 11px;
   }
 
   .vl-2{
     display: none;
   }
 
+  .section-3{
+    display: block;
+    padding: 20px 20px;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    margin-left: unset;
+  }
+
   .section-3-content{
     display: flex;
     justify-content: space-between;
-    align-content: center;
-    align-items: center;
     width: 100%;
-    margin-bottom: 10%;
+    margin-bottom: 10px;
   }
 
   .content-1-text-1{
+    font-weight: 900;
     font-size: 16px;
-    margin-bottom: 12%;
   }
 
   .content-1-text-2{
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 30px;
   }
 
-  .content-2 img {
-    width: 130%;
-  }
-
-  .section-2-part-1{
+  .form-part{
+    max-width: unset;
+    width: 97%;
+    margin-top: 5%;
     display: block;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
-
-  .section-2-part-1 p{
-    margin-top: 3%;
-    margin-bottom: 3%;
+  .filter_group{
+    display: none;
   }
-
-.action-content{
-  display: none;
-}
-
 }
 
 </style>

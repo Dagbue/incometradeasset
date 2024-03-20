@@ -72,6 +72,15 @@
           </li>
         </router-link>
 
+
+          <li @click="handleClick">
+            <a class="hover">
+              <img  src="@/assets/log-out.svg" alt="Notification"/>&nbsp;&nbsp;
+              <span class="links-name">Logout</span>
+            </a>
+          </li>
+
+
       </ul>
 
     </div>
@@ -83,7 +92,7 @@
 <!--      </div>-->
 
       <div class="logo">
-        <img src="@/assets/companylogo.svg" alt="logo" class="afo-logo-2" />
+        <img src="@/assets/inverse.svg" alt="logo" class="afo-logo" />
       </div>
 
       <ul>
@@ -129,13 +138,27 @@
             <router-link to="/settings" class="">Settings</router-link>
           </a>
         </li>
+
+        <li @click="handleClick">
+          <a >
+            <img  src="@/assets/log-out.svg" alt="Notification"/>&nbsp;&nbsp;
+            <span class="links-name">Logout</span>
+          </a>
+        </li>
       </ul>
+
 
     </div>
 
-    <dash-content>
-      <router-view>
+    <dash-content @customEvent="parentFunction">
+      <router-view v-slot="{ Component, route }">
         <transition name="route" mode="out-in">
+          <div :key="route.name">
+            <div class="icon">
+              <i @click="toggleMobileNav" class='bx bx-menu' v-show="mobile" :class="{'icon-active' : mobileNav}"></i>
+            </div>
+            <component :is="Component"></component>
+          </div>
         </transition>
       </router-view>
     </dash-content>
@@ -146,6 +169,7 @@
 
 <script>
 import DashContent from "@/components/BaseComponents/dash/DashContent.vue";
+import router from "@/router";
 
 export default {
   name: "DashBoardSideBarView",
@@ -165,6 +189,16 @@ export default {
     window.removeEventListener('resize', this.checkScreen); // Cleanup the event listener
   },
   methods: {
+    async handleClick() {
+      await localStorage.clear();
+      await router.push('/login')
+    },
+    // This method is triggered when the customEvent is received
+    parentFunction() {
+      console.log("Event received in parent with payload:");
+      // Additional logic here
+      this.toggleMobileNav();
+    },
     toggleMobileNav() {
       this.mobileNav = !this.mobileNav;
     },

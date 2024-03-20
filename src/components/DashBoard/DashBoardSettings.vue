@@ -5,18 +5,28 @@
 
       <div class="settings-alpha">
         <div class="settings-links">
-          <router-link to="/update-account" class="account-links">Edit Profile</router-link>
-          <router-link to="/change-password" class="account-links">Change Password</router-link>
-          <router-link to="/preferences" class="account-links">Preferences</router-link>
-          <router-link to="/upload-display-picture" class="account-links2">Upload Display Picture</router-link>
-          <router-link to="/link-Wallet-Address" class="account-links2">Link Wallet Address</router-link>
-          <router-link to="/setup2FA" class="account-links2">SetUp 2FA</router-link>
-          <router-view v-slot="{ Component }">
-            <transition name="route" mode="out-in">
-              <component :is="Component"></component>
-            </transition>
-          </router-view>
+
+          <div class="lawrence-1">
+            <router-link to="/update-account" class="account-links">Edit Profile</router-link>
+            <router-link to="/change-password" class="account-links">Change Password</router-link>
+            <router-link to="/preferences" class="account-links">Preferences</router-link>
+          </div>
+
+          <div class="lawrence-1">
+            <router-link to="/upload-display-picture" class="account-links2">Upload Display Picture</router-link>
+            <router-link to="/link-Wallet-Address" class="account-links2">Link Wallet Address</router-link>
+            <router-link to="/setup2FA" class="account-links2">SetUp 2FA</router-link>
+          </div>
+
+
+
         </div>
+
+        <router-view v-slot="{ Component }">
+          <transition name="route" mode="out-in">
+            <component :is="Component"></component>
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
@@ -46,16 +56,21 @@ export default {
 
 .settings-links{
   margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 .account-links{
   text-decoration: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: #0f171c;
-  padding: 10px 30px;
-  margin-right: 1%;
+  padding: 10px 20px;
   color: #FFFFFF;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 13px;
+  width: 150px;
+  height: 40px;
+  margin: auto;
 }
 .account-links:hover{
   background-color: #af910d;
@@ -71,11 +86,14 @@ export default {
   text-decoration: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: #0f171c;
-  padding: 10px 30px;
-  margin-right: 1%;
+  padding: 10px 20px;
   color: #FFFFFF;
   border-radius: 5px;
-  font-size: 14px;
+
+  font-size: 13px;
+  width: 180px;
+  height: 40px;
+  margin: auto;
 }
 .account-links2:hover{
   background-color: #af910d;
@@ -86,6 +104,10 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.lawrence-1{
+  display: flex;
+  gap: 10px;
+}
 
 
 @media (max-width: 990px) {
@@ -116,5 +138,45 @@ export default {
   .foot{
     font-size: 11px;
   }
+
+  .settings-links{
+    margin-top: 2%;
+    display: block;
+    margin-bottom: 1.5%;
+  }
+
+  .lawrence-1{
+    margin-bottom: 20px;
+  }
+
+  .account-links{
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #0f171c;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 150px;
+    height: 60px;
+    margin: auto;
+  }
+
+
+
+  .account-links2{
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #0f171c;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    width: 180px;
+    height: 55px;
+    margin: unset;
+  }
+
 }
 </style>
