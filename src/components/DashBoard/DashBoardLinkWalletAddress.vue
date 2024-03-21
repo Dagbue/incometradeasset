@@ -5,7 +5,7 @@
     <div class="form">
       <form @submit.prevent="updateDetails">
 
-        <div class="separate">
+
 
           <div class="space">
             <label>Wallet Name</label>
@@ -13,16 +13,15 @@
           </div>
 
 
-        </div>
 
-        <div class="separate">
+
 
           <div class="space">
             <label>Wallet Address</label>
             <input type="text" v-model="walletAddress" required="required" class="form-input"/>
           </div>
 
-        </div>
+
 
 <!--        <div class="separate">-->
 
@@ -134,7 +133,7 @@ export default {
   border: 1px solid #000000;
   border-radius: 5px ;
   width: 100%;
-  min-width: 460px;
+  max-width: 500px;
   height: 35px;
   color: white;
   padding: 5px 20px;
@@ -165,7 +164,7 @@ label{
 .btn-alpha{
   /*display: flex;*/
   /*float: left;*/
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 /*input{*/
@@ -192,29 +191,14 @@ label{
     float: unset;
     background-color: #0f171c;
     padding: 30px 40px;
-    width: 90%;
+    width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-}
 
-@media (max-width: 500px) {
-  .section-2-alpha{
-    margin-left: unset;
-    padding: 20px 20px;
-    width: 100%;
-    max-width: 500px;
-  }
-  .section-1-alpha{
-    margin-left: unset;
-    padding: 20px 20px;
-    width: 100%;
-    max-width: 500px;
-  }
-  .form-input{
-    width: 100%;
-    min-width: 365px;
+  .btn-alpha{
+    margin-top: 8%;
   }
 }
 </style>

@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="section-5">
-            <div class="empty-state" v-if="this.UserDeposit.deposits.length === 0">
+            <div class="empty-state-container" v-if="this.UserDeposit.deposits.length === 0">
               <img src="@/assets/empty.svg" alt="empty">
               <p class="empty-state-text-1">You have nothing to see</p>
               <p class="empty-state-text-2">This is where your Deposits will appear</p>
@@ -322,7 +322,7 @@ td {
   /*border-bottom: 1px solid #E3EBF6;*/
 }
 
-.empty-state{
+.empty-state-container{
   text-align: center;
   margin-top: 7%;
   margin-right: 8%;
@@ -466,7 +466,7 @@ input::placeholder{
     /* Each cell is now a full-width row */
     border: none;
     position: relative;
-    padding-left: 50%;
+    padding-left: 60%;
     text-align: center;
     margin-bottom: 10px;
     font-size: 15px;
@@ -477,6 +477,7 @@ input::placeholder{
     content: attr(data-label);
     position: absolute;
     left: 10px;
+    padding-left: 5%;
     font-weight: bold;
   }
 }
@@ -493,6 +494,13 @@ input::placeholder{
   .body{
     padding: 10px 20px 10px 5px;
   }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
 }
 
 </style>

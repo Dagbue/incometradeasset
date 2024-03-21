@@ -136,7 +136,13 @@
             </div>
             <div class="copy-button">
 <!--              <p  class="button">Proceed</p>-->
-              <base-button class="button" :loading="loading">Proceed</base-button>
+              <base-button
+                  style="
+                    border: 0.5px solid #5d78ff;
+                    background-color: #5d78ff;"
+                  class="button"
+                  :loading="loading"
+              >Proceed</base-button>
             </div>
           </div>
         </div>
@@ -264,7 +270,7 @@ export default {
   font-size: 19px;
   /*line-height: 25px;*/
   color: #ffffff;
-  text-align: center;
+  text-align: left;
 }
 
 

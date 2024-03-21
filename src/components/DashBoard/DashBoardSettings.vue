@@ -13,8 +13,8 @@
           </div>
 
           <div class="lawrence-1">
-            <router-link to="/upload-display-picture" class="account-links2">Upload Display Picture</router-link>
-            <router-link to="/link-Wallet-Address" class="account-links2">Link Wallet Address</router-link>
+            <router-link to="/upload-display-picture" class="account-links2">Display Picture</router-link>
+            <router-link to="/link-Wallet-Address" class="account-links2">Wallet Address</router-link>
             <router-link to="/setup2FA" class="account-links2">SetUp 2FA</router-link>
           </div>
 
@@ -125,16 +125,6 @@ export default {
   .header-settings{
     font-size: 17px;
   }
-  .account-links{
-    padding: 15px 30px;
-    margin-right: unset;
-    font-size: 12px;
-  }
-  .account-links2{
-    padding: 15px 30px;
-    margin-right: unset;
-    font-size: 12px;
-  }
   .foot{
     font-size: 11px;
   }
@@ -156,10 +146,9 @@ export default {
     padding: 10px 20px;
     color: #FFFFFF;
     border-radius: 5px;
-    font-size: 12px;
-    width: 150px;
-    height: 60px;
-    margin: auto;
+    font-size: 13px;
+    width: 190px;
+    height: 100%;
   }
 
 
@@ -172,10 +161,9 @@ export default {
     color: #FFFFFF;
     border-radius: 5px;
     text-align: center;
-    font-size: 12px;
-    width: 180px;
-    height: 55px;
-    margin: unset;
+    font-size: 13px;
+    width: 190px;
+    height: 100%;
   }
 
 }

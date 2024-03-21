@@ -25,6 +25,9 @@
             required
         />
         <base-button
+            style="
+              background-color: #5d78ff;
+              border: 1px solid #5d78ff;"
             :loading="loading"
             class="link-button"
         >Upload</base-button>
@@ -218,6 +221,10 @@ label{
     max-width: 500px;
   }
   .form-input{
+    width: 100%;
+  }
+
+  .link-box{
     width: 100%;
   }
 }

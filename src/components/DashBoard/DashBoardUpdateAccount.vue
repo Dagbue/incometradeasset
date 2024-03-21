@@ -336,6 +336,12 @@ label{
   .form-input{
     width: 100%;
   }
+  .link-button{
+    font-size: 12px;
+  }
+  .btn-alpha{
+    margin-top: 8%;
+  }
 }
 
 </style>

@@ -4,7 +4,7 @@
     <div class="sidebar" v-show="!mobile">
 
       <div class="logo">
-        <img src="@/assets/companylogo.svg" alt="logo" class="afo-logo" />
+        <img src="@/assets/inverse.svg" alt="logo" class="afo-logo" />
       </div>
 
       <ul class="nav-list" >
@@ -17,15 +17,6 @@
             </a>
           </li>
         </router-link>
-
-<!--        <router-link to="/investments-list">-->
-<!--          <li>-->
-<!--            <a class="hover">-->
-<!--              <img src="../../assets/walletmana.svg" alt="logo" class="link-img" />-->
-<!--              <span class="links-name wallets">Investments</span>-->
-<!--            </a>-->
-<!--          </li>-->
-<!--        </router-link>-->
 
         <router-link to="/deposit-requests">
           <li>
@@ -101,100 +92,85 @@
 
       </ul>
 
-      <!--      <div class="logout links-name">-->
-      <!--&lt;!&ndash;        <img src="@/assets/Avatar.svg" alt="logo"  />&ndash;&gt;-->
-      <!--        <div class="links-name-separate">-->
-      <!--          <span class="links-name">LogOut</span>-->
-      <!--&lt;!&ndash;          <span class="links-name">Lawrence</span>&ndash;&gt;-->
-      <!--        </div>-->
-      <!--        <img src="@/assets/log-out.svg" alt="logo"   />-->
-      <!--      </div>-->
-
 
     </div>
-
 
     <div  class="dropdown-nav-2" v-show="mobileNav" >
 
-      <div class="icon-2">
-        <i @click="toggleMobileNav" class='bx bx-menu' v-show="mobile" :class="{'icon-active' : mobileNav}"></i>
+      <div class="logo">
+        <img src="@/assets/inverse.svg" alt="logo" class="afo-logo" />
       </div>
 
-<!--      <i class='bx bx-user'></i>-->
-      <!--      <ul>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-home'></i>-->
-      <!--            <router-link to="dash-board" class="">DashBoard</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-user'></i>-->
-      <!--            <router-link to="/account" class="">Account</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bx-support' ></i>-->
-      <!--            <router-link to="/support" class="">Support</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bx-line-chart' ></i>-->
-      <!--            <router-link to="/roihistory" class="">ROI History</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-briefcase' ></i>-->
-      <!--            <router-link to="/transactionhistory" class="">Transaction History</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bx-credit-card' ></i>-->
-      <!--            <router-link to="/pacakages" class="">Deposit</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-wallet' ></i>-->
-      <!--            <router-link to="/withdrawal" class="">Withdrawal</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-grid-alt' ></i>-->
-      <!--            <router-link to="/subscription-trade" class="">Subscription Trade</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-package' ></i>-->
-      <!--            <router-link to="/pacakages" class="">Packages</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bx-recycle' ></i>-->
-      <!--            <router-link to="/refer-users" class="">Refer Users</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
-      <!--        <li @click="toggleMobileNav2">-->
-      <!--          <a>-->
-      <!--            <i class='bx bxs-cog' ></i>-->
-      <!--            <router-link to="/account-settings" class="">Account Settings</router-link>-->
-      <!--          </a>-->
-      <!--        </li>-->
 
-      <!--        <button @click="handleClick" class="logout">Logout</button>-->
-      <!--      </ul>-->
+      <ul>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="@/assets/dashboardlogo.svg" alt="logo" class="link-img" />
+            <router-link to="/list-of-users" class="">List Of Users</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/walletmana.svg" alt="logo" class="link-img" />
+            <router-link  to="/deposit-requests" class="">Deposit Request</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <i class='bx bx-support' ></i>
+            <router-link to="/withdrawal-requests" class="">Withdrawal Request</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/coin-stack.svg" alt="logo" class="link-img" />
+            <router-link to="/trade-request-admin" class="">Trade Request</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/coin-stack.svg" alt="logo" class="link-img" />
+            <router-link to="/add-trade" class="">Add Trade</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="@/assets/pie-chart.svg" alt="logo" class="link-img" />
+            <router-link to="/payment-details" class="">Payment Details</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/virtacc.svg" alt="logo" class="link-img" />
+            <router-link to="/uploaded-ID" class="">Uploaded ID's</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/virtacc.svg" alt="logo" class="link-img" />
+            <router-link to="/change-password-admin" class="">Change Password</router-link>
+          </a>
+        </li>
+        <li @click="toggleMobileNav2">
+          <a>
+            <img src="../../assets/virtacc.svg" alt="logo" class="link-img" />
+            <router-link to="/add-new-user" class="">Add New User</router-link>
+          </a>
+        </li>
+
+        <li @click="handleClick">
+          <a >
+            <img  src="@/assets/log-out.svg" alt="Notification"/>&nbsp;&nbsp;
+            <span class="links-name">Logout</span>
+          </a>
+        </li>
+      </ul>
+
+
+
     </div>
 
-
-    <dash-content2>
+    <dash-content2 @customEvent="parentFunction">
       <router-view v-slot="{ Component, route }">
         <transition name="route" mode="out-in">
           <div :key="route.name">
@@ -208,58 +184,58 @@
     </dash-content2>
 
 
-    <!--    <div v-if="!user" class="final">-->
-    <!--      <router-link to="/login" class="back-login">Go Back To The Login Page</router-link>-->
-    <!--      <router-link to="/" class="back-home">Go Back To The Home Page</router-link>-->
-    <!--    </div>-->
   </div>
 </template>
 
 <script>
 import DashContent2 from "@/components/BaseComponents/dash/DashContent2.vue";
+import router from "@/router";
 
 export default {
   name: "DashBoardSideBarAdminView",
   components: {DashContent2},
-  // setup() {
-  //   const store = useStore()
-  //   const handleClick = async () => {
-  //     await store.dispatch('logout')
-  //   }
-  //   router.push('/dash-home')
-  //   return { handleClick,
-  //     user: computed(() => store.state.user),
-  //     authIsReady: computed(() => store.state.authIsReady)}
-  // },
   data()  {
     return {
       mobile: false,
       mobileNav: false,
-      windowWidth: false,
-    }
+      windowWidth: window.innerWidth, // Initialize directly with the window's innerWidth
+    };
   },
   created() {
     window.addEventListener('resize', this.checkScreen);
-    this.checkScreen();
+    this.checkScreen(); // Check the screen size immediately on component creation
+  },
+  beforeDestroy() { // Use `beforeDestroy` instead of `unmounted` for Vue 2
+    window.removeEventListener('resize', this.checkScreen); // Cleanup the event listener
   },
   methods: {
+    async handleClick() {
+      await localStorage.clear();
+      await router.push('/login')
+    },
+    // This method is triggered when the customEvent is received
+    parentFunction() {
+      console.log("Event received in parent with payload:");
+      // Additional logic here
+      this.toggleMobileNav();
+    },
     toggleMobileNav() {
       this.mobileNav = !this.mobileNav;
     },
-    toggleMobileNav2(){
+    toggleMobileNav2() {
       this.mobileNav = false;
     },
     checkScreen() {
       this.windowWidth = window.innerWidth;
-      if (this.windowWidth <= 990){
+      if (this.windowWidth <= 990) {
         this.mobile = true;
-        return;
+      } else {
+        this.mobile = false;
+        this.mobileNav = false;
       }
-      this.mobile = false;
-      this.mobileNav = false;
-      return;
     }
-  }
+  },
+
 }
 </script>
 
@@ -269,9 +245,6 @@ export default {
 }
 .afo-logo{
   width: 85%;
-  background-color: #FFFFFF;
-  padding: 10px 20px 10px 8px;
-  border-radius: 4px;
 }
 .afo-logo-2{
   width: 80%;
@@ -302,15 +275,15 @@ body{
   padding: 5px 15px;
   border-radius: 5px;
   color: #F04438;
-  /*border: 1px solid #E8E8E8;*/
+  border: 1px solid #E8E8E8;
 }
 .sidebar{
   top: 0;
   left: 0;
   height: 100vh;
   width: 235px;
-  /*background-image: url('~@/assets/sidebarimage.svg');*/
   background-color: #0f171c;
+  border-right: 1px solid #000;
   padding: 6px 20px 37px;
 }
 .sidebar ul li{
@@ -332,7 +305,6 @@ body{
 }
 .hover:hover{
   background: rgba(255, 255, 255, 0.2);
-  /*border: 1px solid rgba(255, 255, 255, 0.05);*/
   backdrop-filter: blur(3.5px);
   padding: 8px;
   border-radius: 4px;
@@ -376,6 +348,7 @@ body{
   right: 24px;
   height: 100%;
   padding-top: 15px;
+  color: #FFFFFF;
 }
 .icon i {
   cursor: pointer;
@@ -385,65 +358,186 @@ body{
 .icon-active {
   transform: rotate(360deg);
 }
-.dropdown-nav{
-  background-color: #175CD3;
-  height: 100vh;
-  list-style: none;
-}
-.logout{
-  display: flex;
-  justify-content: center;
-  margin-top: 110%;
-  margin-right: 25%;
-}
-
 .logout span{
   font-size: 16px;
   padding-top: 10.5px;
   padding-right: 10px;
 }
-
 .icon {
   position: absolute;
   top: 0;
   right: 24px;
   height: 100%;
-  color: #000;
+  color: #ffffff;
   padding-top: 15px;
 }
-
 .icon i {
   cursor: pointer;
   font-size: 30px;
   transition: 0.8s ease all;
 }
-
 .icon-active {
   transform: rotate(360deg);
 }
-
-.links-name-separate{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .links-name-separate span{
   margin-bottom: 0;
   padding-bottom: 0;
   padding-top: 0;
   margin-top: 0;
 }
+.dropdown-nav-2{
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  /*padding-right: 7%;*/
+  height: 100vh;
+  width: 240px;
+  /*height: 100%;*/
+  background-color: #0f171c;
+  font-size: 16px;
+  text-align: center;
+}
+.dropdown-nav-2 li {
+  overflow: hidden;
+  list-style: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+.dropdown-nav-2 ul {
+  /*padding-top: 25%;*/
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.dropdown-nav-2 a {
+  padding: 0.55em 0;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  /*letter-spacing: 1px;*/
+  margin: 0;
+  text-decoration: none;
+}
+.dropdown-nav-2 a:before,
+.dropdown-nav-2 a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.dropdown-nav-2 a:after {
+  padding: 0.3em 0;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  content: attr(data-hover);
+  color: #676767;
+  white-space: nowrap;
+}
+.dropdown-nav-2 li:hover a,
+.dropdown-nav-2.current a {
+  color: #ffffff;
+}
+.bx-menu{
+  font-size: 38px;
+  cursor: pointer;
+  transition: .8s ease all;
+  color: #ffffff;
+}
+.icon-active{
+  transform: rotate(180deg);
+}
+.final{
+  margin-left: 26%;
+  margin-top: 23%;
+  display: flex;
+}
+.back-login{
+  margin-right: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 8px;
+  color: #222222;
+}
+.back-home{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-left: 30px;
+  padding: 40px;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 8px;
+  color: #222222;
+}
 
 @media (max-width: 990px) {
+  .logout{
+    padding: 9px 60px;
+    margin-left: 15px;
+    margin-top: 13px;
+    border-radius: 20px;
+  }
+  .icon-2{
+    padding-left: 90%;
+    color: white;
+  }
   i{
     font-size: 20px;
     padding-right: 5px;
   }
+  .icon{
+    overflow-y: unset;
+  }
+
+  .final{
+    margin-left: 10%;
+    margin-top: 25%;
+  }
+}
+@media (max-width: 700px) {
+  .dropdown-nav-2{
+    padding-right: unset;
+    max-width: 210px;
+    font-size: 15px;
+  }
+  .icon-2{
+    padding-left: 80%;
+  }
+  .dropdown-nav-2 ul {
+    padding-top: unset;
+  }
+  .logout{
+    padding: 8px 50px;
+  }
+  .final{
+    margin-left: 23%;
+    margin-top: 30%;
+    display: flex;
+    flex-direction: column;
+  }
+  .back-login{
+    margin-right: unset;
+    padding: 25px;
+    font-size: 18px;
+    margin-bottom: 15%;
+  }
+  .back-home{
+    margin-left: unset;
+    padding: 25px;
+    font-size: 18px;
+
+  }
+
+  .bx-user{
+    font-size: 300%;
+    margin-left: 10%;
+  }
 
 }
-
-@media (max-width: 550px) {
-}
-
 </style>

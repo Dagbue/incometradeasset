@@ -3,7 +3,7 @@
     <div class="section-2">
 
       <div class="section-2-part-1">
-        <div class="lawrence">
+        <div class="lawrence bottom">
           <p  @click="toggleScreen" class="trade-btn-1">Trade Forex</p>
           <p @click="toggleScreen2" class="trade-btn-2">Trade Crypto</p>
         </div>
@@ -559,7 +559,7 @@
       </div>
       <div class="section-5">
 
-        <div class="empty-state" v-if="this.readUserTrade.trades.length === 0">
+        <div class="empty-state-container" v-if="this.readUserTrade.trades.length === 0">
           <img src="@/assets/empty.svg" alt="empty" class="empty-state">
           <p style="text-align: center;color: #FFFFFF; font-size: 13px;padding-bottom: 3px;" class="empty-state-text-1">You have nothing to see</p>
           <p style="text-align: center;color: #FFFFFF; font-size: 13px;padding-bottom: 3px;" class="empty-state-text-2">This is where your Trade history will appear</p>
@@ -883,7 +883,7 @@ i{
   align-items: center;
   gap: 5px;
 }
-.empty-state{
+.empty-state-container{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -915,7 +915,7 @@ i{
   text-align: center;
   font-size: 12px;
   width: 125px;
-  height: 33px;
+  height: 30px;
   background: #E50202;
   color: #ffffff;
   border: 1px solid #E50202;
@@ -931,7 +931,7 @@ i{
   text-align: center;
   font-size: 12px;
   width: 125px;
-  height: 33px;
+  height: 30px;
   background: #10d876;
   color: #ffffff;
   border: 1px solid #10d876;
@@ -947,7 +947,7 @@ i{
   text-align: center;
   font-size: 12px;
   width: 125px;
-  height: 33px;
+  height: 30px;
   background: #FE9431;
   color: #ffffff;
   border: 1px solid #FE9431;
@@ -963,7 +963,7 @@ i{
   text-align: center;
   font-size: 12px;
   width: 125px;
-  height: 33px;
+  height: 30px;
   background: #5d78ff;
   color: #ffffff;
   border: 1px solid #5d78ff;
@@ -987,7 +987,7 @@ i{
   gap: 8px;
   font-size: 12px;
   width: 125px;
-  height: 33px;
+  height: 30px;
   background: #0f171c;
   color: #ffffff;
   border: 0.5px solid #3C4A57FF;
@@ -1434,7 +1434,7 @@ td {
     /* Each cell is now a full-width row */
     border: none;
     position: relative;
-    padding-left: 50%;
+    padding-left: 60%;
     text-align: center;
     margin-bottom: 10px;
     font-size: 15px;
@@ -1445,6 +1445,7 @@ td {
     content: attr(data-label);
     position: absolute;
     left: 10px;
+    padding-left: 5%;
     font-weight: bold;
   }
 
@@ -1452,27 +1453,27 @@ td {
 
 @media (max-width: 500px) {
   .trade-btn-1{
-    width: 100px;
+    width: 90px;
     height: 30px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .trade-btn-2{
-    width: 100px;
+    width: 90px;
     height: 30px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .trade-btn-3{
-    width: 100px;
+    width: 90px;
     height: 30px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .trade-btn-4{
-    width: 100px;
+    width: 90px;
     height: 30px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .vl-2{
@@ -1517,6 +1518,22 @@ td {
   .filter_group{
     display: none;
   }
+
+  .lawrence{
+    gap: 5px;
+  }
+
+  .section-2-part-1{
+    gap: 5px;
+  }
+
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
 }
 
 </style>

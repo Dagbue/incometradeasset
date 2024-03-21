@@ -205,6 +205,11 @@ export default {
     width: 14%;
   }
 
+  .profile-name{
+    font-size: 12px;
+    line-height: unset;
+    letter-spacing: unset;
+  }
 }
 
 </style>

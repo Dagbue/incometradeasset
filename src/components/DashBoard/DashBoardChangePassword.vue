@@ -181,5 +181,9 @@ label{
     margin-left: auto;
     margin-right: auto;
   }
+
+  .btn-alpha{
+    margin-top: 8%;
+  }
 }
 </style>

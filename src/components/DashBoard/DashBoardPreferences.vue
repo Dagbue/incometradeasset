@@ -10,7 +10,7 @@
           <div class="separate">
 
             <div class="space">
-              <label>Local Currency</label>
+              <label class="label-1">Local Currency</label>
               <select type="text"  class="form-input">
                 <option value="USD">USD</option>
                 <option value="GBP">GBP</option>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="space">
-              <label>Time Zone</label>
+              <label class="label-1">Time Zone</label>
               <select type="text"  class="form-input">
                 <option value="(GMT-12:00) International Date Line West">(GMT-12:00) International Date Line West</option>
                 <option value="(GMT-11:00) Midway Island, Samoa">(GMT-11:00) Midway Island, Samoa</option>
@@ -280,18 +280,21 @@
 
             <div  class="space-2">
               <input type="checkbox" class="checkbox"/>
-              <label>I send or receive digital currency</label>
+              <label class="label-check">I send or receive digital currency</label>
             </div>
+            <br/>
 
             <div class="space-2">
               <input type="checkbox" class="checkbox"/>
-              <label>I receive merchant order</label>
+              <label class="label-check">I receive merchant order</label>
             </div>
+            <br/>
 
             <div class="space-2">
               <input type="checkbox" class="checkbox"/>
-              <label>There are recommendations for my account</label>
+              <label class="label-check">There are recommendations for my account</label>
             </div>
+            <br/>
 
           </div>
 
@@ -362,11 +365,21 @@ hr {
 }
 .space-2{
   display: flex;
+  align-items: center;
+  align-content: center;
 }
-label{
+.label-1{
   padding-bottom: 5px;
   padding-top: 25px;
+  text-align: left;
 }
+
+.label-check{
+  /*padding-bottom: 5px;*/
+  /*padding-top: 25px;*/
+  text-align: left;
+}
+
 .btn{
   display: block;
   margin-left: auto;
@@ -388,10 +401,10 @@ label{
 .btn-alpha{
   display: flex;
   float: left;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 .checkbox{
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   width: 1.7%;
   margin-right: 8px;
 }
@@ -403,9 +416,8 @@ label{
   }
 
   .checkbox{
-    margin-top: 20px;
-    width: 2.5%;
-    margin-right: 8px;
+    width: 5%;
+    margin-right: 5px;
   }
 }
 
@@ -424,6 +436,9 @@ label{
   }
   .form-input{
     width: 100%;
+  }
+  .btn-alpha{
+    margin-top: 6%;
   }
 }
 </style>

@@ -90,7 +90,7 @@ export default {
 }
 @media (max-width: 550px) {
   .account-links{
-    padding: 12px 20px;
+    padding: 15px 30px;
     margin-right: 2%;
     margin-left: 2%;
     font-size: 12px;
