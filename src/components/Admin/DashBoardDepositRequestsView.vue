@@ -28,46 +28,43 @@
       </div>
 
       <div class="table" v-if="this.allDeposits.deposits.length >0">
-                <table>
-                <tr>
-                  <th>Client Name</th>
-                  <th>Amount</th>
-                  <th>Payment Mode</th>
-                  <th>Date Applied</th>
-                  <th>Description</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
+        <table>
+          <tr>
+            <th>Client Name</th>
+            <th>Amount</th>
+            <th>Payment Mode</th>
+            <th>Date Applied</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
 
-                <tbody v-for="child in paginatedItems" :key="child.key">
-                <tr>
-                  <td>{{child.firstName}} {{child.lastName}}</td>
-                  <td>{{child.amount}}</td>
-                  <td>{{child.transactionMethod}}</td>
-                  <td>{{child.createdAt | formatDate}}</td>
-                  <td>{{child.additionalComment}}</td>
-                  <td>
-                    <div>
-                      <p v-if="child.depositStatus === 'approved'" class="status-approved">{{child.depositStatus | lowercase}}</p>
-                      <p v-if="child.depositStatus === 'declined'" class="status-declined">{{child.depositStatus | lowercase}}</p>
-                      <p v-if="child.depositStatus === 'PENDING'" class="status-pending">{{child.depositStatus | lowercase}}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div v-if="child.depositStatus === 'PENDING'">
-                      <button class="btn" @click="approve(child)">Approve</button>
-                      <button class="btn-2" @click="decline(child)">Decline</button>
-                    </div>
+          <tbody v-for="child in paginatedItems" :key="child.key">
+          <tr>
+            <td data-label="Client Name">{{child.firstName}} {{child.lastName}}</td>
+            <td data-label="Amount">{{child.amount}}</td>
+            <td data-label="Payment Mode">{{child.transactionMethod}}</td>
+            <td data-label="Date Applied">{{child.createdAt | formatDate}}</td>
+            <td data-label="Description">{{child.additionalComment}}</td>
+            <td data-label="Status">
+              <div>
+                <p v-if="child.depositStatus === 'approved'" class="status-approved">{{child.depositStatus | lowercase}}</p>
+                <p v-if="child.depositStatus === 'declined'" class="status-declined">{{child.depositStatus | lowercase}}</p>
+                <p v-if="child.depositStatus === 'PENDING'" class="status-pending">{{child.depositStatus | lowercase}}</p>
+              </div>
+            </td>
+            <td data-label="Action">
+              <div v-if="child.depositStatus === 'PENDING'">
+                <button class="btn" @click="approve(child)">Approve</button>
+                <button class="btn-2" @click="decline(child)">Decline</button>
+              </div>
 
-                    <p class="status-declined-2" v-if="child.depositStatus === 'declined'">Already Declined</p>
-
-                    <p class="status-approved-2" v-if="child.depositStatus === 'approved'">Already Approved</p>
-
-                  </td>
-                </tr>
-                </tbody>
-
-                </table>
+              <p class="status-declined-2" v-if="child.depositStatus === 'declined'">Already Declined</p>
+              <p class="status-approved-2" v-if="child.depositStatus === 'approved'">Already Approved</p>
+            </td>
+          </tr>
+          </tbody>
+        </table>
                <div class="pagination">
                  <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
                  <div class="page-indicator">
@@ -545,5 +542,70 @@ select {
 }
 label{
   color: #FFFFFF;
+}
+
+@media (max-width: 700px) {
+  .table{
+    margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 60%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    padding-left: 5%;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
+  }
+  h2{
+    padding-left: 10px;
+  }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 }
 </style>

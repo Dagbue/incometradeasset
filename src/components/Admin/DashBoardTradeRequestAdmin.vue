@@ -38,8 +38,7 @@
             <th>Market Type</th>
             <th>Payout</th>
             <th>Amount</th>
-            <th>symbol</th>
-<!--            <th>Market Type</th>-->
+            <th>Symbol</th>
             <th>Date</th>
             <th>Status</th>
             <th>Action</th>
@@ -47,31 +46,29 @@
 
           <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td>{{child.tradeReference}}</td>
-            <td>{{child.firstName}} {{child.lastName}}</td>
-            <td>{{child.tradeType}}</td>
-            <td>{{child.endPrice}}</td>
-            <td>{{child.leverage}}</td>
-            <td>{{child.marketType}}</td>
-            <td>{{child.expectedPayout}}</td>
-            <td>{{child.amountTrade}}</td>
-            <td>{{child.symbolTraded}}</td>
-<!--            <td>{{child.marketType}}</td>-->
-            <td>{{child.createdAt | formatDate}}</td>
-            <td>
+            <td data-label="Trade ID">{{child.tradeReference}}</td>
+            <td data-label="User">{{child.firstName}} {{child.lastName}}</td>
+            <td data-label="Trade Type">{{child.tradeType}}</td>
+            <td data-label="End Price">{{child.endPrice}}</td>
+            <td data-label="Leverage">{{child.leverage}}</td>
+            <td data-label="Market Type">{{child.marketType}}</td>
+            <td data-label="Payout">{{child.expectedPayout}}</td>
+            <td data-label="Amount">{{child.amountTrade}}</td>
+            <td data-label="Symbol">{{child.symbolTraded}}</td>
+            <td data-label="Date">{{child.createdAt | formatDate}}</td>
+            <td data-label="Status">
               <div>
-                <p class="status-won" v-if="child.tradeStatus === 'won'" >{{child.tradeStatus | lowercase}}</p>
-                <p class="status-lost" v-if="child.tradeStatus === 'lost'" >{{child.tradeStatus | lowercase}}</p>
-                <p class="status-pending" v-if="child.tradeStatus === 'pending'" >{{child.tradeStatus | lowercase}}</p>
+                <p class="status-won" v-if="child.tradeStatus === 'won'">{{child.tradeStatus | lowercase}}</p>
+                <p class="status-lost" v-if="child.tradeStatus === 'lost'">{{child.tradeStatus | lowercase}}</p>
+                <p class="status-pending" v-if="child.tradeStatus === 'pending'">{{child.tradeStatus | lowercase}}</p>
               </div>
             </td>
-            <td>
+            <td data-label="Action">
               <button class="btn" @click="next(child)">Edit</button>
               <button class="btn-2">Delete</button>
             </td>
           </tr>
           </tbody>
-
         </table>
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -515,4 +512,69 @@ select {
 /*  counter-increment: Serial;      !* Increment the Serial counter *!*/
 /*  content:counter(Serial); !* Display the counter *!*/
 /*}*/
+
+@media (max-width: 700px) {
+  .table{
+    margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 60%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    padding-left: 5%;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
+  }
+  h2{
+    padding-left: 10px;
+  }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+}
 </style>

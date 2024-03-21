@@ -793,14 +793,23 @@ option{
 
 
 
-@media (max-width: 500px) {
-
-}
-
 @media (max-width: 700px) {
+  .form-part{
+    max-width: unset;
+    width: 95%;
+    margin-top: 5%;
+  }
+
+  .form-group input {
+    width: 100%;
+  }
+
+  .form-group select {
+    width: 100%;
+  }
+
 
 
 }
-
 
 </style>

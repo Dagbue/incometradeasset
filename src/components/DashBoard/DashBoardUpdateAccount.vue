@@ -337,7 +337,7 @@ label{
     width: 100%;
   }
   .link-button{
-    font-size: 12px;
+    font-size: 10px;
   }
   .btn-alpha{
     margin-top: 8%;

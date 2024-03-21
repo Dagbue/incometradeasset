@@ -5,47 +5,28 @@
     <div class="form">
       <form @submit.prevent="updatePassword">
 
-        <div class="separate">
+
 
           <div class="space">
             <label>Enter Old Password</label>
             <input type="text" required class="form-input"/>
           </div>
 
-          <!--          <div class="space">-->
-          <!--            <label>Last Name</label>-->
-          <!--            <input type="text"  class="form-input"/>-->
-          <!--          </div>-->
 
-        </div>
-
-        <div class="separate">
 
           <div class="space">
             <label>Enter New Password</label>
             <input type="text" v-model="model.newPassword" required  class="form-input"/>
           </div>
 
-          <!--          <div class="space">-->
-          <!--            <label>Country</label>-->
-          <!--            <input type="text"  class="form-input"/>-->
-          <!--          </div>-->
 
-        </div>
-
-        <div class="separate">
 
           <div class="space">
             <label>Confirm New Password</label>
             <input type="text" required class="form-input"/>
           </div>
 
-          <!--          <div class="space">-->
-          <!--            <label>Phone Number</label>-->
-          <!--            <input type="text"  class="form-input"/>-->
-          <!--          </div>-->
 
-        </div>
 
         <div class="btn-alpha">
           <!--          <p class="btn">Update Details</p>-->
@@ -193,7 +174,18 @@ select{
 }
 
 
-@media (max-width: 550px) {
+@media (max-width: 700px) {
 
+  .form-input{
+    width: 100%;
+  }
+
+  .section-2-alpha{
+    width: 95%;
+  }
+
+  .btn-alpha{
+    margin-top: 8%;
+  }
 }
 </style>

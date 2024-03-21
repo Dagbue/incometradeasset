@@ -29,53 +29,51 @@
 
 
       <div class="table" >
-          <table style="width: 100%;">
+        <table>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Country</th>
-<!--            <th>Phone</th>-->
+            <!-- <th>Phone</th> -->
             <th>Password</th>
             <th>BTC Balance</th>
             <th>Invested Amount</th>
-            <th>withdrawn Amount</th>
+            <th>Withdrawn Amount</th>
             <th>Activation Code</th>
             <th>2FA Code</th>
             <th>Date Created</th>
-            <th>status</th>
+            <th>Status</th>
             <th>Action</th>
-
           </tr>
 
           <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td>{{child.firstName}}</td>
-            <td>{{child.lastName}}</td>
-            <td>{{child.email}}</td>
-            <td>{{child.country}}</td>
-<!--            <td>{{child.phoneNumber}}</td>-->
-            <td>{{child.password}}</td>
-            <td>{{child.btcBalance | formatAmount2}}</td>
-            <td>{{child.totalDepositedAmount | formatAmount2}}</td>
-            <td>{{child.totalWithdrawals | formatAmount2}}</td>
-            <td>{{child.twoFactorAuthenticationCode}}</td>
-            <td>
+            <td data-label="First Name">{{child.firstName}}</td>
+            <td data-label="Last Name">{{child.lastName}}</td>
+            <td data-label="Email">{{child.email | formatTextWithEllipsis}}</td>
+            <td data-label="Country">{{child.country}}</td>
+            <!-- <td data-label="Phone">{{child.phoneNumber}}</td> -->
+            <td data-label="Password">{{child.password}}</td>
+            <td data-label="BTC Balance">{{child.btcBalance | formatAmount2}}</td>
+            <td data-label="Invested Amount">{{child.totalDepositedAmount | formatAmount2}}</td>
+            <td data-label="Withdrawn Amount">{{child.totalWithdrawals | formatAmount2}}</td>
+            <td data-label="Activation Code">{{child.twoFactorAuthenticationCode}}</td>
+            <td data-label="2FA Code">
               <div>
                 <p v-if="child.twoFactorAuthenticationCode">Set</p>
                 <p v-else>Not Set</p>
               </div>
             </td>
-            <td>{{child.createdAt | formatDate}}</td>
-            <td>{{child.userStatus}}</td>
-            <td>
+            <td data-label="Date Created">{{child.createdAt | formatDate}}</td>
+            <td data-label="Status">{{child.userStatus}}</td>
+            <td data-label="Action">
               <button style="margin-bottom: 5px;" class="btn" @click="updateUser(child)">Update</button>
               <button class="btn-2">Delete</button>
             </td>
           </tr>
           </tbody>
-
-          </table>
+        </table>
 
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -487,5 +485,70 @@ select {
   color: #ffffff;
   font-weight: 200;
   font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .table{
+    margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 60%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    padding-left: 5%;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
+  }
+  h2{
+    padding-left: 10px;
+  }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 }
 </style>

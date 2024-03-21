@@ -90,6 +90,13 @@
           </li>
         </router-link>
 
+        <li @click="handleClick">
+          <a >
+            <img  src="@/assets/log-out.svg" alt="Notification"/>&nbsp;&nbsp;
+            <span class="links-name">Logout</span>
+          </a>
+        </li>
+
       </ul>
 
 
@@ -210,8 +217,7 @@ export default {
   },
   methods: {
     async handleClick() {
-      await localStorage.clear();
-      await router.push('/login')
+      await router.push('/')
     },
     // This method is triggered when the customEvent is received
     parentFunction() {

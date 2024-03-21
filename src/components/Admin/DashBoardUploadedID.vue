@@ -28,6 +28,7 @@
 <!--      </div>-->
 
       <div class="table" >
+
         <table>
           <tr>
             <th>First Name</th>
@@ -37,21 +38,24 @@
             <th>ID Back</th>
           </tr>
 
-          <tbody >
+          <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-<!--              <img style="width: 15%" :src="child.frontId" alt="Selected Image" />-->
+            <td data-label="First Name"></td>
+            <td data-label="Last Name"></td>
+            <td data-label="Email"></td>
+            <td data-label="ID Front">
+              <!-- Uncomment and replace with actual Vue.js bindings -->
+              <!-- <img style="width: 15%" :src="child.frontId" alt="Selected Image" /> -->
             </td>
-            <td>
-<!--              <img style="width: 15%" :src="child.backId" alt="Selected Image" />-->
+            <td data-label="ID Back">
+              <!-- Uncomment and replace with actual Vue.js bindings -->
+              <!-- <img style="width: 15%" :src="child.backId" alt="Selected Image" /> -->
             </td>
           </tr>
           </tbody>
 
         </table>
+
 
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -405,5 +409,70 @@ border: 0.5px solid #3C4A57FF;
   color: #ffffff;
   font-weight: 200;
   font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .table{
+    margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 60%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    padding-left: 5%;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
+  }
+  h2{
+    padding-left: 10px;
+  }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 }
 </style>

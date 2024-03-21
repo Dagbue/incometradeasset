@@ -24,13 +24,9 @@
             ref="file"
             required
         />
-        <base-button
-            style="
-              background-color: #5d78ff;
-              border: 1px solid #5d78ff;"
-            :loading="loading"
+        <button
             class="link-button"
-        >Upload</base-button>
+        >Upload</button>
       </div>
       </form>
     </div>
@@ -41,12 +37,10 @@
 <script>
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
-import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import S3Request from "@/model/request/S3Request";
 
 export default {
   name: "DashBoardUploadDisplayPicture",
-  components: {BaseButton},
   data () {
     return {
       userId: "",

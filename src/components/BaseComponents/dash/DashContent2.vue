@@ -164,6 +164,15 @@ export default {
     padding-right: unset;
   }
 
+  .profile-name{
+    padding-left: unset;
+  }
+
+  .section-1-part-2{
+    width: 100%;
+    padding-right: unset;
+  }
+
 }
 
 </style>

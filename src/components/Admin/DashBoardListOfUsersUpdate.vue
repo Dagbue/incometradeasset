@@ -401,4 +401,38 @@ label{
   display: flex;
   justify-content: space-between;
 }
+
+
+
+@media (max-width: 700px) {
+
+  .separate{
+    display: block;
+    justify-content: space-around;
+  }
+
+  .section-2-alpha{
+    padding: 20px 25px;
+    width: 95%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+  }
+  .section-1-alpha{
+    margin-left: unset;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .form-input{
+    width: 100%;
+  }
+  .link-button{
+    font-size: 10px;
+  }
+  .btn-alpha{
+    margin-top: 8%;
+  }
+}
 </style>

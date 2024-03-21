@@ -32,7 +32,7 @@ Vue.filter('formatAmount2', function (value) {
 Vue.filter('formatTextWithEllipsis', function (value) {
     if (value == null)
         return value
-    else if (value.length <= 14)
+    else if (value.length <= 20)
         return value
     else
         return value.substr(0, 13)+'...'

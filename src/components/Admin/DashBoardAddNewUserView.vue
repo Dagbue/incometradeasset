@@ -50,12 +50,30 @@
 
             <div class="form-group">
               <label class="id">Identification Card (Upload front of ID card for verification)</label>
-              <input type="file" ref="fileInput" @change="handleFileChange" placeholder="Identification Card (Upload ID card for verification)" name="Identification"/>
+              <input
+                  type="file"
+                  id="files"
+                  name="files"
+                  @change="uploadFile"
+                  accept="image/*"
+                  ref="file"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
             </div>
 
             <div class="form-group">
               <label class="id">Identification Card (Upload back of ID card for verification)</label>
-              <input type="file" ref="fileInput2" @change="handleFileChange2" placeholder="Identification Card (Upload ID card for verification)"   name="Identification"/>
+              <input
+                  type="file"
+                  id="files2"
+                  name="files"
+                  @change="uploadFile2"
+                  accept="image/*"
+                  ref="file2"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
             </div>
 
             <div class="form-group">
@@ -304,8 +322,6 @@
             </div>
 
 
-
-
             <base-button  style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading" >Create Account</base-button>
 
           </div>
@@ -321,6 +337,7 @@ import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import AuthenticationRequest from "@/model/request/AuthenticationRequest";
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
+import S3Request from "@/model/request/S3Request";
 
 export default {
   name: "DashBoardAddNewUserView",
@@ -330,13 +347,17 @@ export default {
       model: new AuthenticationRequest().createUser,
       dialogIsVisible: false,
       showPassword2: false,
-      dataUrl: null,
-      dataUrl2: null,
-      compressedDataUrl: null,
+      base64: "",
+      uploadmodel: S3Request.prototype.uploadBase64(),
+      url: "",
+      base642: "",
+      uploadmodel2: S3Request.prototype.uploadBase64(),
+      url2: "",
     };
   },
 
   computed:{
+    ...mapState(["sbucket"]),
     ...mapState({
       loading: state => state.auth.loading,
       auth: state => state.auth,
@@ -364,8 +385,8 @@ export default {
         email: this.model.email,
         password: this.model.password,
         referralCode: "ABCD1234",
-        frontId: "frontImage.png",
-        backId: "backImage.png",
+        frontId: this.url,
+        backId: this.url2,
         totalDepositedAmount: 0.00,
         phoneNumber: this.model.phoneNumber,
         totalWithdrawals: 0.00,
@@ -378,38 +399,68 @@ export default {
         role: "Customer",
         country: this.model.country
       })
-      await this.$router.push("/email-auth")
+      await this.$router.push("/list-of-users")
     },
 
-    handleFileChange ()  {
-      const fileInput = this.$refs.fileInput;
-      const files = fileInput.files;
-
-      if (files.length > 0) {
-        const reader = new FileReader();
-
+    uploadFile() {
+      let input = this.$refs.file;
+      let files = input.files;
+      //console.log(size);
+      const reader = new FileReader();
+      try {
         reader.onload = (e) => {
-          this.dataUrl = e.target.result;
+          this.base64 = e.target.result;
+          this.uploadOfficerImage();
         };
-
         reader.readAsDataURL(files[0]);
+        this.$emit("input", files[0]);
+      } catch (e) {
+        console.warn(e.message);
       }
     },
+    async uploadOfficerImage() {
 
-    handleFileChange2  ()  {
-      const fileInput2 = this.$refs.fileInput2;
-      const files2 = fileInput2.files;
+      this.uploadmodel.username = `${
+          this.auth.userInfo.userFirstName + this.auth.userInfo.userLastName
+      }_${Date.now()}`;
+      this.uploadmodel.base64 = this.base64;
+      await StoreUtils.dispatch(StoreUtils.actions.sbucket.uploadEncodedFile, this.uploadmodel, { root: true });
+      this.url = this.sbucket.s3bucketResponse.url;
 
-      if (files2.length > 0) {
-        const reader = new FileReader();
+    },
 
+    uploadFile2() {
+      let input = this.$refs.file2;
+      let files = input.files;
+      //console.log(size);
+      const reader = new FileReader();
+      try {
         reader.onload = (e) => {
-          this.dataUrl2 = e.target.result;
+          this.base642 = e.target.result;
+          this.uploadOfficerImage2();
         };
-
-        reader.readAsDataURL(files2[0]);
+        reader.readAsDataURL(files[0]);
+        this.$emit("input", files[0]);
+      } catch (e) {
+        console.warn(e.message);
       }
     },
+    async uploadOfficerImage2() {
+      // this.showLoader = true;
+      this.uploadmodel2.username = `${
+          this.formBody.customerFirstName + this.formBody.customerMiddleName
+      }_${Date.now()}`;
+      this.uploadmodel2.base64 = this.base642;
+      // await this.$store.dispatch("sbucket/uploadEncodedFile", this.uploadmodel, { root: true });
+      await StoreUtils.dispatch(
+          StoreUtils.actions.sbucket.uploadEncodedFile,
+          this.uploadmodel2,
+          { root: true }
+      );
+      this.url2 = this.sbucket.s3bucketResponse.url;
+      // this.showLoader = false;
+    },
+
   },
 
 
@@ -579,11 +630,11 @@ label{
   }
   form {
     margin: 1rem;
-    max-width: 40rem;
+    max-width: 50rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     padding: 1rem;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
   }
   .wrapper .headline h1  {
     font-size: 25px;

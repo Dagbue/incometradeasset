@@ -43,37 +43,28 @@
 
           <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td>{{child.firstName}} {{child.lastName}}</td>
-            <td>{{child.amount}}</td>
-            <td>{{child.transactionMethod}}</td>
-            <td>{{child.createdAt | formatDate}}</td>
-            <td>{{child.walletAddress}}</td>
-            <td>
+            <td data-label="Client Name">{{child.firstName}} {{child.lastName}}</td>
+            <td data-label="Amount">{{child.amount}}</td>
+            <td data-label="Payment Mode">{{child.transactionMethod}}</td>
+            <td data-label="Date Applied">{{child.createdAt | formatDate}}</td>
+            <td data-label="Wallet Address">{{child.walletAddress}}</td>
+            <td data-label="Status">
               <div>
                 <p v-if="child.withdrawalStatus === 'approved'" class="status-approved">{{child.withdrawalStatus | lowercase}}</p>
                 <p v-if="child.withdrawalStatus === 'declined'" class="status-declined">{{child.withdrawalStatus | lowercase}}</p>
                 <p v-if="child.withdrawalStatus === 'pending'" class="status-pending">{{child.withdrawalStatus | lowercase}}</p>
               </div>
             </td>
-<!--            <td>-->
-<!--              <button class="btn" @click="approve(child)">Approve</button>-->
-<!--              <button class="btn-2" @click="decline(child)">Decline</button>-->
-<!--            </td>-->
-
-            <td>
+            <td data-label="Action">
               <div v-if="child.withdrawalStatus === 'pending'">
                 <button class="btn" @click="approve(child)">Approve</button>
                 <button class="btn-2" @click="decline(child)">Decline</button>
               </div>
-
               <p class="status-declined-2" v-if="child.withdrawalStatus === 'declined'">Already Declined</p>
-
               <p class="status-approved-2" v-if="child.withdrawalStatus === 'approved'">Already Approved</p>
-
             </td>
           </tr>
           </tbody>
-
         </table>
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -549,5 +540,70 @@ select {
 
 label{
   color: #FFFFFF;
+}
+
+@media (max-width: 700px) {
+  .table{
+    margin-left: unset;
+  }
+  th {
+    display: none;
+  }
+
+  table, thead, tbody, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 0.5px solid #ccc;
+  }
+
+  td {
+    /* Each cell is now a full-width row */
+    border: none;
+    position: relative;
+    padding-left: 60%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  td:before {
+    /* Use the data-label for the pseudo-element content */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    padding-left: 5%;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter_group{
+    display: none;
+  }
+
+  .fg--search {
+    margin-left: unset;
+  }
+
+  .body{
+    padding: 10px 20px 10px 5px;
+  }
+  h2{
+    padding-left: 10px;
+  }
+  .empty-state-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 }
 </style>

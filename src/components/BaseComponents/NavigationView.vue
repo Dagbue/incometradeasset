@@ -115,11 +115,11 @@
       <div class="mobile">
         <div>
           <ul class="dropdown-nav" v-show="mobileNav">
-            <img alt="company logo" src="@/assets/companylogo.svg" class="logo2" @click="home" />
+            <img alt="company logo" src="@/assets/inverse.svg" class="logo2" @click="home" />
 
-            <li class="link">
+            <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation">
-                <router-link @click="toggleMobileNav2" to="/about">Company</router-link>
+                <router-link  to="/about">Company</router-link>
                 <!--              <i class='bx bxs-chevron-down'></i>-->
                 <!--              <div v-if="showDropdown" class="dropdown-content">-->
                 <!--                <router-link  to="/whyUs">Why Us<i class='bx bxs-chevron-right'></i></router-link>-->
@@ -129,9 +129,9 @@
               </div>
             </li>
 
-            <li class="link">
+            <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation">
-                <router-link @click="toggleMobileNav2" to="/testimonials">Testimonials</router-link>
+                <router-link  to="/testimonials">Testimonials</router-link>
                 <!--              <i class='bx bxs-chevron-down'></i>-->
 
                 <!--              <div v-if="showDropdown" class="dropdown-content">-->
@@ -143,15 +143,15 @@
               </div>
             </li>
 
-            <li class="link">
+            <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation" >
-                <router-link @click="toggleMobileNav2" to="/pricing">Pricing</router-link>
+                <router-link  to="/pricing">Pricing</router-link>
               </div>
             </li>
 
-            <li class="link">
+            <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation" >
-                <router-link @click="toggleMobileNav2" to="/contact">Contact Us</router-link>
+                <router-link  to="/contact">Contact Us</router-link>
                 <!--              <i class='bx bxs-chevron-down'></i>-->
                 <!--              <div v-if="showDropdown" class="dropdown-content">-->
                 <!--                <router-link  to="/guidesView">-->
@@ -164,9 +164,9 @@
               </div>
             </li>
 
-            <li class="link">
+            <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation" >
-                <router-link @click="toggleMobileNav2" to="/faq">F.A.Q</router-link>
+                <router-link  to="/faq">F.A.Q</router-link>
                 <!--              <i class='bx bxs-chevron-down'></i>-->
                 <!--              <div v-if="showDropdown" class="dropdown-content">-->
                 <!--                <router-link  to="/about">-->
@@ -180,8 +180,12 @@
                 <!--              </div>-->
               </div>
             </li>
-            <li class="link" >
-              <router-link @click="toggleMobileNav2" to="/login" class="auth-2">Login</router-link>
+            <li class="link" @click="toggleMobileNav2">
+              <router-link  to="/login" class="auth-2">Login</router-link>
+            </li>
+
+            <li class="link" @click="toggleMobileNav2">
+              <router-link  to="/register" class="auth-2">Create Account</router-link>
             </li>
 
           </ul>
