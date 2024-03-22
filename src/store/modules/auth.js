@@ -14,7 +14,8 @@ export const state = {
   signUpFormData: null,
   forgotPasswordFormData: null,
   readUserById: null,
-  readAllUsers: []
+  readAllUsers: [],
+  bitcoinRate: null,
 };
 
 export const getters = {
@@ -39,6 +40,9 @@ export const getters = {
   },
   getReadAllUsers: (state) => {
     return state.readAllUsers;
+  },
+  getBitcoinRate: (state) => {
+    return state.bitcoinRate;
   },
 };
 
@@ -66,6 +70,9 @@ export const mutations = {
   },
   updateReadAllUsers(state, payload){
     state.readAllUsers = payload
+  },
+  updateBitcoinRate(state, payload){
+    state.bitcoinRate = payload
   },
 };
 

@@ -7,7 +7,7 @@
           <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
           </router-link>
           <h2>
-            Sign In With Your <br/> <span class="header-span">Income Trade Asset</span> Account
+            Sign In With Your <br/> Income Trade Asset Account
           </h2>
         </div>
 
@@ -128,9 +128,8 @@ form {
 }
 
 .company-logo{
-  width: 30%;
+  width: 28%;
   margin-top: 15%;
-  margin-bottom: 1%;
 }
 
 :root {
@@ -261,15 +260,16 @@ form {
 }
 
 .checkbox-text {
-  padding-left: 8px;
+  padding-left: 4px;
   font-size: 15px;
 }
 
 .forgot-password {
-  padding-left: 26%;
+  /*padding-left: 30%;*/
   text-decoration: none;
-  color: #0f171c;
+  color: #D23535;
   font-size: 15px;
+  float: right;
 }
 
 .separator {
@@ -291,9 +291,8 @@ form {
 }
 
 .create-acc {
-  padding-top: 40px;
+  padding-top: 30px;
   font-size: 17px;
-  padding-bottom: 40px;
 }
 .create-text {
   font-size: 15px;
@@ -301,7 +300,7 @@ form {
 .create-link {
   padding-left: 10px;
   text-decoration: none;
-  color: #0f171c;
+  color: #D23535;
 }
 
 
@@ -406,11 +405,14 @@ input::placeholder {
     padding-left: 10px;
   }
   .forgot-password {
-    padding-left: 20px;
+    /*padding-left: 40px;*/
   }
   .company-logo{
     width: 50%;
     margin-top: unset;
+  }
+  .wrapper .headline h2 {
+    font-size: 20px;
   }
 }
 

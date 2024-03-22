@@ -211,6 +211,10 @@ export default {
         depositStatus: "pending",
         additionalComment : this.model.additionalComment
       })
+      await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+        walletId: 1,
+      })
+      StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
       this.selectedItem = this.depositMethod;
       this.dialogIsVisible = true;
     },

@@ -18,7 +18,7 @@
     </div>
     <div class="section-5">
             <div class="empty-state-container" v-if="this.UserDeposit.deposits.length === 0">
-              <img src="@/assets/empty.svg" alt="empty">
+              <img src="@/assets/empty.svg" alt="empty" class="empty-state">
               <p class="empty-state-text-1">You have nothing to see</p>
               <p class="empty-state-text-2">This is where your Deposits will appear</p>
               <!--        <p class="empty-state-text-3">-->
@@ -501,6 +501,9 @@ input::placeholder{
     width: 90%;
   }
 
+  .empty-state{
+    width: 35%;
+  }
 }
 
 </style>

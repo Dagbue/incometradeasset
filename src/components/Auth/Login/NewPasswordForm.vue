@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="onPostClick">
     <div class="wrapper">
       <div class="headline">
         <router-link to="/">
@@ -26,16 +26,24 @@
 <!--          </div>-->
 
           <div class="has-addons">
-            <input v-if="showPassword2"  required="required" type="text"  class="input-form-1 password"   placeholder="Password"   />
-            <input v-else type="password" required="required"  class="input-form-1 password"   placeholder="Password"   >
+            <input v-if="showPassword2"  required="required" type="text"  class="input-form-1 password"   placeholder="Old Password" />
+            <input v-else type="password" required="required"  class="input-form-1 password"   placeholder="Old Password"  />
             <div class="space" @click="toggleShow2">
               <i class="fas" :class="{ 'fa-eye-slash': showPassword2, 'fa-eye': !showPassword2 }" ></i>
             </div>
           </div>
 
           <div class="has-addons">
-            <input v-if="showPassword2"  required="required" type="text"  class="input-form-1 password"   placeholder="Password"   />
-            <input v-else type="password" required="required"  class="input-form-1 password"   placeholder="Password"   >
+            <input v-if="showPassword2"  required="required" type="text"  class="input-form-1 password"   placeholder="New Password" />
+            <input v-else type="password" required="required"  class="input-form-1 password"   placeholder="New Password"  />
+            <div class="space" @click="toggleShow2">
+              <i class="fas" :class="{ 'fa-eye-slash': showPassword2, 'fa-eye': !showPassword2 }" ></i>
+            </div>
+          </div>
+
+          <div class="has-addons">
+            <input v-if="showPassword2"  required="required" type="text"  class="input-form-1 password"   placeholder="Confirm Password"   />
+            <input v-else type="password" required="required"  class="input-form-1 password"   placeholder="Confirm Password"  />
             <div class="space" @click="toggleShow2">
               <i class="fas" :class="{ 'fa-eye-slash': showPassword2, 'fa-eye': !showPassword2 }" ></i>
             </div>
@@ -43,9 +51,10 @@
 
 
           <br/>
-          <a @click="onPostClick" class="btn btn-white btn-animated"
-          >Login</a
-          >
+<!--          <a @click="onPostClick" class="btn btn-white btn-animated"-->
+<!--          >Login</a-->
+<!--          >-->
+          <base-button>Login</base-button>
         </div>
       </div>
     </div>
@@ -54,8 +63,11 @@
 
 <script>
 
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
+
 export default {
   name: 'NewPasswordForm',
+  components: {BaseButton},
   data() {
     return {
       showPassword2: false,

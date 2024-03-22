@@ -34,6 +34,14 @@
             <p class="text-5">Bank Routing Number: {{this.routingNumber}}</p>
           </div>
 
+          <div v-if="this.selectedItem === 'Bitcoin' ">
+            <vue-qrcode :value="bitcoinAddress"></vue-qrcode>
+          </div>
+
+          <div v-if="this.selectedItem === 'Ethereum' ">
+            <vue-qrcode :value="ethereumAddress"></vue-qrcode>
+          </div>
+
         </div>
 
 
@@ -53,10 +61,14 @@
 import Swal from "sweetalert2";
 import StoreUtils from "@/utility/StoreUtils";
 import {mapState} from "vuex";
+import VueQrcode from '@xkeshi/vue-qrcode';
 
 export default {
   name: "FundWalletModal",
   emits: ['close'],
+  components: {
+    VueQrcode // Register the component
+  },
   props: {
     selectedItem: {
       type: Object,
@@ -131,10 +143,10 @@ export default {
 
 dialog {
   position: fixed;
-  top: 15vh;
+  top: 10vh;
   width: 32rem;
-  height: 20rem;
-  left: calc(50% - 9rem);
+  height: 30rem;
+  left: calc(50% - 8.5rem);
   margin: 0;
   background-color: transparent;
   z-index: 100;
@@ -146,8 +158,8 @@ dialog {
   position: relative;
   display: block;
   overflow: hidden;
-  width: 400px;
-  height: 525px;
+  width: 420px;
+  height: 630px;
   /*height: auto;*/
   padding: 24px;
 
@@ -206,11 +218,12 @@ dialog {
 
 .text-5{
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 24px;
   color: #ffffff;
-  padding-top: 1.5%;
-  padding-bottom: 1.5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  word-wrap: break-word; /* or overflow-wrap: break-word; */
 }
 
 button{
@@ -243,12 +256,12 @@ button{
     top: 11vh;
     width: 25rem;
     height: 18rem;
-    left: calc(50% - 10.5rem);
+    left: calc(50% - 11rem);
     right: 30px;
   }
   .alpha{
-    width: 350px;
-    height: 500px;
+    width: 360px;
+    height: 610px;
   }
   h3{
     font-size: 18px;

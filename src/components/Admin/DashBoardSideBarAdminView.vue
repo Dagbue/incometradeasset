@@ -250,7 +250,7 @@ export default {
   display: flex;
 }
 .afo-logo{
-  width: 85%;
+  width: 70%;
 }
 .afo-logo-2{
   width: 80%;
@@ -294,11 +294,11 @@ body{
 }
 .sidebar ul li{
   position: relative;
-  height: 50px;
+  height: 40px;
   width: 100%;
   margin: 5px 4px;
   list-style: none;
-  line-height: 25px;
+  line-height: 10px;
 }
 .sidebar ul li a{
   display: flex;

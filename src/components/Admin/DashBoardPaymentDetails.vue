@@ -5,7 +5,6 @@
     <hr/>
     <div class="form">
 
-
           <div class="space">
             <label>Enter Bitcoin Address</label>
             <input type="text" v-model="bitcoinAddress"  class="form-input"/>
@@ -46,16 +45,14 @@
 
 
         <div class="btn-alpha">
-          <p @click="press" class="btn">Get Current Payment details</p>
+<!--          <p @click="press" class="btn">Get Current Payment details</p>-->
 <!--          <base-button  style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Get Current Payment details</base-button>-->
-          <br/>
-<!--          <base-button style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Update Payment details</base-button>-->
+<!--          <br/>-->
+<!--          <base-button @click="update" style=" background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading">Update Payment details</base-button>-->
 
           <p @click="update" class="btn">Update Payment details</p>
 
         </div>
-
-
 
 
     </div>
@@ -71,6 +68,16 @@ import {mapState} from "vuex";
 export default {
   name: "DashBoardPaymentDetails",
   // components: {BaseButton},
+  data() {
+    return {
+      contacts: [],
+      accountNumber: '',
+      bankName: '',
+      bitcoinAddress: '',
+      ethereumAddress: '',
+      routingNumber: '',
+    };
+  },
   computed:{
     readPaymentWalletById() {
       return StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
@@ -81,7 +88,6 @@ export default {
     }),
   },
   methods:{
-
     async update() {
       await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.updatePaymentWallet, {
         walletId: 1,
@@ -100,7 +106,6 @@ export default {
 
       await this.populateForm()
     },
-
     press(){
       StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
         walletId: 1,
@@ -118,37 +123,24 @@ export default {
       this.routingNumber = this.readPaymentWalletById.paymentWallet.routingNumber;
     },
   },
-  data() {
-    return {
-      contacts: [],
-      accountNumber: '',
-      bankName: '',
-      bitcoinAddress: '',
-      ethereumAddress: '',
-      routingNumber: '',
-    };
+  async created() {
+    await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+      walletId: 1,
+    })
+    await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+
+    await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+    await this.populateForm();
   },
-  created() {
-    this.populateForm();
 
-    StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
-
-    StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
-
-    StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+  async mounted() {
+    await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
       walletId: 1,
     })
 
-  },
+    await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
 
-  mounted() {
-    this.populateForm();
-
-    StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
-
-    StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-      walletId: 1,
-    })
+    await this.populateForm();
   }
 }
 </script>
@@ -228,7 +220,7 @@ select{
 }
 
 .btn{
-  padding: 8px 55px;
+  padding: 15px 55px;
   color: white;
   background-color: #5d78ff;
   border: 0.5px solid #5d78ff;

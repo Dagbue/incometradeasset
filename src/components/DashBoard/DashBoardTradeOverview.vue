@@ -18,9 +18,9 @@
     </div>
     <div class="section-5">
       <div class="empty-state-container" v-if="this.readUserTrade.trades.length === 0">
-        <img src="@/assets/empty.svg" alt="empty">
+        <img src="@/assets/empty.svg" alt="empty" class="empty-state">
         <p class="empty-state-text-1">You have nothing to see</p>
-        <p class="empty-state-text-2">This is where your Transactions will appear</p>
+        <p class="empty-state-text-2">This is where your Trade history will appear</p>
         <!--        <p class="empty-state-text-3">-->
         <!--          <i class='bx bx-plus' ></i>-->
         <!--          Transaction-->
@@ -28,57 +28,6 @@
       </div>
 
       <div class="table" v-if="this.readUserTrade.trades.length > 0">
-<!--        <table>-->
-<!--          <tr style="background-color: #FFFFFF;">-->
-<!--            <th>Trade ID</th>-->
-<!--            <th>Trade Type</th>-->
-<!--            <th>Trade Time</th>-->
-<!--            <th>Symbol Traded</th>-->
-<!--            <th>Expected Payout</th>-->
-<!--            <th>Leverage</th>-->
-<!--            <th>End Price</th>-->
-<!--            <th>End Time</th>-->
-<!--            <th>Trade Status</th>-->
-<!--          </tr>-->
-
-<!--          <tbody v-for="child in paginatedItems" :key="child.key">-->
-<!--          <tr>-->
-<!--            <td>{{child.tradeReference}}</td>-->
-<!--            <td>{{child.tradeType}}</td>-->
-<!--            <td>{{child.tradeTime | formatDate2}}</td>-->
-<!--            <td>{{child.symbolTraded}}</td>-->
-<!--            <td>-->
-<!--              <div v-if="child.tradeStatus === 'won'" class="table-sep">-->
-<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
-<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
-<!--                <p>{{child.expectedPayout}}</p>-->
-<!--              </div>-->
-<!--              <div v-if="child.tradeStatus === 'lost'" class="table-sep">-->
-<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
-<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
-<!--                <p>{{child.expectedPayout}}</p>-->
-<!--              </div>-->
-<!--              <div v-if="child.tradeStatus === 'pending'" class="table-sep">-->
-<!--                <i v-if="child.tradeType === 'Buy'" style="color: #10d876 !important" class="fa fa-arrow-up text-success"></i>-->
-<!--                <i v-if="child.tradeType === 'Sell'" style="color: #E50202 !important" class="fa fa-arrow-down text-danger"></i>-->
-<!--                <p style="font-size: 12px;"> $ PendingTrade</p>-->
-<!--              </div>-->
-<!--            </td>-->
-<!--            <td>{{child.leverage}}</td>-->
-<!--            <td>{{child.endPrice}}</td>-->
-<!--            <td>{{child.endTime | formatDate}}</td>-->
-<!--            <td>-->
-<!--              <div>-->
-<!--                <p class="status-won" v-show="child.tradeStatus === 'won'" >{{child.tradeStatus}}</p>-->
-<!--                <p class="status-lost" v-show="child.tradeStatus === 'lost'" >{{child.tradeStatus}}</p>-->
-<!--                <p class="status-pending" v-show="child.tradeStatus === 'pending'" >{{child.tradeStatus}}</p>-->
-<!--              </div>-->
-
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-
-<!--        </table>-->
 
         <table>
           <tr style="background-color: #FFFFFF;">
@@ -569,6 +518,10 @@ input::placeholder{
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+  }
+
+  .empty-state{
+    width: 35%;
   }
 }
 

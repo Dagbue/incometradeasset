@@ -1,299 +1,565 @@
+<!--suppress CssUnresolvedCustomProperty -->
 <template>
-  <form @submit.prevent="">
-    <div class="wrapper">
-      <div class="headline">
-        <router-link to="/">
-          <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
-        </router-link>
-<!--        <h2>-->
-<!--          <span class="header-span">Global Trade Investment Limited</span>-->
-<!--        </h2>-->
-        <h2>Forgot Password Authentication</h2>
-        <p>Click the link  sent to your Email and follow the Instructions</p>
-      </div>
-      <div class="form">
-        <div class="signup">
-          <!--          <div class="form-group">-->
-          <!--            <input type="email" placeholder="Enter Email" required="" />-->
-          <!--          </div>-->
-          <br/>
-          <a @click="onPostClick" class="btn btn-white btn-animated"
-          >continue</a
-          >
-        </div>
+  <div class="alpha">
 
-        <div class="create-acc">
-          <p class="create-text">
-            Didnt get any Mail check your spam box or click<a
-              class="create-link"
-          >Send Again</a
-          >
-          </p>
-        </div>
-      </div>
-
-
+    <div class="image">
+      <img src="@/assets/companylogo.svg" alt="inter-switch-logo"  class="company-logo" />
     </div>
-  </form>
+
+    <div class="text-area">
+      <h3>Verify email address</h3>
+      <p>Enter OTP sent to Your Email Address</p>
+    </div>
+
+    <div class="form-alpha">
+      <form @submit.prevent="completeEnrollment">
+
+        <!--        <div class="pin-code" ref="pinContainer">-->
+        <!--          <input type="number" autofocus v-model="pins[0]" maxlength="1" @keyup="handleKeyUp($event, 0)" @keydown="handleKeyDown($event, 0)" required="required">-->
+        <!--          <input type="number" v-model="pins[1]" maxlength="1" @keyup="handleKeyUp($event, 1)" @keydown="handleKeyDown($event, 1)" required="required">-->
+        <!--          <input type="number" v-model="pins[2]" maxlength="1" @keyup="handleKeyUp($event, 2)" @keydown="handleKeyDown($event, 2)" required="required">-->
+        <!--          <input type="number" v-model="pins[3]" maxlength="1" @keyup="handleKeyUp($event, 3)" @keydown="handleKeyDown($event, 3)" required="required">-->
+        <!--          <input type="number" v-model="pins[4]" maxlength="1" @keyup="handleKeyUp($event, 2)" @keydown="handleKeyDown($event, 4)" required="required">-->
+        <!--          <input type="number" v-model="pins[5]" maxlength="1" @keyup="handleKeyUp($event, 3)" @keydown="handleKeyDown($event, 5)" required="required">-->
+        <!--        </div>-->
+
+        <div class="pin-code" ref="pinContainer">
+          <div class="vue-otp-input">
+            <div
+                class="otp-wrapper"
+                :class="isInputFocused ? activeWrapperClassHandler : wrapperClassHandler"
+                :style="wrapperStyle"
+                :id="id"
+            >
+              <input
+                  v-for="(digitInput, index) in digits"
+                  ref="digitInput"
+                  :key="id + index"
+                  autocomplete="one-time-code"
+                  v-model="inputValue[index]"
+                  class="otp-input"
+                  :class="[inputClassHandler, activeInput === index ? activeInputClassHandler : '']"
+                  :placeholder="placeholder"
+                  :disabled="isDisabled"
+                  @focus="onFocus(index)"
+                  @blur="onBlur"
+                  @paste="OnPaste"
+                  @input="onInput(index, $event)"
+                  @change="onChanged(index)"
+                  @keydown="keydownHandler(index, $event)"
+                  :style="inputStyle"
+                  required
+              />
+            </div>
+            <span v-if="!isValid" :class="errorClassHandler">
+                          <slot name="errorMessage"></slot>
+                        </span>
+          </div>
+        </div>
+
+        <div class="submit">
+          <!--          <input type="submit" class="submit-btn"   value="Verify email"/>-->
+          <base-button :loading="loading">Verify email</base-button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="last-text">
+      <p>Didn’t get a code? <span @click="resendOtp">Resend OTP</span></p>
+    </div>
+
+  </div>
 </template>
 
 <script>
 
+import {mapState} from "vuex";
+import StoreUtils from "@/utility/StoreUtils";
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
+
 export default {
   name: 'ForgotPasswordOtpForm',
+  components: {BaseButton},
+  props: {
+    id: {
+      type: String,
+      default: "otp",
+    },
+    digits: {
+      type: Number,
+      default: 6,
+    },
+    mode: {
+      type: String,
+      default: "separate",
+    },
+    type: {
+      type: String,
+      default: "number",
+    },
+    placeholder: {
+      type: String,
+      default: "-",
+    },
+    radius: {
+      type: Number,
+      default: 5,
+    },
+    gap: {
+      type: Number,
+      default: 10,
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
+    isValid: {
+      type: Boolean,
+      default: true,
+    },
+    rtl: {
+      type: Boolean,
+      default: false,
+    },
+    autoFocus: {
+      type: Boolean,
+      default: true,
+    },
+    errorClass: {
+      type: String,
+      default: "",
+    },
+    separateInputClass: {
+      type: String,
+      default: "",
+    },
+    separateWrapperClass: {
+      type: String,
+      default: "",
+    },
+    groupInputClass: {
+      type: String,
+      default: "",
+    },
+    groupWrapperClass: {
+      type: String,
+      default: "",
+    },
+    activeInputClass: {
+      type: String,
+      default: "",
+    },
+    activeWrapperClass: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
     return {
+      pins: [],
+      inputValue: [],
+      joinedValue: "",
+      isInputFocused: false,
+      activeInput: -1,
     };
   },
-  methods: {
-    onPostClick() {
-      this.$router.push("/new-password");
+  computed:{
+    ...mapState({
+      loading: state => state.auth.loading,
+      auth: state => state.auth
+    }),
+    signUpFormData() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getSignUpFormData)
     },
+
+    wrapperStyle() {
+      const dir = this.rtl ? "rtl" : "ltr";
+      const styles = {
+        direction: dir,
+        gap: `${this.gap}px`,
+        "border-radius": `${this.radius}px`,
+      };
+      return styles;
+    },
+    inputStyle() {
+      return {
+        "--border-radius": `${this.radius}px`,
+      };
+    },
+    inputClassHandler() {
+      if (this.mode === "separate") {
+        if (this.isValid) {
+          return this.separateInputClass ? this.separateInputClass : "defualt-input-separate";
+        } else {
+          return this.separateInputClass ? this.separateInputClass : "defualt-error-input-separate";
+        }
+      }
+      if (this.mode === "group") {
+        return this.groupInputClass ? this.groupInputClass : "defualt-input-group";
+      }
+      return "";
+    },
+    activeInputClassHandler() {
+      if (this.mode === "separate") {
+        return this.activeInputClass ? this.activeInputClass : "defualt-active-input";
+      }
+      return "";
+    },
+    activeWrapperClassHandler() {
+      if (this.mode === "group") {
+        if (this.isValid) {
+          return this.activeWrapperClass ? this.activeWrapperClass : "defualt-active-wrapper";
+        } else {
+          return this.activeWrapperClass ? this.activeWrapperClass : "defualt-error-wrapper-group";
+        }
+      }
+      return "";
+    },
+    wrapperClassHandler() {
+      if (this.mode === "separate") {
+        return this.separateWrapperClass ? this.separateWrapperClass : "defualt-wrapper-separate";
+      }
+      if (this.mode === "group") {
+        if (this.isValid) {
+          return this.groupWrapperClass ? this.groupWrapperClass : "defualt-wrapper-group";
+        } else {
+          return this.groupWrapperClass ? this.groupWrapperClass : "defualt-error-wrapper-group";
+        }
+      }
+      return "";
+    },
+    errorClassHandler() {
+      return this.errorClass ? this.errorClass : "default-error-class";
+    },
+
+  },
+  methods: {
+    completeEnrollment(){
+      this.$router.push("/new-password")
+    },
+
+    resendOtp(){
+      StoreUtils.dispatch(StoreUtils.actions.auth.resendOtp, {
+        userEmail: this.signUpFormData.userEmail,
+      })
+    },
+
+    handleKeyUp(event) {
+      const target = event.target;
+
+      const maxLength = parseInt(target.attributes.maxlength.value, 10);
+      const myLength = target.value.length;
+
+      if (myLength >= maxLength) {
+        const next = target.nextElementSibling;
+        if (next && next.tagName.toLowerCase() === 'input') {
+          next.focus();
+        }
+      }
+
+      if (myLength === 0) {
+        const prev = target.previousElementSibling;
+        if (prev && prev.tagName.toLowerCase() === 'input') {
+          prev.focus();
+        }
+      }
+
+      this.$emit('input', this.pins.join(''));
+    },
+    handleKeyDown(event) {
+      const target = event.target;
+      target.value = '';
+    },
+
+    keydownHandler(index, e) {
+      if (e.keyCode === 8 && e.target.value === "") {
+        this.$refs.digitInput[Math.max(0, index - 1)].focus();
+      }
+    },
+    onInput(index) {
+      const [first, ...rest] =
+          this.type === "number"
+              ? this.inputValue[index].replace(/[^0-9]/g, "")
+              : this.inputValue[index];
+      this.inputValue[index] = first === null || first === undefined ? "" : first;
+      const lastInputBox = index === this.digits - 1;
+      const insertedContent = first !== undefined;
+      if (insertedContent && !lastInputBox) {
+        this.$refs.digitInput[index + 1].focus();
+        this.$refs.digitInput[index + 1].value = rest.join("");
+        this.$refs.digitInput[index + 1].dispatchEvent(new Event("input"));
+      }
+      this.joinedValue = this.inputValue.map((value) => value).join("");
+      this.$emit("value", this.joinedValue);
+      if (this.joinedValue.length === this.digits) {
+        this.onComplete(this.joinedValue);
+      }
+    },
+    onFocus(index) {
+      this.activeInput = index;
+      this.isInputFocused = true;
+    },
+    onBlur() {
+      this.activeInput = -1;
+      this.isInputFocused = false;
+    },
+    onComplete(joinedValue) {
+      this.onBlur();
+      this.$refs.digitInput[this.digits - 1].blur();
+      if(this.type === "password"){
+        this.$emit("on-complete", joinedValue);
+      }
+      else
+        this.$emit("on-complete", joinedValue);
+    },
+    onChanged(index) {
+      this.$emit("on-changed", this.inputValue[index]);
+    },
+    OnPaste(event) {
+      this.$emit("on-paste", event);
+    },
+  },
+  mounted() {
+    if (this.autoFocus && !this.isDisabled) {
+      this.onFocus(0);
+      this.$refs.digitInput[0].focus();
+      //setting input type based on the existing types for now
+      const types = ["text", "password", "number"];
+      if (types.indexOf(this.type)!=-1) {
+        for (let box of this.$refs.digitInput) {
+          box.type = this.type;
+        }
+      }
+    }
   },
 }
 </script>
 
 <style scoped>
-form {
-  margin: 0 auto;
-  max-width: 40rem;
-  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
-//box-shadow:  30px 30px 100px #bebebe,
-//-50px -50px 100px #ffffff;
-//padding: 2rem;
-//background-color: #ffffff;
-}
-
 .alpha{
-//background-color: #F6F6F7;
-//background-image: url(https://www.interactivebrokers.com/images/web/why-ibkr-global-market-access-background.png), linear-gradient(#F6F6F7 17.14%, #DFE2E7 95.69%);
-//background-repeat: no-repeat;
-//background-size: 60%, cover;
-//background-position: bottom right, top left;
-//padding-bottom: 8.5%;
+  margin-top: 12%;
 }
-
 .company-logo{
-  width: 35%;
-  margin-top: 22%;
+  width: 15%;
+  /*margin-top: 20%;*/
 }
 
-:root {
-  --primary-color: #3525d3;
-  --white-color: #fff;
-  --black-color: #3c4a57;
-  --light-gray: #e4e8ee;
-}
-
-.wrapper {
-  position: relative;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-span {
-  color: #124DA8;
-}
-
-.wrapper {
-//padding: 50px 25px 0;
-  max-width: 768px;
-  width: 100%;
-  margin: auto;
-}
-
-.wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  z-index: -1;
-}
-
-.wrapper .headline {
+.text-area h3{
+  padding-bottom: 0;
+  margin-bottom: 0;
   text-align: center;
-  padding-bottom: 20px;
+  letter-spacing: 0.5px;
+  color: #101828;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
 }
 
-
-.wrapper .headline h2 {
-  font-weight: 400;
-  font-size: 20px;
-  padding-top: 1.5%;
-  /*margin-top: 10%;*/
-}
-
-
-.wrapper .form {
-  max-width: 350px;
-  width: 100%;
-  margin: auto;
-}
-
-.wrapper .form-group {
-  margin-bottom: 15px;
-}
-
-.wrapper .form-group input {
-  display: block;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.1px;
-  padding: 12px 16px;
-  height: 48px;
-  border-radius: 8px;
-  color: var(--black-color);
-  border: 1px solid #e4e8ee;
-  box-shadow: none;
-  width: 100%;
-}
-
-.wrapper .form-group input:focus {
-  outline: none;
-  border: 1px solid #24405A;
-}
-
-.wrapper .form-group input::placeholder {
-  color: var(--black-color);
+.text-area p{
+  padding-top: 2px;
+  margin-top: 2px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #667085;
   font-weight: 400;
   font-size: 14px;
+  line-height: 24px;
 }
 
-.btn,
-.btn-white,
-.btn-animated {
-  width: 100%;
-  margin: 15px 0 30px;
-  line-height: 22px;
-  padding: 12px 146px;
-  border: none;
+.text-area{
+  margin-bottom: 1%;
+}
+
+
+.image{
+  display: flex;
+  justify-content: center;
+  margin: 0.8%;
+}
+
+.submit{
+  margin-left: 36%;
+  margin-right: 36%;
+  margin-top: 3%;
+}
+
+
+.last-text{
+  margin-top: 1.5%;
   text-align: center;
-  border-radius: 5px;
+  color: #667085;
 }
 
-.btn:link,
-.btn:visited {
-  text-decoration: none;
-  padding: 10px 40px;
-//display: inline-block;
-  border-radius: 100px;
-  transition: all 0.2s;
-  position: relative;
-}
-.btn:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: 4ms ease-in;
-}
-.btn:active {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: 4ms ease-in;
-}
-.btn-white {
-  background-color: #0f171c;
-  color: white;
-  font-size: 15px;
+span{
+  color: #33536F;
 }
 
-.form-group-2 {
-  padding-top: 15px;
-  padding-bottom: 15px;
+.pin-code{
+  padding: 0;
+  display: flex;
+  justify-content:space-evenly;
+  /*margin-bottom: 2%;*/
+  margin-top: 2%;
+  margin-left: 38%;
+  margin-right: 38%;
 }
 
-.checkbox-text {
-  padding-left: 8px;
-  font-size: 15px;
+.pin-code input {
+  border: 1px solid #D0D5DD;
+  text-align: center;
+  width: 48px;
+  height:48px;
+  font-size: 36px;
+  background-color: #F3F3F3;
+  margin-right:5px;
+  border-radius: 6px;
+  color: #436686;
 }
 
-.forgot-password {
-  padding-left: 26%;
-  text-decoration: none;
-  color: #124DA8;
-  font-size: 15px;
+
+
+.pin-code input:focus {
+  border: 1px solid #436686;
+  outline:none;
+  color: #436686;
 }
 
-.separator {
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+div.vue-otp-input {
+  width: max-content;
+}
+div.vue-otp-input > div.otp-wrapper {
+  direction: var(--direction);
+  text-align: center;
   display: flex;
   align-items: center;
-  padding-top: 10px;
+  justify-content: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
 }
 
-.separator .line {
-  height: 1px;
-  flex: 0.5;
-  background-color: #676767;
+div.vue-otp-input > div.otp-wrapper > input.otp-input {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
+  border-radius: var(--border-radius);
+}
+div.vue-otp-input > div.otp-wrapper > input.otp-input:disabled {
+  background-color: #F3F3F3 !important;
+}
+/* SINGLE INPUT IN SEPARATE MODE */
+div.vue-otp-input > div.otp-wrapper > input.defualt-input-separate {
+//text-align: center;
+//font-weight: 600;
+//background-color: #F3F3F3;
+//border: 1px solid #D0D5DD;
+//width: 3rem;
+//height: 48px;
+  border: 1px solid #D0D5DD;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  background-color: #F3F3F3;
+//margin-right: 10px;
+  border-radius: 6px;
+  color: #436686;
+}
+div.vue-otp-input > div.otp-wrapper > input.defualt-error-input-separate {
+  text-align: center;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px solid #D0D5DD;
+  width: 3rem;
+  height: 48px;
+}
+@media only screen and (max-width: 600px) {
+  div.vue-otp-input > div.otp-wrapper > input.defualt-input-separate {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* INPUTS WRAPPER IN SEPARATE MODE */
+div.vue-otp-input > div.defualt-wrapper-separate {
+  background: transparent;
+}
+/* INPUTS WRAPPER IN GROUP MODE */
+div.vue-otp-input > div.defualt-wrapper-group {
+  border: 1px solid #D0D5DD;
+}
+div.vue-otp-input > div.defualt-error-wrapper-group {
+  border: 1px solid #D0D5DD;
 }
 
-.separator h2 {
-  padding: 0 1rem;
-  font-size: 12px;
-  color: #676767;
+/* SINGLE INPUT IN GROUP MODE */
+div.vue-otp-input > div.otp-wrapper > input.defualt-input-group {
+  background-color: transparent;
+  font-weight: 600;
+  border: none;
+  width: 3rem;
+  height: 48px;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  div.vue-otp-input > div.otp-wrapper > input.defualt-input-group {
+    width: 2.5rem;
+    height: 40px;
+  }
+}
+div.vue-otp-input > div.otp-wrapper > input.defualt-active-input {
+  border: 1px solid #D0D5DD;
+}
+div.vue-otp-input > div.defualt-active-wrapper {
+  border: 1px solid #D0D5DD;
+}
+div.vue-otp-input > span.default-error-class {
+  color: #436686;
+  font-weight: bold;
+}
+input:focus {
+  outline: none;
+}
+/* removing the arrow keys on side of the input area */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.create-acc {
-  padding-top: 40px;
-  font-size: 17px;
-  padding-bottom: 40px;
-}
-.create-text {
-  font-size: 15px;
-}
-.create-link {
-  padding-left: 10px;
-  text-decoration: none;
-  color: #0f171c;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-@media (max-width: 1030px) {
-  .wrapper::before {
-    left: -25%;
-    min-height: 60vh;
-    height: 500px;
-  }
-}
-@media (max-width: 767px) {
-  .wrapper {
-    max-width: 550px;
-  }
-  .wrapper .headline h1 {
-    font-size: 22px;
-    line-height: 25px;
-  }
-}
-@media (max-width: 990px) {
-  .wrapper .headline h1  {
-    font-size: 32px;
-  }
-  .wrapper .headline h2  {
-    font-size: 28px;
-  }
-}
-@media (max-width: 500px) {
-  .wrapper {
-    padding: 10px 25px 0;
-  }
-  form {
-    margin: 1rem;
-    max-width: 40rem;
-    border-radius: 12px;
-    padding: 1rem;
-    background-color: #ffffff;
-  }
-  .wrapper .headline h1  {
-    font-size: 25px;
-  }
-  .wrapper .headline h2  {
-    font-size: 23px;
+@media (max-width: 700px) {
+  .submit{
+    margin-left: 22%;
+    margin-right: 23%;
+    margin-top: 3%;
   }
   .company-logo{
-    width: 50%;
-    margin-top: unset;
+    width: 28%;
   }
+
+}
+
+@media (max-width: 500px) {
+  .submit{
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 4%;
+  }
+
 }
 
 </style>

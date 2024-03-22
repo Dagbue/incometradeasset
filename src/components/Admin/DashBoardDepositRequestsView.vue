@@ -94,7 +94,7 @@ export default {
       statusUpdate2:"declined",
       depositValue: 0,
       currentPage: 1,
-      itemsPerPage: 7,
+      itemsPerPage: 15,
     }
   },
 

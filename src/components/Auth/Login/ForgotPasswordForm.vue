@@ -1,6 +1,6 @@
 <template>
   <div class="alpha">
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="onPostClick">
       <div class="wrapper">
         <div class="headline">
           <router-link to="/">
@@ -18,7 +18,8 @@
               <input type="email" placeholder="Enter Email" required="" />
             </div>
             <br/>
-            <a @click="onPostClick" class="btn btn-white btn-animated">continue</a>
+<!--            <a @click="onPostClick" class="btn btn-white btn-animated">continue</a>-->
+            <base-button>continue</base-button>
           </div>
         </div>
       </div>
@@ -28,8 +29,11 @@
 
 <script>
 
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
+
 export default {
   name: 'ForgotPasswordForm',
+  components: {BaseButton},
   data() {
     return {
     };

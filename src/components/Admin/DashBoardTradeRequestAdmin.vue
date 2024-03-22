@@ -98,7 +98,7 @@ export default {
       statusUpdate2:"lost",
       depositValue: 0,
       currentPage: 1,
-      itemsPerPage: 7,
+      itemsPerPage: 15,
     }
   },
   computed:{

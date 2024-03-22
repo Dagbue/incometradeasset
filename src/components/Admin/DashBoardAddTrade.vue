@@ -8,8 +8,7 @@
       </div>
 
       <div class="form-group">
-        <label class="label">Select User Email
-        {{tradePair}}</label>
+        <label class="label">Select User Email</label>
         <select class="select-form" v-model="SelectEmail" aria-placeholder="Select Value" required>
           <option v-for="option in allUsers" :key="option" :value="option" >
             {{ option.email }}
@@ -27,7 +26,6 @@
           <option value="Stocks">Stocks</option>
         </select>
       </div>
-
 
       <div class="form-group">
         <label class="label">Amount</label>
@@ -64,131 +62,6 @@
           <option value="NZD/CHF">NZD/CHF</option>
         </select>
       </div>
-<!--      <div v-show="this.tradeName === 'Crypto'" class="form-group">-->
-<!--        <label class="label">Trading Pair</label>-->
-<!--        <select name="tradingPair" id="tradingPair" required v-model="tradePair" >-->
-<!--          <option selected disabled value="">Choose Trading Pair</option>-->
-<!--          <option value="BCH/BTC">BCH/BTC</option>-->
-<!--          <option value="BCH/EUR">BCH/EUR</option>-->
-<!--          <option value="BCH/GBP">BCH/GBP</option>-->
-<!--          <option value="BTC-EOS">BTC-EOS</option>-->
-<!--          <option value="BTC/EUR">BTC/EUR</option>-->
-<!--          <option value="BTC/GBP">BTC/GBP</option>-->
-<!--          <option value="BTC/USD">BTC/USD</option>-->
-<!--          <option value="BTC/USDC">BTC/USDC</option>-->
-<!--          <option value="EOS/BTC">EOS/BTC</option>-->
-<!--          <option value="EOS/EUR">EOS/EUR</option>-->
-<!--          <option value="EOS/USD">EOS/USD</option>-->
-<!--          <option value="ETC/BTC">ETC/BTC</option>-->
-<!--          <option value="ETC/EUR">ETC/EUR</option>-->
-<!--          <option value="ETC/GBP">ETC/GBP</option>-->
-<!--          <option value="ETC/USD">ETC/USD</option>-->
-<!--          <option value="ETH/BTC">ETH/BTC</option>-->
-<!--          <option value="ETH/EUR">ETH/EUR</option>-->
-<!--          <option value="ETH/GBP">ETH/GBP</option>-->
-<!--          <option value="ETH/USD">ETH/USD</option>-->
-<!--          <option value="LTC/BTC">LTC/BTC</option>-->
-<!--          <option value="LTC/EUR">LTC/EUR</option>-->
-<!--          <option value="LTC/GBP">LTC/GBP</option>-->
-<!--          <option value="LTC/USD">LTC/USD</option>-->
-<!--          <option value="MKR/BTC">MKR/BTC</option>-->
-<!--          <option value="PCP-BTC">PCP-BTC</option>-->
-<!--          <option value="REP/BTC">REP/BTC</option>-->
-<!--          <option value="REP/USD">REP/USD</option>-->
-<!--          <option value="TXR/GBP">TXR/GBP</option>-->
-<!--          <option value="XLM/BTC">XLM/BTC</option>-->
-<!--          <option value="XLM/EUR">XLM/EUR</option>-->
-<!--          <option value="XLM/USD">XLM/USD</option>-->
-<!--          <option value="XRP/BTC">XRP/BTC</option>-->
-<!--          <option value="XRP/EUR">XRP/EUR</option>-->
-<!--          <option value="XRP/USD">XRP/USD</option>-->
-<!--          <option value="ZEC/BTC">ZEC/BTC</option>-->
-<!--          <option value="ZRX/BTC">ZRX/BTC</option>-->
-<!--          <option value="ZRX/EUR">ZRX/EUR</option>-->
-<!--          <option value="ZRX/USD">ZRX/USD</option>-->
-<!--        </select>-->
-<!--      </div>-->
-<!--      <div v-show="this.tradeName === 'CFD'" class="form-group">-->
-<!--          <label class="label">Trading Pair</label>-->
-<!--          <select name="tradingPair" id="tradingPair" required v-model="tradePair" >-->
-<!--            <option selected disabled value="">Choose Trading Pair</option>-->
-<!--            <option value="US 30">US 30</option>-->
-<!--            <option value="UKX">UKX</option>-->
-<!--            <option value="VIX Volatility Index">VIX Volatility Index</option>-->
-<!--            <option value="Germany 30">Germany 30</option>-->
-<!--            <option value="USA 500">USA 500</option>-->
-<!--            <option value="US Tech 100">US Tech 100</option>-->
-<!--            <option value="Japan 225">Japan 225</option>-->
-<!--            <option value="Europe 50">Europe 50</option>-->
-<!--            <option value="US Wall St 30">US Wall St 30</option>-->
-<!--            <option value="AUXAUD">AUXAUD</option>-->
-<!--            <option value="BCOUSD">BCOUSD</option>-->
-<!--            <option value="WEST TEXAS OIL">WEST TEXAS OIL</option>-->
-<!--            <option value="CAC40">CAC40</option>-->
-<!--            <option value="DXY">DXY</option>-->
-<!--            <option value="EU50">EU50</option>-->
-<!--            <option value="FR40">FR40</option>-->
-<!--            <option value="GRXEUR">GRXEUR</option>-->
-<!--            <option value="HELCHF">HELCHF</option>-->
-<!--            <option value="JPXJPY">JPXJPY</option>-->
-<!--            <option value="KRUUSD">KRUUSD</option>-->
-<!--            <option value="LTNEUR">LTNEUR</option>-->
-<!--            <option value="RUA">RUA</option>-->
-<!--            <option value="TR03">TR03</option>-->
-<!--            <option value="USDBRO">USDBRO</option>-->
-<!--            <option value="S&amp;P 100">S&amp;P 100</option>-->
-<!--            <option value="SXE5">SXE5</option>-->
-<!--            <option value="DOECHF">DOECHF</option>-->
-<!--            <option value="FAANG">FAANG</option>-->
-<!--            <option value="GRXEUR">GRXEUR</option>-->
-<!--            <option value="VRLCHF">VRLCHF</option>-->
-<!--            <option value="XPTUSD">XPTUSD</option>-->
-<!--            <option value="ZA20">ZA20</option>-->
-<!--            <option value="HK50">HK50</option>-->
-<!--            <option value="ID05Y">ID05Y</option>-->
-<!--          </select>-->
-<!--      </div>-->
-<!--      <div v-show="this.tradeName === 'Stocks'" class="form-group">-->
-<!--        <label class="label">Trading Pair</label>-->
-<!--        <select name="tradingPair" id="tradingPair" required v-model="tradePair" >-->
-<!--          <option selected disabled value="">Choose Trading Pair</option>-->
-<!--          <option value="AMAZON">AMAZON</option>-->
-<!--          <option value="APPLE">APPLE</option>-->
-<!--          <option value="COCA COLA">COCA COLA</option>-->
-<!--          <option value="DAX30">DAX30</option>-->
-<!--          <option value="AIRBNB INC">AIRBNB INC</option>-->
-<!--          <option value="BOEING CO">BOEING CO</option>-->
-<!--          <option value="GME STOCKS">GME STOCKS</option>-->
-<!--          <option value="AMC ENTERTAINMENT">AMC ENTERTAINMENT</option>-->
-<!--          <option value="BLACKBERRY">BLACKBERRY</option>-->
-<!--          <option value="CITIGROUP INC">CITIGROUP INC</option>-->
-<!--          <option value="CISCO SYSTEMS INC">CISCO SYSTEMS INC</option>-->
-<!--          <option value="FACEBOOK">FACEBOOK</option>-->
-<!--          <option value="TWITTER">TWITTER</option>-->
-<!--          <option value="TESLA INC">TESLA INC</option>-->
-<!--          <option value="SONY ENT">SONY ENT</option>-->
-<!--          <option value="NASDAQ">NASDAQ</option>-->
-<!--          <option value="ENTERPRISE GROUP INC">ENTERPRISE GROUP INC</option>-->
-<!--          <option value="FORD MOTOR">FORD MOTOR</option>-->
-<!--          <option value="GAZPROM">GAZPROM</option>-->
-<!--          <option value="GLOBE LIFE INC">GLOBE LIFE INC</option>-->
-<!--          <option value="HYDRO ONE LTD">HYDRO ONE LTD</option>-->
-<!--          <option value="LOTUS VENTURES INC">LOTUS VENTURES INC</option>-->
-<!--          <option value="KELLOGG COMPANY">KELLOGG COMPANY</option>-->
-<!--          <option value="WAYFAIR INC">WAYFAIR INC</option>-->
-<!--          <option value="WALMART INC">WALMART INC</option>-->
-<!--          <option value="WALT DISNEY CO">WALT DISNEY CO</option>-->
-<!--          <option value="MACY'S INC">MACY'S INC</option>-->
-<!--          <option value="MCDONALD'S CORPORATIONS">MCDONALD'S CORPORATIONS</option>-->
-<!--          <option value="VISA INC">VISA INC</option>-->
-<!--          <option value="VERIZON">VERIZON</option>-->
-<!--          <option value="TMX GROUP LTD">TMX GROUP LTD</option>-->
-<!--          <option value="ALPHABET INC">ALPHABET INC</option>-->
-<!--          <option value="ORGANIGRAM HOLDINGS">ORGANIGRAM HOLDINGS</option>-->
-<!--          <option value="PFIZER INC">PFIZER INC</option>-->
-<!--        </select>-->
-<!--      </div>-->
-
 
       <div class="form-group">
         <label class="label">Trade Interval (Time)</label>
@@ -600,6 +473,8 @@ export default {
       tradeLeverage: "",
       currentDate: "",
       currentDate2: "",
+      randomString: "",
+      randomString2: "",
     }
   },
   computed:{
@@ -621,10 +496,12 @@ export default {
         amountTrade: this.tradeAmount,
         expectedPayout: 0,
         leverage: this.tradeLeverage,
-        endPrice: 0,
-        marketType: this.tradeType,
+        endPrice: this.randomString2,
+        marketType: this.tradeName,
         endTime: this.currentDate2,
-        tradeStatus: "pending"
+        tradeStatus: "pending",
+        tradeReference : this.randomString,
+        tradeType : this.tradeType
       });
       await StoreUtils.dispatch(StoreUtils.actions.trade.readAllTrade);
       this.SelectEmail = "";
@@ -634,6 +511,10 @@ export default {
       this.tradeInterval = "";
       this.tradeType = "";
       this.tradeLeverage = "";
+      this.getCurrentDate();
+      this.getCurrentDateTime();
+      this.generateRandomString();
+      this.generateRandomString2();
       await router.push("/trade-request-admin")
     },
 
@@ -666,12 +547,23 @@ export default {
         result += characters.charAt(randomIndex);
       }
       this.randomString = result;
+    },
+
+    generateRandomString2() {
+      const characters = '0123456789';
+      let result = '';
+      for (let i = 0; i < 4; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+      }
+      this.randomString2 = result;
     }
   },
   created() {
     this.getCurrentDate();
     this.getCurrentDateTime();
     this.generateRandomString();
+    this.generateRandomString2();
 
     this.userId = localStorage.getItem('userId')
 
@@ -688,6 +580,7 @@ export default {
     this.getCurrentDate();
     this.getCurrentDateTime();
     this.generateRandomString();
+    this.generateRandomString2();
 
     this.userId = localStorage.getItem('userId')
 

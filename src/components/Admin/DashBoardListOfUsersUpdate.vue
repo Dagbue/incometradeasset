@@ -224,7 +224,10 @@ export default {
         // createdAt: this.createdAt,
         userStatus: this.userStatus,
       })
-      await     StoreUtils.dispatch(StoreUtils.actions.auth.allUsers)
+      await StoreUtils.dispatch(StoreUtils.actions.auth.allUsers)
+      await StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+        userId: this.getAdminUserId.userId,
+      })
       await router.push("/list-of-users")
     }
   },

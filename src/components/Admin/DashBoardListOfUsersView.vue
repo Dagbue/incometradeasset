@@ -69,7 +69,7 @@
             <td data-label="Status">{{child.userStatus}}</td>
             <td data-label="Action">
               <button style="margin-bottom: 5px;" class="btn" @click="updateUser(child)">Update</button>
-              <button class="btn-2">Delete</button>
+              <button class="btn-2" @click="deleteUser(child)">Delete</button>
             </td>
           </tr>
           </tbody>
@@ -164,6 +164,13 @@ export default {
         userId: child.userId
       })
       await router.push("/list-of-users-update");
+    },
+
+    async deleteUser(child) {
+      await StoreUtils.dispatch(StoreUtils.actions.auth.deleteUser, {
+        userId: child.userId
+      })
+      await StoreUtils.dispatch(StoreUtils.actions.auth.allUsers)
     }
   },
 

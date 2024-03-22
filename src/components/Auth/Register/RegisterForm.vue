@@ -7,7 +7,7 @@
             <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
           </router-link>
           <h2>
-            Create New <span class="header-span">Income Trade Asset</span> Account
+            Create New Income Trade Asset Account
           </h2>
 <!--          <p>-->
 <!--            NB: Investors are not allowed to keep their trade account dormant 2-->
@@ -744,9 +744,9 @@ form {
 }
 
 .create-link {
-  padding-left: 10px;
+  padding-left: 5px;
   text-decoration: none;
-  color: #0f171c;
+  color: #D23535;
 }
 
 .group{
@@ -861,7 +861,7 @@ input::placeholder {
     font-size: 25px;
   }
   .wrapper .headline h2  {
-    font-size: 23px;
+    font-size: 22px;
   }
   .checkbox-text {
     padding-left: 10px;

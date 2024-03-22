@@ -61,6 +61,7 @@ class StoreUtils {
       updateSignUpFormData: "auth/updateSignUpFormData",
       updateReadUserById: "auth/updateReadUserById",
       updateReadAllUsers: "auth/updateReadAllUsers",
+      updateBitcoinRate: "auth/updateBitcoinRate",
     },
     deposit: {
       updateLoading: "deposit/updateLoading",
@@ -102,6 +103,7 @@ class StoreUtils {
       getSignUpFormData: "auth/getSignUpFormData",
       getReadUserById: "auth/getReadUserById",
       getReadAllUsers: "auth/getReadAllUsers",
+      getBitcoinRate: "auth/getBitcoinRate",
     },
     deposit: {
       getDeposit: "deposit/getDeposit",

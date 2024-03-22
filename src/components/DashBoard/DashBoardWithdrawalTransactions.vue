@@ -20,7 +20,7 @@
 
     <div class="section-5">
       <div class="empty-state-container" v-if="this.UserWithdrawal.withdrawals.length === 0">
-        <img src="@/assets/empty.svg" alt="empty">
+        <img src="@/assets/empty.svg" alt="empty" class="empty-state">
         <p class="empty-state-text-1">You have nothing to see</p>
         <p class="empty-state-text-2">This is where your Withdrawals will appear</p>
         <!--        <p class="empty-state-text-3">-->
@@ -502,6 +502,9 @@ input::placeholder{
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+  }
+  .empty-state{
+    width: 35%;
   }
 }
 

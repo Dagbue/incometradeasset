@@ -25,7 +25,14 @@
 
     <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 99%; margin-bottom: 1%;"></iframe>
 
-    <p v-show="this.userInfo.userStatus === 'unVerified'" class="text-2">Your Account is not verified.</p>
+    <p v-show="this.UserDetails.user.userStatus === 'unVerified'" class="text-2">Your Account is not verified.</p>
+
+<!--    <div style="color: white;" id="app">-->
+<!--      <h1>Dollar to Bitcoin Converter</h1>-->
+<!--      <input type="number" v-model="dollars" placeholder="Enter amount in dollars" />-->
+<!--      <button @click="convertToBitcoin">Convert</button>-->
+<!--      <p style="color:#ffffff;" v-if="bitcoin">Equivalent in Bitcoin: {{ bitcoin }}</p>-->
+<!--    </div>-->
 
     <div class="law">
       <div class="section-3">
@@ -36,7 +43,7 @@
             <div>
 <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.deposit}}</p>-->
 <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >{{userInfo.btcBalance}}</p>
+              <p class="content-1-text-2" >{{bitcoin}}</p>
             </div>
           </div>
           <div class="content-2">
@@ -52,7 +59,7 @@
             <div>
 <!--              <p class="content-1-text-2" v-if="approved2 === 'approved'">£ {{this.contacts.withdrawal}}</p>-->
 <!--              <p class="content-1-text-2" v-else-if="approved2 === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >$ {{userInfo.totalDepositedAmount + userInfo.totalWithdrawals | formatAmount2}}</p>
+              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount + UserDetails.user.totalWithdrawals | formatAmount2}}</p>
             </div>
           </div>
           <div class="content-2">
@@ -68,7 +75,7 @@
             <div>
 <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.profits}}</p>-->
 <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >$ {{userInfo.totalDepositedAmount | formatAmount2}}</p>
+              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount | formatAmount2}}</p>
             </div>
           </div>
           <div class="content-2">
@@ -118,12 +125,12 @@
 
         <div class="form-group">
           <label class="label">Amount</label>
-          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="model.amountTrade" required/>
+          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="amountTrade" required/>
         </div>
 
         <div class="form-group">
           <label class="label">Trading Pair</label>
-          <select name="tradingPair" id="tradingPair" required v-model="model.symbolTraded" >
+          <select name="tradingPair" id="tradingPair" required v-model="symbolTraded" >
             <option selected disabled value="">Choose Trading Pair</option>
             <option :value="null" disabled>Choose Trading Pair</option>
             <option value="USD/CAD">USD/CAD</option>
@@ -155,7 +162,7 @@
 
         <div class="form-group">
           <label class="label">Trade Interval (Time)</label>
-          <select name="tradeInterval" id="tradeInterval" required v-model="model.tradeTime" >
+          <select name="tradeInterval" id="tradeInterval" required v-model="tradeTime" >
             <option selected disabled value="">Trade Interval (Time)</option>
             <option :value="null" disabled>Trade Interval (Time)</option>
             <option value="1 min">1 min</option>
@@ -171,7 +178,7 @@
 
         <div class="form-group">
           <label class="label">Trade Type</label>
-          <select name="tradeType" id="tradeType" required v-model="model.tradeType">
+          <select name="tradeType" id="tradeType" required v-model="tradeType">
             <option selected disabled value="">Trade Type</option>
             <option :value="null" disabled>Trade Type</option>
             <option value="Buy">Buy</option>
@@ -181,7 +188,7 @@
 
         <div class="form-group">
           <label class="label">Trade Leverage</label>
-          <select name="tradeLeverage" id="tradeLeverage" required v-model="model.leverage" >
+          <select name="tradeLeverage" id="tradeLeverage" required v-model="leverage" >
             <option selected disabled value="">Trade Leverage</option>
             <option :value="null" disabled>Trade Leverage</option>
             <option value="0.5X">0.5X</option>
@@ -194,7 +201,6 @@
         </div>
 
         <base-button  style="  background-color: #5d78ff;border: 1px solid #5d78ff;" :loading="loading" >Place Trade </base-button>
-<!--        <p style="color: #FFFFFF">{{currentDate}}</p>-->
       </form>
     </div>
 
@@ -224,12 +230,12 @@
 
         <div class="form-group">
           <label class="label">Amount</label>
-          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="model.amountTrade"  required/>
+          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="amountTrade"  required/>
         </div>
 
         <div class="form-group">
           <label class="label">Trading Pair</label>
-          <select name="tradingPair" id="tradingPair" required v-model="model.symbolTraded" >
+          <select name="tradingPair" id="tradingPair" required v-model="symbolTraded" >
             <option selected disabled value="">Choose Trading Pair</option>
             <option :value="null" disabled>Choose Trading Pair</option>
             <option value="BCH/BTC">BCH/BTC</option>
@@ -275,7 +281,7 @@
 
         <div class="form-group">
           <label class="label">Trade Interval (Time)</label>
-          <select name="tradeInterval" id="tradeInterval" required v-model="model.tradeTime" >
+          <select name="tradeInterval" id="tradeInterval" required v-model="tradeTime" >
             <option selected disabled value="">Trade Interval (Time)</option>
             <option :value="null" disabled>Trade Interval (Time)</option>
             <option value="1 min">1 min</option>
@@ -291,7 +297,7 @@
 
         <div class="form-group">
           <label class="label">Trade Type</label>
-          <select name="tradeType" id="tradeType" required v-model="model.tradeType" >
+          <select name="tradeType" id="tradeType" required v-model="tradeType" >
             <option selected disabled value="">Trade Type</option>
             <option :value="null" disabled>Trade Type</option>
             <option value="Buy">Buy</option>
@@ -301,7 +307,7 @@
 
         <div class="form-group">
           <label class="label">Trade Leverage</label>
-          <select name="tradeLeverage" id="tradeLeverage" required v-model="model.leverage" >
+          <select name="tradeLeverage" id="tradeLeverage" required v-model="leverage" >
             <option selected disabled value="">Trade Leverage</option>
             <option :value="null" disabled>Trade Leverage</option>
             <option value="0.5X">0.5X</option>
@@ -340,12 +346,12 @@
 
         <div class="form-group">
           <label class="label">Amount</label>
-          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="model.amountTrade" required/>
+          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="amountTrade" required/>
         </div>
 
         <div class="form-group">
           <label class="label">Trading Pair</label>
-          <select name="tradingPair" id="tradingPair" required v-model="model.symbolTraded" >
+          <select name="tradingPair" id="tradingPair" required v-model="symbolTraded" >
             <option selected disabled value="">Choose Trading Pair</option>
             <option :value="null" disabled>Choose Trading Pair</option>
             <option value="US 30">US 30</option>
@@ -387,7 +393,7 @@
 
         <div class="form-group">
           <label class="label">Trade Interval (Time)</label>
-          <select name="tradeInterval" id="tradeInterval" required v-model="model.tradeTime">
+          <select name="tradeInterval" id="tradeInterval" required v-model="tradeTime">
             <option selected disabled value="">Trade Interval (Time)</option>
             <option :value="null" disabled>Trade Interval (Time)</option>
             <option value="1 min">1 min</option>
@@ -403,7 +409,7 @@
 
         <div class="form-group">
           <label class="label">Trade Type</label>
-          <select name="tradeType" id="tradeType" required v-model="model.tradeType" >
+          <select name="tradeType" id="tradeType" required v-model="tradeType" >
             <option selected disabled value="">Trade Type</option>
             <option :value="null" disabled>Trade Type</option>
             <option value="Buy">Buy</option>
@@ -413,7 +419,7 @@
 
         <div class="form-group">
           <label class="label">Trade Leverage</label>
-          <select name="tradeLeverage" id="tradeLeverage" required v-model="model.leverage" >
+          <select name="tradeLeverage" id="tradeLeverage" required v-model="leverage" >
             <option selected disabled value="">Trade Leverage</option>
             <option :value="null" disabled>Trade Leverage</option>
             <option value="0.5X">0.5X</option>
@@ -451,12 +457,12 @@
 
         <div class="form-group">
           <label class="label">Amount</label>
-          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="model.amountTrade" required/>
+          <input type="number" placeholder="Enter Amount"  name="Amount" v-model="amountTrade" required/>
         </div>
 
         <div class="form-group">
           <label class="label">Trading Pair</label>
-          <select name="tradingPair" id="tradingPair" required v-model="model.symbolTraded" >
+          <select name="tradingPair" id="tradingPair" required v-model="symbolTraded" >
             <option selected disabled value="">Choose Trading Pair</option>
             <option :value="null" disabled>Choose Trading Pair</option>
             <option value="AMAZON">AMAZON</option>
@@ -498,7 +504,7 @@
 
         <div class="form-group">
           <label class="label">Trade Interval (Time)</label>
-          <select name="tradeInterval" id="tradeInterval" required v-model="model.tradeTime" >
+          <select name="tradeInterval" id="tradeInterval" required v-model="tradeTime" >
             <option selected disabled value="">Trade Interval (Time)</option>
             <option :value="null" disabled>Trade Interval (Time)</option>
             <option value="1 min">1 min</option>
@@ -514,7 +520,7 @@
 
         <div class="form-group">
           <label class="label">Trade Type</label>
-          <select name="tradeType" id="tradeType" required v-model="model.tradeType">
+          <select name="tradeType" id="tradeType" required v-model="tradeType">
             <option selected disabled value="">Trade Type</option>
             <option :value="null" disabled>Trade Type</option>
             <option value="Buy">Buy</option>
@@ -524,7 +530,7 @@
 
         <div class="form-group">
           <label class="label">Trade Leverage</label>
-          <select name="tradeLeverage" id="tradeLeverage" required v-model="model.leverage" >
+          <select name="tradeLeverage" id="tradeLeverage" required v-model="leverage" >
             <option selected disabled value="">Trade Leverage</option>
             <option :value="null" disabled>Trade Leverage</option>
             <option value="0.5X">0.5X</option>
@@ -539,6 +545,7 @@
         <base-button :loading="loading" style="  background-color: #5d78ff;border: 1px solid #5d78ff;">Place Trade </base-button>
       </form>
     </div>
+
 
     <div class="last">
       <div class="body">
@@ -630,7 +637,6 @@
         </div>
       </div>
     </div>
-
     </div>
 
 </template>
@@ -640,6 +646,7 @@ import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import StoreUtils from "@/utility/StoreUtils";
 import TradeRequest from "@/model/request/TradeRequest";
 import {mapState} from "vuex";
+// import axios from "axios";
 
 export default {
   name: "DashBoardOverView",
@@ -659,7 +666,16 @@ export default {
       currentDate: "",
       currentDate2: "",
       randomString: "",
-      randomString2: ""
+      randomString2: "",
+      amountTrade: "",
+      symbolTraded: "",
+      tradeTime: "",
+      tradeType: "",
+      leverage: "",
+
+      dollars: 0,
+      bitcoin: null,
+      // bitcoinRate: null,
     }
   },
   computed:{
@@ -674,6 +690,9 @@ export default {
     UserInfo() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getUserInfo)
     },
+    UserDetails() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
+    },
     // readUserTrade() {
     //   return StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
     // },
@@ -681,10 +700,25 @@ export default {
       loading: state => state.trade.loading,
       auth: state => state.auth,
       readUserTrade: state => state.trade.readUserTrade,
+      bitcoinRate: state => state.auth.bitcoinRate,
     }),
   },
 
   methods: {
+    // fetchBitcoinRate() {
+    //   axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+    //       .then(response => {
+    //         this.bitcoinRate = response.data.bpi.USD.rate_float;
+    //       })
+    //       .catch(error => console.error(error));
+    // },
+    convertToBitcoin() {
+      if (!this.bitcoinRate.bitcoinRate) {
+        alert('Bitcoin rate not loaded. Please wait or try reloading the page.');
+        return;
+      }
+      this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate.bitcoinRate).toFixed(8);
+    },
     onPostClick() {
       this.$router.push("/fund-wallet");
     },
@@ -723,25 +757,24 @@ export default {
       await StoreUtils.dispatch(StoreUtils.actions.trade.tradeCreate, {
         userId: this.userId,
         tradeTime: this.currentDate,
-        symbolTraded: this.model.symbolTraded,
-        amountTrade: this.model.amountTrade,
+        symbolTraded: this.symbolTraded,
+        amountTrade: this.amountTrade,
         expectedPayout: 0,
-        leverage: this.model.leverage,
+        leverage: this.leverage,
         endPrice: this.randomString2,
         marketType: this.screen1,
         endTime: this.currentDate2,
         tradeStatus: "pending",
         tradeReference : this.randomString,
-        tradeType : this.model.tradeType
+        tradeType : this.tradeType
       });
       await StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
         userId: localStorage.getItem('userId'),
       });
-      this.model = "";
-      this.currentDate = "";
-      this.randomString2 = "";
-      this.currentDate2 = "";
-      this.randomString = "";
+      this.getCurrentDate();
+      this.getCurrentDateTime();
+      this.generateRandomString();
+      this.generateRandomString2();
     },
 
     getCurrentDate() {
@@ -791,12 +824,21 @@ export default {
     this.getCurrentDateTime();
     this.generateRandomString();
     this.generateRandomString2();
+    this.convertToBitcoin();
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
 
     StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
 
     StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
       userId : localStorage.getItem('userId'),
     });
+
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
 
     this.userId = localStorage.getItem('userId')
 
@@ -813,12 +855,21 @@ export default {
     this.getCurrentDateTime();
     this.generateRandomString();
     this.generateRandomString2();
+    this.convertToBitcoin();
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
 
     StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
 
     StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
       userId : localStorage.getItem('userId'),
     });
+
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
 
     this.userId = localStorage.getItem('userId')
 
@@ -888,6 +939,11 @@ i{
   margin-left: auto;
   margin-right: auto;
   width: 30%;
+}
+.empty-state{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .lawrence{
   display: flex;
@@ -1016,7 +1072,7 @@ i{
   align-items: center;
   padding: 15px 25px;
   gap: 24px;
-  width: 1175px;
+  width: 1183px;
   height: 110px;
   background: #0f171c;
   border: 0.5px solid #3C4A57FF;
@@ -1532,6 +1588,10 @@ td {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+  }
+
+  .empty-state{
+    width: 35%;
   }
 
 }

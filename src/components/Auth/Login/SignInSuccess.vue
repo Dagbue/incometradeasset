@@ -22,6 +22,7 @@
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
 import router from "@/router";
+import axios from "axios";
 
 
 export default {
@@ -30,6 +31,7 @@ export default {
     return {
       userId: "",
       userInfo: "",
+      bitcoinRate: null,
     };
   },
   computed:{
@@ -51,41 +53,58 @@ export default {
     },
 
     localStore(){
+      StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+        userId : localStorage.getItem('userId')
+      })
+      StoreUtils.commit(StoreUtils.mutations.auth.updateBitcoinRate, {
+        bitcoinRate : this.bitcoinRate
+      })
+      StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
+      StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
       localStorage.userId = this.userDetails.user.userId
       localStorage.userFirstName = this.userDetails.user.firstName
       localStorage.userLastName = this.userDetails.user.lastName
       localStorage.setItem('userInfo', JSON.stringify(this.userDetails.user));
       localStorage.setItem('userTrade', JSON.stringify(this.userTrade.trades));
     },
+
+    fetchBitcoinRate() {
+      axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+          .then(response => {
+            this.bitcoinRate = response.data.bpi.USD.rate_float;
+          })
+          .catch(error => console.error(error));
+    },
   },
-  // created() {
-  //   this.userId = localStorage.getItem('userId')
-  //
-  //   // Retrieve the object from local storage
-  //   const storedObject = localStorage.getItem('userInfo');
-  //
-  //   if (storedObject) {
-  //     this.userInfo = JSON.parse(storedObject);
-  //   }
-  //
-  //   StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
-  // },
-  //
-  // mounted() {
-  //
-  //   this.userId = localStorage.getItem('userId')
-  //
-  //   // Retrieve the object from local storage
-  //   const storedObject = localStorage.getItem('userInfo');
-  //
-  //   if (storedObject) {
-  //     this.userInfo = JSON.parse(storedObject);
-  //   }
-  //
-  //   StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
-  //     userId : localStorage.getItem('userId')
-  //   })
-  // }
+  created() {
+    this.fetchBitcoinRate()
+    this.userId = localStorage.getItem('userId')
+
+    // Retrieve the object from local storage
+    const storedObject = localStorage.getItem('userInfo');
+
+    if (storedObject) {
+      this.userInfo = JSON.parse(storedObject);
+    }
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
+  },
+
+  mounted() {
+    this.fetchBitcoinRate()
+    this.userId = localStorage.getItem('userId')
+
+    // Retrieve the object from local storage
+    const storedObject = localStorage.getItem('userInfo');
+
+    if (storedObject) {
+      this.userInfo = JSON.parse(storedObject);
+    }
+
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+  }
 }
 </script>
 
@@ -118,7 +137,7 @@ export default {
 }
 
 .text-area{
-  margin-bottom: 1%;
+  margin-bottom: 1.5%;
 }
 .image{
   display: flex;
@@ -144,5 +163,14 @@ export default {
 
 .submit-btn:hover{
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 700px) {
+  .submit-btn{
+    padding: 12px 25% 12px 25%;
+  }
+  .submit{
+    margin-top: 2%;
+  }
 }
 </style>

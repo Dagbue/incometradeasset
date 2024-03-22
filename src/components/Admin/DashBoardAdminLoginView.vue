@@ -316,7 +316,6 @@ export default {
     margin: 1rem;
     max-width: 40rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     padding: 1rem;
     background-color: #ffffff;
   }
@@ -332,6 +331,9 @@ export default {
   .forgot-password {
     padding-left: 20px;
   }
+  .company-logo{
+    width: 50%;
+    margin-top: unset;
+  }
 }
-
 </style>
