@@ -17,18 +17,18 @@
       </div>
     </div>
     <div class="section-5">
-<!--      <div class="empty-state" v-if="this.contacts.length === 0">-->
-<!--        <img src="@/assets/empty.svg" alt="empty">-->
-<!--        <p class="empty-state-text-1">You have nothing to see</p>-->
-<!--        <p class="empty-state-text-2">This is where your list of users will appear</p>-->
-<!--        &lt;!&ndash;        <p class="empty-state-text-3">&ndash;&gt;-->
-<!--        &lt;!&ndash;          <i class='bx bx-plus' ></i>&ndash;&gt;-->
-<!--        &lt;!&ndash;          Transaction&ndash;&gt;-->
-<!--        &lt;!&ndash;        </p>&ndash;&gt;-->
-<!--      </div>-->
+      <div class="empty-state" v-if="this.allUsers.length === 0">
+        <img src="@/assets/empty.svg" alt="empty">
+        <p class="empty-state-text-1">You have nothing to see</p>
+        <p class="empty-state-text-2">This is where your list of users will appear</p>
+        <!--        <p class="empty-state-text-3">-->
+        <!--          <i class='bx bx-plus' ></i>-->
+        <!--          Transaction-->
+        <!--        </p>-->
+      </div>
 
 
-      <div class="table" >
+      <div class="table" v-if="this.allUsers.length > 0" >
         <table>
           <tr>
             <th>First Name</th>
@@ -324,7 +324,7 @@ td {
 
 .empty-state{
   text-align: center;
-  margin-top: 7%;
+  /*margin-top: 3%;*/
   margin-right: 8%;
 }
 
