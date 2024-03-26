@@ -94,7 +94,7 @@ class StoreUtils {
       updateReadPaymentWalletById: "paymentWallet/updateReadPaymentWalletById",
     },
     sbucket: {
-      uploadEncodedFile: "sbucket/uploadEncodedFile",
+      updateS3BucketLoading: "sbucket/updateS3BucketLoading",
     },
   };
 

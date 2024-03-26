@@ -342,7 +342,7 @@
                 <a  class="terms" @click="showDialog">Terms And Conditions</a></label
               >
             </div>
-            <base-button :loading="loading" >Create Account</base-button>
+            <base-button :loading="loading" :disabled="loading2" >Create Account</base-button>
 <!--            <div v-if="error">{{ error }}</div>-->
             <div class="separator">
               <div class="line"></div>
@@ -405,6 +405,7 @@ export default {
     ...mapState(["sbucket"]),
     ...mapState({
       loading: state => state.auth.loading,
+      loading2: state => state.sbucket.s3bucketLoading,
       auth: state => state.auth,
     }),
   },
