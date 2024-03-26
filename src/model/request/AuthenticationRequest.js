@@ -65,6 +65,14 @@ class AuthenticationRequest {
     userStatus: null,
   };
 
+  sendTwoFactor = {
+    email: null,
+  };
+
+  resendOtp = {
+    email: null,
+  };
+
 
 }
 

@@ -397,6 +397,7 @@ export default {
       base642: "",
       uploadmodel2: S3Request.prototype.uploadBase64(),
       url2: "",
+      randomString: "",
     };
   },
 
@@ -423,12 +424,15 @@ export default {
     },
 
     async createUser() {
+      await StoreUtils.commit(StoreUtils.mutations.auth.updateSignUpFormData, {
+        email: this.model.email,
+      })
       await StoreUtils.dispatch(StoreUtils.actions.auth.createUser, {
         firstName: this.model.firstName,
         lastName: this.model.lastName,
         email: this.model.email,
         password: this.model.password,
-        referralCode: "ABCD1234",
+        referralCode: this.randomString,
         frontId: this.url,
         backId: this.url2,
         totalDepositedAmount: 0.00,
@@ -439,11 +443,21 @@ export default {
         walletAddress: "",
         walletName: "",
         twoFactorAuthenticationCode: "",
-        userStatus: "",
+        userStatus: "unVerified",
         role: "Customer",
         country: this.model.country
       })
-      await this.$router.push("/email-auth")
+      // await this.$router.push("/email-auth")
+    },
+
+    generateRandomString() {
+      const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      let result = '';
+      for (let i = 0; i < 5; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+      }
+      this.randomString = result;
     },
 
     uploadFile() {
@@ -492,7 +506,7 @@ export default {
     async uploadOfficerImage2() {
       // this.showLoader = true;
       this.uploadmodel2.username = `${
-          this.formBody.customerFirstName + this.formBody.customerMiddleName
+          this.auth.userInfo.userFirstName + this.auth.userInfo.userLastName
       }_${Date.now()}`;
       this.uploadmodel2.base64 = this.base642;
       // await this.$store.dispatch("sbucket/uploadEncodedFile", this.uploadmodel, { root: true });
@@ -508,8 +522,12 @@ export default {
   },
 
 
-  mounted() {
+  created() {
+    this.generateRandomString();
+  },
 
+  mounted() {
+    this.generateRandomString();
   }
 
 }

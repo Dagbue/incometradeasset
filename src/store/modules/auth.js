@@ -114,10 +114,11 @@ export const actions = {
       StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
       let responseData = response.data
       if (responseData.responseCode === "00"){
-        swal("Success",responseData.responseMessage, 'success')
-            .then(() => {
-          // RouterUtils.navigateTo(RouterUtils.routes.authentication.verifyEmailAddress.name)
-        })
+        router.push("/email-auth")
+        // swal("Success",responseData.responseMessage, 'success')
+        //     .then(() => {
+        //   // RouterUtils.navigateTo(RouterUtils.routes.authentication.verifyEmailAddress.name)
+        // })
       }else{
         swal("Error",responseData.responseMessage, 'error').then(r => console.log(r))
       }
@@ -215,6 +216,47 @@ export const actions = {
       StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
     })
   },
+
+  // eslint-disable-next-line no-empty-pattern
+  resendOtp({}, payload = new AuthenticationRequest().resendOtp){
+    StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, true)
+    return AuthenticationService.callResendOtpApi(payload).then(response=>{
+      StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
+      let responseData = response.data
+      if (responseData.responseCode === "00"){
+        swal("Success","OTP sent successfully", 'success').then(() => {
+          // RouterUtils.navigateTo(RouterUtils.routes.auth.forgotPasswordVerifyEmail.name)
+        })
+
+      }else{
+        swal("Error",responseData.responseMessage, 'error').then(r => console.log(r))
+      }
+    }).catch(error=>{
+      console.log(error)
+      StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
+    })
+  },
+
+  // eslint-disable-next-line no-empty-pattern
+  sendTwoFactor({}, payload = new AuthenticationRequest().sendTwoFactor){
+    StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, true)
+    return AuthenticationService.callSendTwoFactorApi(payload).then(response=>{
+      StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
+      let responseData = response.data
+      if (responseData.responseCode === "00"){
+        swal("Success",responseData.responseMessage, 'success').then(() => {
+          // RouterUtils.navigateTo(RouterUtils.routes.auth.forgotPasswordVerifyEmail.name)
+        })
+
+      }else{
+        swal("Error",responseData.responseMessage, 'error').then(r => console.log(r))
+      }
+    }).catch(error=>{
+      console.log(error)
+      StoreUtils.commit(StoreUtils.mutations.auth.updateLoading, false)
+    })
+  },
+
 
 
   //eslint-disable-next-line no-empty-pattern

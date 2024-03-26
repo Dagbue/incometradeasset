@@ -22,6 +22,12 @@ export default {
   callUpdateUserStatusApi(payload) {
     return client.apiClient.post("update-user-status", payload);
   },
+  callSendTwoFactorApi(payload) {
+    return client.apiClient.post("send-two-factor", payload);
+  },
+  callResendOtpApi(payload) {
+    return client.apiClient.post("resend-otp", payload);
+  },
   callAllUsersApi(){
     return client.apiClient.get("all-users",{})
   },

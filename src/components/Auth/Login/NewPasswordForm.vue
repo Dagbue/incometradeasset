@@ -71,6 +71,7 @@ export default {
   data() {
     return {
       showPassword2: false,
+      password: ""
     };
   },
   methods: {

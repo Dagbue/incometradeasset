@@ -5,11 +5,11 @@
       <p class="text-1">User Profile</p>
       <hr/>
       <div class="section-1-part-1">
-        <img v-if="userInfo.displayPicture === null" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
-        <img v-else :src="userInfo.displayPicture" alt="displayPicture"  class="displayPicture"/>
+        <img v-if="UserDetails.user.displayPicture === ''" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
+        <img v-else :src="UserDetails.user.displayPicture" alt="displayPicture"  class="displayPicture"/>
         <div>
-          <p style="text-align: left">{{userInfo.firstName}} {{userInfo.lastName}}</p>
-          <p style="text-align: left">{{userInfo.email}}</p>
+          <p style="text-align: left">{{UserDetails.user.firstName}} {{UserDetails.user.lastName}}</p>
+          <p style="text-align: left">{{UserDetails.user.email}}</p>
         </div>
       </div>
 
@@ -115,6 +115,9 @@ export default {
       loading: state => state.auth.loading,
       auth: state => state.auth,
     }),
+    UserDetails() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
+    },
   },
 
   methods: {
@@ -153,6 +156,11 @@ export default {
   },
 
   created() {
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
     this.populateForm();
     this.userId = localStorage.getItem('userId')
 
@@ -165,6 +173,11 @@ export default {
   },
 
   mounted() {
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
     this.populateForm();
     this.generateRandomString()
 

@@ -15,11 +15,11 @@
         <div class="form" @submit.prevent>
           <div class="signup">
             <div class="form-group">
-              <input type="email" placeholder="Enter Email" required="" />
+              <input type="email" v-model="email" placeholder="Enter Email" required="" />
             </div>
             <br/>
 <!--            <a @click="onPostClick" class="btn btn-white btn-animated">continue</a>-->
-            <base-button>continue</base-button>
+            <base-button :loading="loading" >continue</base-button>
           </div>
         </div>
       </div>
@@ -30,13 +30,23 @@
 <script>
 
 import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
+import StoreUtils from "@/utility/StoreUtils";
+import router from "@/router";
+import {mapState} from "vuex";
 
 export default {
   name: 'ForgotPasswordForm',
   components: {BaseButton},
   data() {
     return {
+      email: "",
     };
+  },
+  computed:{
+    ...mapState({
+      loading: state => state.auth.loading,
+      auth: state => state.auth
+    }),
   },
   methods: {
     submitForm() {
@@ -44,8 +54,14 @@ export default {
       this.enterCode = "";
     },
 
-    onPostClick() {
-      this.$router.push("/forgot-password-otp");
+    async onPostClick() {
+      await StoreUtils.dispatch(StoreUtils.actions.auth.resendOtp, {
+        email: this.email
+      })
+      await StoreUtils.commit(StoreUtils.mutations.auth.updateForgotPasswordFormData, {
+        email: this.email
+      })
+      await router.push("/forgot-password-otp");
     },
   },
 }

@@ -27,7 +27,7 @@ export default {
       height: "600",
       defaultColumn: "overview",
       defaultScreen: "general",
-      market: "forex",
+      market: "stocks",
       showToolbar: true,
       colorTheme: "light",
       locale: "en",

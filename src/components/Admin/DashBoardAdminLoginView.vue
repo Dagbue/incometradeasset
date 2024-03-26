@@ -163,7 +163,6 @@ export default {
   font-size: 22px;
   padding-top: 1%;
   padding-bottom: 1%;
-  margin-top: 2%;
 }
 
 .wrapper .form {

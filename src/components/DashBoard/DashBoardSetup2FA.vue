@@ -3,17 +3,17 @@
 
     <form @submit.prevent="updateDetails" style="color: white;" class="section-1-alpha">
       <p class="text-1">Two Factor Authentication Settings
-        {{ userInfo.twoFactorAuthenticationCode === null }}
+        {{ userInfo.twoFactorAuthenticationCode === "" }}
       </p>
       <hr/>
       <div class="section-1-part-1">
         <div>
-          <p v-if="this.userInfo.twoFactorAuthenticationCode === null" class="text-2">Two Factor Authentication is Turned Off.</p>
+          <p v-if="this.userInfo.twoFactorAuthenticationCode === ''" class="text-2">Two Factor Authentication is Turned Off.</p>
           <p v-else class="text-2 on">Two Factor Authentication is Turned On.</p>
         </div>
 
         <div>
-          <p v-if="this.userInfo.twoFactorAuthenticationCode === null" class="text-3">Two Factor Authentication is currently turned off and your Account / Assets are not totally secured.</p>
+          <p v-if="this.userInfo.twoFactorAuthenticationCode === ''" class="text-3">Two Factor Authentication is currently turned off and your Account / Assets are not totally secured.</p>
           <p v-else class="text-3">Two Factor Authentication is currently turned on and your Account / Assets are totally secured.</p>
         </div>
 
@@ -29,7 +29,7 @@
 
       </div>
 
-      <p style="margin-top: 1%;" class="link-button-2">
+      <p style="margin-top: 1%;" class="link-button-2" @click="sendTwoFactor">
         Generate Code
       </p>
     </form>
@@ -71,7 +71,12 @@ export default {
     },
     clear() {
       this.twoFactorAuthenticationCode = ""
-    }
+    },
+    sendTwoFactor(){
+      StoreUtils.dispatch(StoreUtils.actions.auth.sendTwoFactor, {
+        email: this.userInfo.email,
+      })
+    },
   },
 
   created() {

@@ -38,18 +38,23 @@
             <th>ID Back</th>
           </tr>
 
-          <tbody>
+          <tbody v-for="child in paginatedItems" :key="child.key">
           <tr>
-            <td data-label="First Name"></td>
-            <td data-label="Last Name"></td>
-            <td data-label="Email"></td>
+            <td data-label="First Name">{{child.firstName}}</td>
+            <td data-label="Last Name">{{child.lastName}}</td>
+            <td data-label="Email">{{child.email | formatTextWithEllipsis}}</td>
             <td data-label="ID Front">
               <!-- Uncomment and replace with actual Vue.js bindings -->
-              <!-- <img style="width: 15%" :src="child.frontId" alt="Selected Image" /> -->
+<!--               <img style="width: 15%" :src="child.frontId" alt="Selected Image" />-->
+              <a :href="child.frontId" target="_blank">{{child.frontId}}</a>
             </td>
             <td data-label="ID Back">
               <!-- Uncomment and replace with actual Vue.js bindings -->
-              <!-- <img style="width: 15%" :src="child.backId" alt="Selected Image" /> -->
+<!--               <img style="width: 15%" :src="child.backId" alt="Selected Image" />-->
+              <a href="#" @click.prevent="openImageInNewTab(child.backId)">
+                {{ child.backId }}
+              </a>
+
             </td>
           </tr>
           </tbody>
@@ -86,6 +91,9 @@
 <script>
 
 
+import StoreUtils from "@/utility/StoreUtils";
+import {mapState} from "vuex";
+
 export default {
   name: "DashBoardUploadedID",
   data()  {
@@ -97,19 +105,30 @@ export default {
     }
   },
   computed:{
+    allUsers() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getReadAllUsers)
+    },
+    ...mapState({
+      loading: state => state.auth.loading,
+      auth: state => state.auth,
+      readAllUsers: state => state.auth.readAllUsers,
+    }),
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.contacts.slice(startIndex, endIndex);
+      return this.allUsers.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.contacts.length / this.itemsPerPage);
+      return Math.ceil(this.allUsers.length / this.itemsPerPage);
     },
   },
-
-
-
   methods: {
+    openImageInNewTab(url) {
+      const win = window.open();
+      win.document.write(`<img src="${url}" alt="Image"/>`);
+      // Consider adding document.close() to signal that you've finished writing to the document
+      win.document.close();
+    },
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -129,6 +148,32 @@ export default {
     },
 
 
+  },
+  created() {
+    this.userId = localStorage.getItem('userId')
+
+    // Retrieve the object from local storage
+    const storedObject = localStorage.getItem('userInfo');
+
+    if (storedObject) {
+      this.userInfo = JSON.parse(storedObject);
+    }
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadAllUsers)
+  },
+
+  mounted() {
+
+    this.userId = localStorage.getItem('userId')
+
+    // Retrieve the object from local storage
+    const storedObject = localStorage.getItem('userInfo');
+
+    if (storedObject) {
+      this.userInfo = JSON.parse(storedObject);
+    }
+
+    StoreUtils.dispatch(StoreUtils.actions.auth.allUsers)
   }
 }
 </script>

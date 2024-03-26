@@ -10,7 +10,7 @@
         <div class="section-1-part-2">
           <img src="@/assets/Notification.svg" alt="Notification"/>
           <div class="vl"></div>
-          <img v-if="userInfo.displayPicture === null" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
+          <img v-if="userInfo.displayPicture === ''" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
           <img v-else :src="userInfo.displayPicture" alt="displayPicture"  class="displayPicture"/>
           <p class="profile-name">{{this.userFirstName}} {{this.userLastName}}</p>
         </div>

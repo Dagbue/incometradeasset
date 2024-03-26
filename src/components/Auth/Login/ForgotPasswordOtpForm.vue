@@ -169,8 +169,8 @@ export default {
       loading: state => state.auth.loading,
       auth: state => state.auth
     }),
-    signUpFormData() {
-      return StoreUtils.rootGetters(StoreUtils.getters.auth.getSignUpFormData)
+    forgotPasswordFormData() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getForgotPasswordFormData)
     },
 
     wrapperStyle() {
@@ -241,7 +241,7 @@ export default {
 
     resendOtp(){
       StoreUtils.dispatch(StoreUtils.actions.auth.resendOtp, {
-        userEmail: this.signUpFormData.userEmail,
+        email: this.forgotPasswordFormData.email,
       })
     },
 
@@ -401,8 +401,8 @@ span{
   justify-content:space-evenly;
   /*margin-bottom: 2%;*/
   margin-top: 2%;
-  margin-left: 38%;
-  margin-right: 38%;
+  /*margin-left: 38%;*/
+  /*margin-right: 38%;*/
 }
 
 .pin-code input {

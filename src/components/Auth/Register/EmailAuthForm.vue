@@ -1,41 +1,5 @@
 <!--suppress CssUnresolvedCustomProperty -->
 <template>
-<!--  <form>-->
-<!--    <div class="wrapper">-->
-<!--      <div class="headline">-->
-<!--        <router-link to="/">-->
-<!--          <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">-->
-<!--        </router-link>-->
-<!--&lt;!&ndash;        <h2>&ndash;&gt;-->
-<!--&lt;!&ndash;          <span class="header-span"> Global Trade Investment Limited </span>&ndash;&gt;-->
-<!--&lt;!&ndash;        </h2>&ndash;&gt;-->
-<!--        <h2>Email Authentication</h2>-->
-<!--        <p class="header-text">Click on the link sent to your email address to verify your email Address</p>-->
-<!--      </div>-->
-
-<!--      <div class="form">-->
-<!--        <div class="signup">-->
-<!--          <br/>-->
-<!--          <a @click="onPostClick" class="btn btn-white btn-animated">Log In</a>-->
-
-<!--          <div class="separator">-->
-<!--            <div class="line"></div>-->
-<!--            <h2>OR</h2>-->
-<!--            <div class="line"></div>-->
-<!--          </div>-->
-
-<!--          <div class="create-acc">-->
-<!--            <p class="create-text">-->
-<!--              Didnt get any Mail check your spam box or click<a-->
-<!--                class="create-link"-->
-<!--            >Send Again</a-->
-<!--            >-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </form>-->
   <div class="alpha">
 
     <div class="image">
@@ -113,6 +77,8 @@
 import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
+import Swal from "sweetalert2";
+import router from "@/router";
 
 export default {
   name: 'EmailAuthForm',
@@ -271,13 +237,18 @@ export default {
 
   },
   methods: {
-    completeEnrollment(){
-      this.$router.push("/login")
+    async completeEnrollment() {
+     await Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'User Created successfully!',
+      });
+      await router.push("/login")
     },
 
     resendOtp(){
       StoreUtils.dispatch(StoreUtils.actions.auth.resendOtp, {
-        userEmail: this.signUpFormData.userEmail,
+        email: this.signUpFormData.email,
       })
     },
 
@@ -437,8 +408,8 @@ span{
   justify-content:space-evenly;
   /*margin-bottom: 2%;*/
   margin-top: 2%;
-  margin-left: 38%;
-  margin-right: 38%;
+  /*margin-left: 38%;*/
+  /*margin-right: 38%;*/
 }
 
 .pin-code input {
