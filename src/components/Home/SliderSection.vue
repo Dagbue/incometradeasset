@@ -7,7 +7,7 @@
 
       <div class="list">
         <div class="item active">
-          <img src="https://images.ctfassets.net/1rkoumd4khui/2TmYEcnsd6VVgzF5XYOPm6/44484e5adc3162a04badff4eadfe718a/exness-home-page-banner-desktop-1.jpg?w=2560&h=1013&q=85&fm=webp" alt="" class="" />
+          <img src="@/assets/background1.jpg" alt="" class="" />
           <div class="content">
             <p>Exclusive Offer to Clients who are day trading with Income trade assets.</p>
             <h2 @click="onPostClick">Get Started</h2>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/xl_exness_trading_apps_eaab53405d.jpg" alt="" class="" />
+          <img src="@/assets/background2.png" alt="" class="" />
           <div class="content">
             <p>Select from a varied array of proficient traders.</p>
             <h2 @click="onPostClick" >Get Started</h2>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/xxl_exness_trading_protection_c6d3f4be8b.jpg" alt="" class="" />
+          <img src="@/assets/background3.png" alt="" class="" />
           <div class="content">
             <p>Invest confidently by tracking and emulating the strategies of top financial leaders.</p>
             <h2 @click="onPostClick">Invest Now</h2>
@@ -49,19 +49,19 @@
 
       <div class="thumbnail">
         <div class="item active" >
-          <img src="https://images.ctfassets.net/1rkoumd4khui/64XWAzpEVyRf8t0ynjrIrd/b20d7b7015d209e3f9b7a74159b71e27/exness-home-page-banner-mobile-1.jpg?w=992&h=1546&q=85&fm=webp" alt="" class="">
+          <img src="@/assets/background1.jpg" alt="" class="">
           <div class="content" @click="onPostClick">
             Get Started
           </div>
         </div>
         <div class="item">
-          <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/xl_exness_trading_apps_eaab53405d.jpg" alt="" class="" />
+          <img src="@/assets/background2.png" alt="" class="" />
           <div class="content" @click="onPostClick">
             Get Started
           </div>
         </div>
         <div class="item">
-          <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/xxl_exness_trading_protection_c6d3f4be8b.jpg" alt="" class="" />
+          <img src="@/assets/background3.png" alt="" class="" />
           <div class="content" @click="onPostClick">
             Get Started
           </div>

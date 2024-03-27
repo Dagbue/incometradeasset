@@ -61,7 +61,7 @@ export default {
 }
 
 .image{
-  width: 70%;
+  width: 85%;
 }
 
 .text-2{
@@ -85,7 +85,7 @@ export default {
   }
 
   .image{
-    width: 60%;
+    width: 70%;
     display: block;
     margin-right: auto;
     margin-left: auto;

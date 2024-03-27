@@ -129,7 +129,11 @@
 
           <div class="btn-alpha">
 <!--            <p class="btn">Update Details</p>-->
-            <base-button :loading="loading" class="btn">Update Details</base-button>
+            <base-button
+                style="
+                  background-color: #5d78ff;
+                  border: 1px solid #5d78ff;"
+                :loading="loading" class="btn">Update Details</base-button>
           </div>
 
         </form>
