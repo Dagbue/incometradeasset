@@ -16,6 +16,10 @@
               margin loan, enhancing the benefits of Individual or Joint Accounts. Begin the setup process by
               following the necessary steps.
             </p>
+            <div class="button-part">
+              <button class="btn1" @click="onPostClick">Open Live Account</button>
+              <button class="btn1" @click="onPostClick2">Login Account</button>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -27,6 +31,10 @@
               Experience the ease of creating an account on our Trading platform, where you can effortlessly
               replicate the strategies of seasoned traders. No prior trading knowledge is necessary.
             </p>
+            <div class="button-part">
+              <button class="btn1" @click="onPostClick">Open Live Account</button>
+              <button class="btn1" @click="onPostClick2">Login Account</button>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -38,6 +46,10 @@
               Participate in our social trading platform to engage with a diverse community of global investors,
               where you can exchange investment insights and strategies.
             </p>
+            <div class="button-part">
+              <button class="btn1" @click="onPostClick">Open Live Account</button>
+              <button class="btn1" @click="onPostClick2">Login Account</button>
+            </div>
           </div>
         </div>
       </div>
@@ -47,7 +59,7 @@
         <button id="next"> + </button>
       </div>
 
-      <div class="thumbnail">
+      <div class="thumbnail" style="opacity: 0;">
         <div class="item active" >
           <img src="@/assets/background1.jpg" alt="" class="">
           <div class="content" @click="onPostClick">
@@ -151,6 +163,9 @@ export default {
     onPostClick() {
       this.$router.push("/register");
     },
+    onPostClick2() {
+      this.$router.push("/login");
+    },
   },
 }
 </script>
@@ -182,7 +197,7 @@ export default {
   left: 0;
   bottom: 0;
   background-image: linear-gradient(
-      to top, #000 30%, transparent
+      to top, #000 1%, transparent
   );
 }
 
@@ -230,6 +245,7 @@ export default {
 
 .slider .list .item.active p:nth-child(1),
 .slider .list .item.active h2,
+.slider .list .item.active button,
 .slider .list .item.active p:nth-child(3){
   transform: translateY(30px);
   filter: blur(20px);
@@ -243,6 +259,13 @@ export default {
 
 .slider .list .item.active p:nth-child(3){
   animation-duration: 1.3s;
+}
+
+.slider .list .item.active button:nth-child(1){
+  animation-delay: 1.6s;
+}
+.slider .list .item.active button:nth-child(2){
+  animation-delay: 1.8s;
 }
 
 .arrows{
@@ -317,6 +340,31 @@ export default {
   margin-left: 5%;
   margin-right: 5%;
 }
+.button-part{
+  display: flex;
+  gap: 20px;
+  margin-top: 5%;
+}
+.btn1{
+  background-color: #0f171c;
+  border: 1px solid #0f171c;
+  color: #ffffff;
+  padding: 1em 30px;
+  border-radius: 6px;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  text-decoration: none;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  width: 220px;
+}
+.btn1:hover{
+  background-color: #8a7206;
+  border: 1px solid #8a7206;
+  color: #FFFFFF;
+}
 @media screen and (max-width: 750px){
   .thumbnail{
     justify-content: start;
@@ -329,6 +377,16 @@ export default {
   }
   .slider .list .item .content h2{
     font-size: 45px;
+  }
+
+  .btn1{
+    padding: 1em 25px;
+    font-size: 12px;
+    width: 190px;
+  }
+  .button-part{
+    gap: 5px;
+    margin-top: 4%;
   }
 }
 
