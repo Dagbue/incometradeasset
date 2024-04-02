@@ -3,9 +3,9 @@
     <form class="logoIn" @submit.prevent="next">
       <div class="wrapper">
         <div class="headline">
-          <router-link to="/">
-            <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
-          </router-link>
+<!--          <router-link to="/">-->
+<!--            <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">-->
+<!--          </router-link>-->
           <h2>
             Admin Login
           </h2>
@@ -90,15 +90,16 @@ export default {
 </script>
 
 <style scoped>
-/*form {*/
-/*  margin: 0 auto;*/
-/*  max-width: 40rem;*/
-/*  !*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*!*/
-/* box-shadow:  30px 30px 100px #bebebe,*/
-/* -50px -50px 100px #ffffff;*/
-/* padding: 2rem;*/
-/* background-color: #ffffff;*/
-/*}*/
+form {
+  margin: 0 auto;
+  max-width: 40rem;
+  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
+ box-shadow:  30px 30px 100px #bebebe,
+ -50px -50px 100px #ffffff;
+ padding: 2rem;
+ background-color: #ffffff;
+  margin-top: 8%;
+}
 
 /*.alpha{*/
 /* background-color: #F6F6F7;*/
@@ -160,8 +161,8 @@ export default {
 
 .wrapper .headline h2 {
   font-weight: 400;
-  font-size: 22px;
-  padding-top: 1%;
+  font-size: 25px;
+  padding-top: 3%;
   padding-bottom: 1%;
 }
 
@@ -229,7 +230,7 @@ export default {
   transition: 4ms ease-in;
 }
 .btn-white {
-  background-color: #0f171c;
+  background-color: #5d78ff;
   color: white;
   font-size: 15px;
 }

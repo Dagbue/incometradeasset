@@ -204,9 +204,9 @@ export default {
           stopOnFocus: true,
           style: {
             background: "linear-gradient(to right, #ffffff, #ffffff)",
-            width: "350px",
-            padding: "10px",
-            color: "#232323"
+            // width: "20%",
+            color: "#232323",
+            borderRadius: "4px"
           },
         }).showToast();
 
