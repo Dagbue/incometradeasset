@@ -110,10 +110,24 @@ export default {
 @media (max-width: 700px){
 
   .header{
-    width: 92.5%;
+    width: 95%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .text-1{
+    font-size: 24px;
+    padding-bottom: 20px;
+  }
+
+  .text-2{
+    font-size: 16px;
+  }
+
+  .header-select{
+    gap: 5px;
+    margin-top: 3%;
   }
 
 }

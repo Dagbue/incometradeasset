@@ -86,7 +86,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 60px;
-  max-width: 1200px;
+  max-width: 2200px;
   margin: 20px auto;
 }
 article.featured {
@@ -120,7 +120,7 @@ article p, .article h3 {
     grid-column: span 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 90px;
     align-items: center;
   }
 }
@@ -131,8 +131,8 @@ article p, .article h3 {
     margin: 0 20px;
   }
   header h1{
-    font-size: 24px;
-    width: 70%;
+    font-size: 25px;
+    width: 95%;
     display: block;
     margin-left: auto;
     margin-right: auto;

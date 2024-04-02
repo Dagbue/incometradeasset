@@ -145,6 +145,9 @@ export default {
     font-size: 16px;
     line-height: 1.3;
   }
+  .image{
+    width: 90%;
+  }
 }
 
 

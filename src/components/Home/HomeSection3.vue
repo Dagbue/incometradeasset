@@ -62,11 +62,10 @@
                 </div>
               </li>
             </ul>
-
           </div>
 
           <div v-show="mobile" class="body swiper">
-            <ul>
+            <ul style="list-style: none;">
               <li>
                 <div class="wrapper">
                   <div class="thumbnail">
@@ -118,7 +117,6 @@
                 </div>
               </li>
             </ul>
-
           </div>
 
         </div>
@@ -357,6 +355,12 @@ export default {
   .testi :is(.swiper-button-next, .swiper-button-prev){
     top: 50%;
   }
+
+  .alpha{
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+
 
 }
 </style>

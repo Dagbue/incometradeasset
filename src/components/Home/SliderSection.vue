@@ -196,9 +196,9 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-image: linear-gradient(
-      to top, #000 1%, transparent
-  );
+  /*background-image: linear-gradient(*/
+  /*    to top, #000 0.1%, transparent*/
+  /*);*/
 }
 
 .slider .list .item .content{
@@ -380,9 +380,9 @@ export default {
   }
 
   .btn1{
-    padding: 1em 25px;
+    padding: 1.4em 25px;
     font-size: 12px;
-    width: 190px;
+    width: 200px;
   }
   .button-part{
     gap: 5px;

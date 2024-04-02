@@ -85,7 +85,7 @@ export default {
   }
 
   .image{
-    width: 70%;
+    width: 90%;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -94,8 +94,17 @@ export default {
 
   .text-2{
     font-size: 25px;
+    text-align: center;
   }
 
+  .section-1-inner{
+    width: 90%;
+  }
+
+  .alpha{
+    padding-top: 10%;
+    padding-bottom: 15%;
+  }
 }
 
 @media (max-width: 500px){

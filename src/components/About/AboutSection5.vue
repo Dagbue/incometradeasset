@@ -1,20 +1,16 @@
 <template>
   <div class="alpha">
 
-    <p class="section-header-1">What is Income Trade Asset <br/> Know more about us</p>
+    <p class="section-header-1">What is Income Trade Asset Know more about us</p>
     <p class="section-header">An award winning Stock and Commodities Broker</p>
 
-    <p class="text-1">Income Trade Asset is also known as Income Trade Asset: an award winning Stock and Commodities Broker,
-      providing trading services and facilities to both retail and institutional clients. Through its policy of
-      providing the best possible trading conditions to its clients and allowing both scalpers and traders using expert
-      advisors unrestricted access to its liquidity, Income Trade Asset has positioned itself as the forex broker of
-      choice for traders worldwide. At Income Trade Asset, we're dedicated to providing our clients with the most
-      advanced and powerful trading tools in
-      a wide range of markets For traders just starting out or seasoned traders already familiar with derivative
-      trading, we offer the robust MetaTrader 4 and MetaTrader 5 platforms with the advantage of our competitive
-      spreads and first class multi-lingual support. We also allow for flexible trading on a range of Forex and
-      CFDs including Cryptocurrencies, Commodities, Indices and Binary Options through MetaTrader 4 and MetaTrader
-      5.</p>
+    <p class="text-1">Income Trade Asset is an award-winning broker for stocks and commodities, catering to both
+      retail and institutional clients. It offers optimal trading conditions, supporting scalpers and users of
+      expert advisors without limiting access to liquidity. This has made it a preferred broker globally. Income
+      Trade Asset emphasizes on equipping its clients with advanced trading tools across various markets. It provides
+      the MetaTrader 4 and MetaTrader 5 platforms, accommodating both new and experienced derivative traders with
+      competitive spreads and exceptional multi-lingual support. Additionally, it enables flexible trading in Forex,
+      CFDs, Cryptocurrencies, Commodities, Indices, and Binary Options through these platforms.</p>
 
     <div class="btn-part">
       <p class="btn-1">Register</p>
@@ -38,8 +34,6 @@ export default {
 /*}*/
 .alpha{
   /*border-bottom: 1px solid #c9c9c9;*/
-  /*padding-top: 4%;*/
-  /*padding-bottom: 4%;*/
   background-image: url("https://d33vw3iu5hs0zi.cloudfront.net/media/xxxl_exness_deposits_withdrawals_926ba82c4b.jpg");
   background-color: #cccccc;
   background-position: center;
@@ -123,11 +117,34 @@ export default {
 @media (max-width: 700px) {
   .section-header-1{
     font-size: 25px;
+    width: 95%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .text-1{
     width: 95%;
     line-height: 1.6;
     font-size: 17px;
+  }
+
+  .section-header{
+    font-size: 17px;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .alpha{
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+
+  .btn-1{
+    width: 160px;
+  }
+
+  .btn-2{
+    width: 160px;
   }
 
 }

@@ -311,7 +311,7 @@ form {
     padding-left: 20px;
   }
   .company-logo{
-    width: 50%;
+    width: 60%;
     margin-top: unset;
   }
 }

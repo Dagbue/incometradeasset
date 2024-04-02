@@ -5,7 +5,7 @@
       <div class="section-2-part-1">
         <div class="lawrence bottom">
           <p  @click="toggleScreen" class="trade-btn-1">Trade Forex</p>
-          <p @click="toggleScreen2" class="trade-btn-2">Trade Crypto }</p>
+          <p @click="toggleScreen2" class="trade-btn-2">Trade Crypto</p>
         </div>
         <div class="lawrence">
           <p @click="toggleScreen3" class="trade-btn-3">Trade CFD</p>

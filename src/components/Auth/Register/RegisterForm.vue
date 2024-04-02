@@ -871,9 +871,9 @@ input::placeholder {
   }
   form {
     margin: 1rem;
-    max-width: 60rem;
+    max-width: 80rem;
     border-radius: 12px;
-    padding: 1rem;
+    padding: unset;
     background-color: #ffffff;
   }
   .wrapper .headline h1  {

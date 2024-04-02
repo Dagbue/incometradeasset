@@ -230,6 +230,8 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 10%;
+    padding-bottom: 10%;
   }
 
   .section-1{
@@ -238,7 +240,7 @@ export default {
 
 
   .section-2{
-    margin-left: 20%;
+    margin-left: 5%;
   }
 
 

@@ -354,6 +354,7 @@ details {
   .section-1{
     display: block;
     width: 100%;
+    padding-top: 10%;
   }
   .header{
     width: 100%;

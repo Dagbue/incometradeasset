@@ -331,6 +331,14 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
+  .section-header-1{
+    font-size: 27px;
+  }
+
+  .section-header{
+    margin-left: 3%;
+    margin-right: 3%;
+  }
 }
 
 @media (max-width: 500px) {

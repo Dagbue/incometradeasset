@@ -555,7 +555,7 @@ input[type=number] {
     margin-top: 3%;
   }
   .company-logo{
-    width: 28%;
+    width: 60%;
   }
 }
 

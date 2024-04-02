@@ -156,6 +156,10 @@ export default {
 
   .section-header-1{
     font-size: 26px;
+    width: 95%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .box{

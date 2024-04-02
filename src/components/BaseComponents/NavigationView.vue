@@ -252,8 +252,7 @@ export default {
 }
 
 .bx-menu{
-  font-size: 30px;
-  margin-top: 10px;
+  font-size: 35px;
   cursor: pointer;
   transition: .8s ease all;
   color: #0f171c;
@@ -701,9 +700,11 @@ a:hover {
   .style-4 {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
   }
   .logo {
-    width: 27%;
+    width: 35%;
     margin-left: unset;
     padding-left: unset;
   }
@@ -720,9 +721,9 @@ a:hover {
     font-size: 35px;
   }
   .logo {
-    min-width: 28%;
+    min-width: 32%;
     margin-left: 5px;
-    margin-top: 8px;
+    /*margin-top: 8px;*/
     padding-left: unset;
   }
 

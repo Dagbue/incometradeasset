@@ -10,7 +10,7 @@
         <i class='bx bx-mail-send' ></i>&nbsp;&nbsp;
         <p class="download-sub">support@incometradeasset.com</p>
       </div>
-      <div class="seperate">
+      <div class="seperate mobile">
         <i class='bx bxs-home' ></i>&nbsp;&nbsp;
       <p class="download-sub">Suite 1 2 Station Court, Townmead Road Fulham, London, SW6 2PY</p>
       </div>
@@ -87,6 +87,7 @@ img{
     font-size: 17px;
     line-height: normal;
     padding-top: unset;
+    width: 100%;
   }
   .download-app-container{
     height: 250px;
@@ -121,7 +122,11 @@ img{
     color: white;
   }
 
-
+  .mobile{
+    padding-top: 10px;
+    align-content: unset;
+    align-items: unset;
+  }
 
   img{
     display: none;

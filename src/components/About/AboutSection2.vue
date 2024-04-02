@@ -164,6 +164,10 @@ img{
   .section-header-1{
     font-size: 28px;
   }
+  .cards{
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-gap: 30px;
+  }
 }
 
 

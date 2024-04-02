@@ -110,7 +110,7 @@ export default {
 <style scoped>
 form {
   margin: 0 auto;
-  max-width: 40rem;
+  max-width: 45rem;
   /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
   //box-shadow:  30px 30px 100px #bebebe,
   //-50px -50px 100px #ffffff;
@@ -368,12 +368,15 @@ input::placeholder {
   }
 }
 @media (max-width: 767px) {
-  .wrapper {
-    max-width: 550px;
-  }
+
   .wrapper .headline h1 {
     font-size: 22px;
     line-height: 25px;
+  }
+  .wrapper .form {
+    max-width: 450px;
+    width: 100%;
+    margin: auto;
   }
 }
 @media (max-width: 990px) {
@@ -408,12 +411,13 @@ input::placeholder {
     /*padding-left: 40px;*/
   }
   .company-logo{
-    width: 50%;
+    width: 60%;
     margin-top: unset;
   }
   .wrapper .headline h2 {
     font-size: 20px;
   }
+
 }
 
 </style>

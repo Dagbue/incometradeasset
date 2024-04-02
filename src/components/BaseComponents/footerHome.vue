@@ -94,9 +94,9 @@
           <img src="@/assets/bankwire.svg" />
         </a>
 
-        <a href="">
-          <img src="@/assets/usdt.png" style="width: 23%;" />
-        </a>
+<!--        <a href="">-->
+<!--          <img src="@/assets/usdt.png" style="width: 23%;" />-->
+<!--        </a>-->
 
         <a href="https://crypto.com/">
           <img src="https://infiniteprotrades.com/assets/home/wp-content/uploads/2020/03/america-express.svg" />
@@ -338,11 +338,12 @@ a{
     margin-left: unset;
     margin-right: unset;
     width: unset;
-    margin-bottom: 15%;
-    margin-top: 10%;
+
+    margin-top: 3%;
   }
   .footer-link-container2 {
-    margin-bottom: 18%;
+    margin-bottom: 10%;
+    margin-top: 10%;
   }
   .last-div{
     margin-right: 10%;
@@ -353,6 +354,9 @@ a{
   }
 }
 @media (max-width: 700px) {
+  .last-div-para{
+    text-align: left;
+  }
   img{
     width: 100%;
     padding-bottom: 6%;
@@ -399,7 +403,7 @@ a{
     padding-top: 2%;
   }
   .google{
-    width: 30%;
+    width: 45%;
   }
 
 }
