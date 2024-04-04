@@ -29,14 +29,18 @@
             </div>
 
             <div class="form-group-2">
-              <input
-                  type="checkbox"
-                  placeholder="Remember-Me"
-                  id="remember-me"
-                  class="checkbox"
-              />
-              <label for="remember-me" class="checkbox-text">Remember me</label>
-              <a  class="forgot-password" @click="onPostClick2" >Forgot Password</a>
+              <div>
+                <input
+                    type="checkbox"
+                    placeholder="Remember-Me"
+                    id="remember-me"
+                    class="checkbox"
+                />
+                <label for="remember-me" class="checkbox-text">Remember me</label>
+              </div>
+              <div style="display: flex;align-content: center;align-items: center;">
+                <a  class="forgot-password" @click="onPostClick2" >Forgot Password</a>
+              </div>
             </div>
 
             <base-button :loading="loading">Sign In</base-button>
@@ -255,6 +259,10 @@ form {
 }
 
 .form-group-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -320,8 +328,8 @@ button{
   margin-top: 10%;
 }
 .space{
-  padding-top: 11.5px;
-  padding-bottom: 11.5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-right: 10px;
   border: 1px solid #d0d5dd;
   border-left-style: none;
@@ -357,6 +365,9 @@ input::placeholder {
 .input-form-1.password {
   border-right-style: none;
   border-radius: 8px 0 0 8px;
+  padding-top: 13.5px;
+  padding-bottom: 13.5px;
+
 }
 
 

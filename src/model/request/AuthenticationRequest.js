@@ -22,7 +22,8 @@ class AuthenticationRequest {
     twoFactorAuthenticationCode: null,
     userStatus: null,
     role: null,
-    country: null
+    country: null,
+    address: null
   };
 
   updateUser = {
@@ -44,7 +45,8 @@ class AuthenticationRequest {
     twoFactorAuthenticationCode: null,
     userStatus: null,
     role: null,
-    country: null
+    country: null,
+    address: null
   };
 
   deleteUser = {

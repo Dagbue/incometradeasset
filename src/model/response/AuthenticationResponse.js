@@ -23,7 +23,8 @@ class AuthenticationResponse {
             role: null,
             createdAt: null,
             updatedAt: null,
-            country: null
+            country: null,
+            address: null
         }
     }
 
@@ -57,7 +58,8 @@ class AuthenticationResponse {
             role: null,
             createdAt: null,
             updatedAt: null,
-            country: null
+            country: null,
+            address: null
         }
     }
 
@@ -83,7 +85,8 @@ class AuthenticationResponse {
         role: null,
         createdAt: null,
         updatedAt: null,
-        country: null
+        country: null,
+        address: null
     }
 
 }

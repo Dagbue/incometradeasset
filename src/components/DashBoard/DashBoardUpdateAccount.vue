@@ -68,10 +68,55 @@
 
           </div>
 
+
+          <div v-if="this.url === ''" class="separate">
+            <div class="form-group">
+              <label class="id">Identification Card (Upload front of ID card for verification)</label>
+              <input
+                  type="file"
+                  id="files"
+                  name="files"
+                  @change="uploadFile"
+                  accept="image/*"
+                  ref="file"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="id">Identification Card (Upload back of ID card for verification)</label>
+              <input
+                  type="file"
+                  id="files2"
+                  name="files"
+                  @change="uploadFile2"
+                  accept="image/*"
+                  ref="file2"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
+            </div>
+          </div>
+
+          <div v-else class="separate left">
+            <div style="display:block;" class="form-group">
+              <p style="text-align: left" class="id">Front ID card</p>
+              <a style="text-align: left;font-size: 19px;float: left" :href="url" >view</a>
+            </div>
+
+            <div style="display:block;" class="form-group">
+              <p style="text-align: left;" class="id mobile">Back ID card</p>
+              <a style="text-align: left;font-size: 19px;float: left" :href="url2" >view</a>
+            </div>
+          </div>
+
+
           <div class="btn-alpha">
 <!--            <p class="btn">Update Details</p>-->
             <base-button
                 :loading="loading"
+                :disabled="loading2"
                 style="background-color: #5d78ff; border: 1px solid #5d78ff;"
             >Update Details</base-button>
           </div>
@@ -90,6 +135,7 @@
 import StoreUtils from "@/utility/StoreUtils";
 import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import {mapState} from "vuex";
+import S3Request from "@/model/request/S3Request";
 
 export default {
   name: "DashBoardUpdateAccount",
@@ -108,11 +154,19 @@ export default {
       reflink: "https://incometradeasset.com/register",
       userId: "",
       userInfo: "",
+      base64: "",
+      uploadmodel: S3Request.prototype.uploadBase64(),
+      url: "",
+      base642: "",
+      uploadmodel2: S3Request.prototype.uploadBase64(),
+      url2: "",
     }
   },
   computed:{
+    ...mapState(["sbucket"]),
     ...mapState({
       loading: state => state.auth.loading,
+      loading2: state => state.sbucket.s3bucketLoading,
       auth: state => state.auth,
     }),
     UserDetails() {
@@ -121,6 +175,65 @@ export default {
   },
 
   methods: {
+    uploadFile() {
+      let input = this.$refs.file;
+      let files = input.files;
+      //console.log(size);
+      const reader = new FileReader();
+      try {
+        reader.onload = (e) => {
+          this.base64 = e.target.result;
+          this.uploadOfficerImage();
+        };
+        reader.readAsDataURL(files[0]);
+        this.$emit("input", files[0]);
+      } catch (e) {
+        console.warn(e.message);
+      }
+    },
+    async uploadOfficerImage() {
+
+      this.uploadmodel.username = `${
+          this.auth.userInfo.userFirstName + this.auth.userInfo.userLastName
+      }_${Date.now()}`;
+      this.uploadmodel.base64 = this.base64;
+      await StoreUtils.dispatch(StoreUtils.actions.sbucket.uploadEncodedFile, this.uploadmodel, { root: true });
+      this.url = this.sbucket.s3bucketResponse.url;
+
+    },
+
+    uploadFile2() {
+      let input = this.$refs.file2;
+      let files = input.files;
+      //console.log(size);
+      const reader = new FileReader();
+      try {
+        reader.onload = (e) => {
+          this.base642 = e.target.result;
+          this.uploadOfficerImage2();
+        };
+        reader.readAsDataURL(files[0]);
+        this.$emit("input", files[0]);
+      } catch (e) {
+        console.warn(e.message);
+      }
+    },
+    async uploadOfficerImage2() {
+      // this.showLoader = true;
+      this.uploadmodel2.username = `${
+          this.auth.userInfo.userFirstName + this.auth.userInfo.userLastName
+      }_${Date.now()}`;
+      this.uploadmodel2.base64 = this.base642;
+      // await this.$store.dispatch("sbucket/uploadEncodedFile", this.uploadmodel, { root: true });
+      await StoreUtils.dispatch(
+          StoreUtils.actions.sbucket.uploadEncodedFile,
+          this.uploadmodel2,
+          { root: true }
+      );
+      this.url2 = this.sbucket.s3bucketResponse.url;
+      // this.showLoader = false;
+    },
+
     copyToClipboard(content) {
       const textarea = document.createElement('textarea')
       textarea.value = content
@@ -141,6 +254,8 @@ export default {
       this.email = this.userInfo.email;
       this.country = this.userInfo.country;
       this.phoneNumber = this.userInfo.phoneNumber;
+      this.url = this.userInfo.frontId;
+      this.url2 = this.userInfo.backId;
     },
 
     updateDetails() {
@@ -150,7 +265,9 @@ export default {
         lastName: this.lastName,
         email: this.email,
         phoneNumber: this.phoneNumber,
-        country: this.country
+        country: this.country,
+        frontId: this.url,
+        backId: this.url2,
       })
     }
   },
@@ -195,6 +312,9 @@ export default {
 </script>
 
 <style scoped>
+.left{
+  margin-left: 1.8%;
+}
 .alpha{
   display: flex;
   flex-direction: column;
@@ -322,6 +442,70 @@ label{
   margin-right: 5px;
 }
 
+.form-group {
+  margin-bottom: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 100%;
+  margin-top: 1.5%;
+}
+
+.form-group input {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+
+  padding: 12px 16px;
+  height: 48px;
+  border-radius: 8px;
+  color: var(--black-color);
+  border: 1px solid #e4e8ee;
+  box-shadow: none;
+  width: 100%;
+}
+
+.form-group input:focus {
+  outline: none;
+  border: 1px solid #24405A;
+}
+
+.form-group input::placeholder {
+  color: var(--black-color);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.form-group select {
+  display: block;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  padding: 12px 16px;
+  height: 48px;
+  border-radius: 5px;
+  color: var(--black-color);
+  border: 1px solid #e4e8ee;
+  box-shadow: none;
+  width: 100%;
+}
+
+.form-group select:focus {
+  outline: none;
+  border: 1px solid #24405A;
+}
+
+.form-group select::placeholder {
+  color: var(--black-color);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.id{
+  font-size: 16px;
+  text-align: left;
+  color: #ffffff;
+}
+
 @media (max-width: 990px) {
 
 }
@@ -354,6 +538,15 @@ label{
   }
   .btn-alpha{
     margin-top: 8%;
+  }
+  .mobile{
+    margin-left: unset;
+    padding-left: unset;
+    margin-top: 8%
+  }
+  .id{
+    margin-left: unset;
+    padding-left: unset;
   }
 }
 

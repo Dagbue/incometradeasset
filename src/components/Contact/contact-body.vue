@@ -353,6 +353,8 @@ export default {
   background-color: #0f171c;
 }
 
+
+
 @media (max-width: 500px){
   .parent-wrapper {
     position: relative;

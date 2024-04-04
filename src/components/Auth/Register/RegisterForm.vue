@@ -55,33 +55,33 @@
 <!--            </div>-->
 
 
-            <div class="form-group">
-              <label class="id">Identification Card (Upload front of ID card for verification)</label>
-              <input
-                  type="file"
-                  id="files"
-                  name="files"
-                  @change="uploadFile"
-                  accept="image/*"
-                  ref="file"
-                  placeholder="Identification Card (Upload ID card for verification)"
-                  required
-              />
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label class="id">Identification Card (Upload front of ID card for verification)</label>-->
+<!--              <input-->
+<!--                  type="file"-->
+<!--                  id="files"-->
+<!--                  name="files"-->
+<!--                  @change="uploadFile"-->
+<!--                  accept="image/*"-->
+<!--                  ref="file"-->
+<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
+<!--                  required-->
+<!--              />-->
+<!--            </div>-->
 
-            <div class="form-group">
-              <label class="id">Identification Card (Upload back of ID card for verification)</label>
-              <input
-                  type="file"
-                  id="files2"
-                  name="files"
-                  @change="uploadFile2"
-                  accept="image/*"
-                  ref="file2"
-                  placeholder="Identification Card (Upload ID card for verification)"
-                  required
-              />
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label class="id">Identification Card (Upload back of ID card for verification)</label>-->
+<!--              <input-->
+<!--                  type="file"-->
+<!--                  id="files2"-->
+<!--                  name="files"-->
+<!--                  @change="uploadFile2"-->
+<!--                  accept="image/*"-->
+<!--                  ref="file2"-->
+<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
+<!--                  required-->
+<!--              />-->
+<!--            </div>-->
 
             <div class="form-group">
               <select name="country" v-model="model.country"  id="country" required >
@@ -328,6 +328,10 @@
               </select>
             </div>
 
+            <div class="form-group">
+              <input type="text" placeholder="Address" v-model="model.address" required name="firstName" />
+            </div>
+
             <div class="form-group-2">
               <input
                   type="checkbox"
@@ -338,11 +342,11 @@
                   required
               />
               <label for="remember-me" class="checkbox-text"
-              >I Agree to Company Name
+              >I Agree to Income Trade Assets
                 <a  class="terms" @click="showDialog">Terms And Conditions</a></label
               >
             </div>
-            <base-button :loading="loading" :disabled="loading2" >Create Account</base-button>
+            <base-button :loading="loading" >Create Account</base-button>
 <!--            <div v-if="error">{{ error }}</div>-->
             <div class="separator">
               <div class="line"></div>
@@ -434,8 +438,8 @@ export default {
         email: this.model.email,
         password: this.model.password,
         referralCode: this.randomString,
-        frontId: this.url,
-        backId: this.url2,
+        frontId: "",
+        backId: "",
         totalDepositedAmount: 0.00,
         phoneNumber: this.model.phoneNumber,
         totalWithdrawals: 0.00,
@@ -446,7 +450,8 @@ export default {
         twoFactorAuthenticationCode: "",
         userStatus: "unVerified",
         role: "Customer",
-        country: this.model.country
+        country: this.model.country,
+        address: this.model.address
       })
       // await this.$router.push("/email-auth")
     },
@@ -718,6 +723,9 @@ form {
 }
 
 .form-group-2 {
+  display: flex;
+  align-items: center;
+  align-content: center;
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -778,7 +786,7 @@ form {
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin-right: 5px;
+  margin-right: unset;
   margin-left: 5px;
   margin-bottom: 5px;
 }
@@ -790,9 +798,9 @@ button{
   margin-top: 10%;
 }
 .space{
-  padding-top: 11.5px;
-  padding-bottom: 11.5px;
-  padding-right: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 9px;
   border: 1px solid #d0d5dd;
   border-left-style: none;
   border-radius: 0 8px 8px 0;
@@ -826,6 +834,8 @@ input::placeholder {
 .input-form-1.password {
   border-right-style: none;
   border-radius: 8px 0 0 8px;
+  padding-top: 13.5px;
+  padding-bottom: 13.5px;
 }
 
 
