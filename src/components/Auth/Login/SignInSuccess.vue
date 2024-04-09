@@ -61,6 +61,7 @@ export default {
       })
       StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
       StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
+      StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
       localStorage.userId = this.userDetails.user.userId
       localStorage.userFirstName = this.userDetails.user.firstName
       localStorage.userLastName = this.userDetails.user.lastName

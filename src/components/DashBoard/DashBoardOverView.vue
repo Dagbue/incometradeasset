@@ -1,5 +1,6 @@
 <template>
   <div class="alpha">
+    <intro-message-modal v-show="this.isModalOpened === false" @close="hideDialog" v-if="dialogIsVisible" />
     <div class="section-2">
 
       <div class="section-2-part-1">
@@ -24,6 +25,8 @@
     </div>
 
     <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 99%; margin-bottom: 1%;"></iframe>
+
+<!--    <p style="color: #FFFFFF;">{{isModalOpened}}</p>-->
 
     <p v-show="this.UserDetails.user.userStatus === 'unVerified'" class="text-2">Your account is not verified. Kindly
       upload the front and back of a valid Id card to verify your account.</p>
@@ -552,9 +555,13 @@
       <div class="body">
         <h2>My trade history</h2>
         <div class="row trans-mgt">
+<!--          <div class="form-group fg&#45;&#45;search">-->
+<!--&lt;!&ndash;            <button type="submit"><i class="fa fa-search"></i></button>&ndash;&gt;-->
+<!--            <input type="text" class="input" placeholder="Search..."/>-->
+<!--          </div>-->
           <div class="form-group fg--search">
-<!--            <button type="submit"><i class="fa fa-search"></i></button>-->
-            <input type="text" class="input" placeholder="Search..."/>
+            <button type="submit" @click.prevent="filterTrades"><i class="fa fa-search"></i></button>
+            <input style="color: #FFFFFF;" type="text" class="input" placeholder="Search trades..." v-model="searchQuery" @input="filterTrades"/>
           </div>
           <div class="row filter_group">
             <!--          <div class="blue">Download transactions</div>-->
@@ -577,6 +584,7 @@
           <!--        </p>-->
         </div>
 
+
         <div class="table" v-if="this.readUserTrade.trades.length > 0" >
           <table>
             <tr style="background-color: #FFFFFF;">
@@ -590,8 +598,20 @@
               <th>End Time</th>
               <th>Trade Status</th>
             </tr>
-
-            <tbody v-for="child in paginatedItems" :key="child.key">
+            <div v-if="loading">
+              <div class="table-content">
+                <div class="name-wrapper-body">
+                  <p
+                      class="table-body-text"
+                      style="position: absolute;
+                    margin-left: 45%"
+                  >
+                    <base-loader/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <tbody v-else v-for="child in paginatedItems" :key="child.key">
             <tr>
               <td data-label="Trade ID">{{child.tradeReference}}</td>
               <td data-label="Trade Type">{{child.tradeType}}</td>
@@ -647,17 +667,19 @@ import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import StoreUtils from "@/utility/StoreUtils";
 import TradeRequest from "@/model/request/TradeRequest";
 import {mapState} from "vuex";
+import IntroMessageModal from "@/components/BaseComponents/modal/IntroMessageModal.vue";
+import BaseLoader from "@/components/BaseComponents/BaseLoader.vue";
 // import axios from "axios";
 
 export default {
   name: "DashBoardOverView",
-  components: {BaseButton},
+  components: {BaseLoader, IntroMessageModal, BaseButton},
   data () {
     return {
       model: new TradeRequest().createTrade,
       history: [],
       currentPage: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 5,
       screen1: "Forex",
       screen2: "Crypto",
       screen3: "CFD",
@@ -677,26 +699,52 @@ export default {
       dollars: 0,
       bitcoin: null,
       // bitcoinRate: null,
+      dialogIsVisible: false,
+      searchQuery: "", // Data property to hold the search input
     }
   },
   computed:{
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.readUserTrade.trades.slice(startIndex, endIndex);
+      // Filter trades based on searchQuery before slicing for pagination
+      const filteredTrades = this.searchQuery.trim() ?
+          this.readUserTrade.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.readUserTrade.trades;
+      return filteredTrades.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.readUserTrade.trades.length / this.itemsPerPage);
+      // Recalculate total pages based on filtered trades
+      const filteredTrades = this.searchQuery.trim() ?
+          this.readUserTrade.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.readUserTrade.trades;
+      return Math.ceil(filteredTrades.length / this.itemsPerPage);
     },
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.readUserTrade.trades.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.readUserTrade.trades.length / this.itemsPerPage);
+    // },
     UserInfo() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getUserInfo)
     },
     UserDetails() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
     },
-    // readUserTrade() {
-    //   return StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
-    // },
+    isModalOpened() {
+      return StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
+    },
     ...mapState({
       loading: state => state.trade.loading,
       auth: state => state.auth,
@@ -706,6 +754,12 @@ export default {
   },
 
   methods: {
+    hideDialog() {
+      this.dialogIsVisible = false;
+    },
+    showDialog() {
+      this.dialogIsVisible = true;
+    },
     // fetchBitcoinRate() {
     //   axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
     //       .then(response => {
@@ -713,6 +767,15 @@ export default {
     //       })
     //       .catch(error => console.error(error));
     // },
+
+    checkId(){
+      if (this.UserDetails.user.frontId != null) {
+        this.dialogIsVisible = false;
+      } else {
+        this.dialogIsVisible = true;
+      }
+    },
+
     convertToBitcoin() {
       if (!this.bitcoinRate.bitcoinRate) {
         alert('Bitcoin rate not loaded. Please wait or try reloading the page.');
@@ -740,6 +803,10 @@ export default {
       if (pageNumber > 0 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+    filterTrades() {
+      // Reset to the first page when filtering
+      this.currentPage = 1;
     },
     toggleScreen() {
       this.screen1 = "Forex"
@@ -826,8 +893,10 @@ export default {
     this.generateRandomString();
     this.generateRandomString2();
     this.convertToBitcoin();
+    this.checkId();
 
     StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
 
     StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
 
@@ -857,8 +926,10 @@ export default {
     this.generateRandomString();
     this.generateRandomString2();
     this.convertToBitcoin();
+    this.checkId();
 
     StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
 
     StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
 
@@ -1373,8 +1444,26 @@ td {
   height: 570px;
 }
 
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
+}
 
-
+.fa-search{
+  color: #FFFFFF;
+}
 @media (max-width: 700px) {
 
   .fund-wallet{
@@ -1592,7 +1681,7 @@ td {
   }
 
   .empty-state{
-    width: 35%;
+    width: 30%;
   }
 
 }

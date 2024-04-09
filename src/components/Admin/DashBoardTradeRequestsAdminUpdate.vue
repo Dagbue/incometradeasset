@@ -264,12 +264,13 @@ export default {
   margin-top: 4%;
   float: left;
   /*margin-left: 20px;*/
-  background-color: #0f171c;
+  background-color: #3C4A57FF;
   padding: 30px 40px;
   width: 80%;
   display: block;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 1%;
 }
 .section-1-alpha{
   margin-top: 4%;
@@ -301,20 +302,20 @@ export default {
 }
 
 .form-input{
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 5px ;
   width: 100%;
   height: 40px;
-  color: white;
+  color: #071333;
   padding: 5px 20px;
 }
 .date-time{
   width: 100%;
   height: 40px;
-  background-color: #676767;
-  border: 1px solid #676767;
-  color: #FFFFFF;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  color: #071333;
   border-radius: 5px ;
   padding: 5px 20px;
 }

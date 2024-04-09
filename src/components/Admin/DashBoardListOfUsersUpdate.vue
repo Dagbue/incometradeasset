@@ -32,12 +32,12 @@
 
             <div class="space">
               <label>First Name</label>
-              <input type="text" v-model="firstName" required="required" class="form-input"/>
+              <input type="text" v-model="firstName"  class="form-input"/>
             </div>
 
             <div class="space">
               <label>Last Name</label>
-              <input type="text" v-model="lastName" required="required" class="form-input"/>
+              <input type="text" v-model="lastName"  class="form-input"/>
             </div>
 
           </div>
@@ -46,12 +46,12 @@
 
             <div class="space">
               <label>Email</label>
-              <input type="text" v-model="email" required="required" class="form-input"/>
+              <input type="text" v-model="email" class="form-input"/>
             </div>
 
             <div class="space">
               <label>Country</label>
-              <input type="text" v-model="country" required="required" class="form-input"/>
+              <input type="text" v-model="country"  class="form-input"/>
             </div>
 
           </div>
@@ -60,12 +60,12 @@
 
             <div class="space">
               <label>Password</label>
-              <input type="text" v-model="password" required="required"  class="form-input"/>
+              <input type="text" v-model="password"   class="form-input"/>
             </div>
 
             <div class="space">
               <label>Phone Number</label>
-              <input type="text" v-model="phoneNumber" required="required" class="form-input"/>
+              <input type="text" v-model="phoneNumber"  class="form-input"/>
             </div>
 
           </div>
@@ -74,12 +74,12 @@
 
             <div class="space">
               <label>BTC Balance</label>
-              <input type="number" v-model="btcBalance" required="required" class="form-input"/>
+              <input type="number" v-model="btcBalance"  class="form-input"/>
             </div>
 
             <div class="space">
               <label>Invested Amount</label>
-              <input type="number" v-model="totalDepositedAmount" required="required"  class="form-input"/>
+              <input type="number" v-model="totalDepositedAmount"  class="form-input"/>
             </div>
 
           </div>
@@ -88,12 +88,12 @@
 
             <div class="space">
               <label>withdrawn Amount</label>
-              <input type="number" v-model="totalWithdrawals" required="required" class="form-input"/>
+              <input type="number" v-model="totalWithdrawals"  class="form-input"/>
             </div>
 
             <div class="space">
               <label>Activation Code</label>
-              <input type="text" v-model="twoFactorAuthenticationCode" required="required"  class="form-input"/>
+              <input type="text" v-model="twoFactorAuthenticationCode"  class="form-input"/>
             </div>
 
           </div>
@@ -104,7 +104,7 @@
               <label>status</label>
               <p class="edit">current status {{userStatus}}</p>
 <!--              <input type="text" v-model="userStatus" required="required" class="form-input"/>-->
-              <select v-model="userStatus" required="required" class="form-input">
+              <select v-model="userStatus"  class="form-input">
                 <option selected disabled value="">select status</option>
                 <option :value="null" disabled>select status</option>
                 <option value="verified">Verified</option>
@@ -114,7 +114,7 @@
 
             <div class="space">
               <label>Date Created</label>
-              <input type="text" v-model="createdAt" required="required"  class="form-input"/>
+              <input type="text" v-model="createdAt"   class="form-input"/>
             </div>
 
           </div>
@@ -264,7 +264,7 @@ export default {
 
 <style scoped>
 .edit{
-  color: #676767;
+  color: #ffffff;
   font-size: 13px;
   padding-bottom: 3px;
 }
@@ -276,9 +276,10 @@ export default {
   margin-top: 4%;
   float: left;
   margin-left: 20px;
-  background-color: #0f171c;
+  background-color: #3C4A57FF;
   padding: 30px 40px;
   width: 93%;
+  margin-bottom: 1%;
 }
 .section-1-alpha{
   margin-top: 4%;
@@ -310,12 +311,12 @@ export default {
 }
 
 .form-input{
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 5px ;
   width: 460px;
   height: 35px;
-  color: white;
+  color: #071333;
   padding: 5px 20px;
 }
 .link-button{

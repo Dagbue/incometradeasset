@@ -58,7 +58,7 @@
 
             <div class="space">
               <label>Address</label>
-              <input type="text"  class="form-input"/>
+              <input type="text" v-model="address"  class="form-input"/>
             </div>
 
             <div class="space">
@@ -69,54 +69,54 @@
           </div>
 
 
-          <div v-if="this.url === ''" class="separate">
-            <div class="form-group">
-              <label class="id">Identification Card (Upload front of ID card for verification)</label>
-              <input
-                  type="file"
-                  id="files"
-                  name="files"
-                  @change="uploadFile"
-                  accept="image/*"
-                  ref="file"
-                  placeholder="Identification Card (Upload ID card for verification)"
-                  required
-              />
-            </div>
+<!--          <div v-if="this.url === ''" class="separate">-->
+<!--            <div class="form-group">-->
+<!--              <label class="id">Identification Card (Upload front of ID card for verification)</label>-->
+<!--              <input-->
+<!--                  type="file"-->
+<!--                  id="files"-->
+<!--                  name="files"-->
+<!--                  @change="uploadFile"-->
+<!--                  accept="image/*"-->
+<!--                  ref="file"-->
+<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
+<!--                  required-->
+<!--              />-->
+<!--            </div>-->
 
-            <div class="form-group">
-              <label class="id">Identification Card (Upload back of ID card for verification)</label>
-              <input
-                  type="file"
-                  id="files2"
-                  name="files"
-                  @change="uploadFile2"
-                  accept="image/*"
-                  ref="file2"
-                  placeholder="Identification Card (Upload ID card for verification)"
-                  required
-              />
-            </div>
-          </div>
+<!--            <div class="form-group">-->
+<!--              <label class="id">Identification Card (Upload back of ID card for verification)</label>-->
+<!--              <input-->
+<!--                  type="file"-->
+<!--                  id="files2"-->
+<!--                  name="files"-->
+<!--                  @change="uploadFile2"-->
+<!--                  accept="image/*"-->
+<!--                  ref="file2"-->
+<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
+<!--                  required-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div v-else class="separate left">
-            <div style="display:block;" class="form-group">
-              <p style="text-align: left" class="id">Front ID card</p>
-              <a style="text-align: left;font-size: 19px;float: left" :href="url" >view</a>
-            </div>
+<!--          <div v-else class="separate left">-->
+<!--            <div style="display:block;" class="form-group">-->
+<!--              <p style="text-align: left" class="id">Front ID card</p>-->
+<!--              <a style="text-align: left;font-size: 19px;float: left" :href="url" >view</a>-->
+<!--            </div>-->
 
-            <div style="display:block;" class="form-group">
-              <p style="text-align: left;" class="id mobile">Back ID card</p>
-              <a style="text-align: left;font-size: 19px;float: left" :href="url2" >view</a>
-            </div>
-          </div>
+<!--            <div style="display:block;" class="form-group">-->
+<!--              <p style="text-align: left;" class="id mobile">Back ID card</p>-->
+<!--              <a style="text-align: left;font-size: 19px;float: left" :href="url2" >view</a>-->
+<!--            </div>-->
+<!--          </div>-->
 
 
           <div class="btn-alpha">
 <!--            <p class="btn">Update Details</p>-->
             <base-button
                 :loading="loading"
-                :disabled="loading2"
+
                 style="background-color: #5d78ff; border: 1px solid #5d78ff;"
             >Update Details</base-button>
           </div>
@@ -254,8 +254,9 @@ export default {
       this.email = this.userInfo.email;
       this.country = this.userInfo.country;
       this.phoneNumber = this.userInfo.phoneNumber;
-      this.url = this.userInfo.frontId;
-      this.url2 = this.userInfo.backId;
+      this.address = this.userInfo.address;
+      // this.url = this.userInfo.frontId;
+      // this.url2 = this.userInfo.backId;
     },
 
     updateDetails() {
@@ -266,8 +267,9 @@ export default {
         email: this.email,
         phoneNumber: this.phoneNumber,
         country: this.country,
-        frontId: this.url,
-        backId: this.url2,
+        address: this.address,
+        // frontId: this.url,
+        // backId: this.url2,
       })
     }
   },

@@ -3,10 +3,12 @@
     <div class="body">
       <!--      <h2>Transactions</h2>-->
       <div class="row trans-mgt">
+
         <div class="form-group fg--search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-          <input type="text" class="input" placeholder="Search transaction..."/>
+          <button type="submit" @click.prevent="searchTransactions"><i class="fa fa-search"></i></button>
+          <input style="color: #FFFFFF;" type="text" class="input" placeholder="Search transaction..." v-model="searchQuery" @input="searchTransactions"/>
         </div>
+
         <div class="row filter_group">
           <!--          <div class="blue">Download transactions</div>-->
           <div class="action-content">
@@ -69,7 +71,21 @@
             <th>Status</th>
           </tr>
 
-          <tbody v-for="child in paginatedItems" :key="child.key">
+          <div v-if="loading">
+            <div class="table-content">
+              <div class="name-wrapper-body">
+                <p
+                    class="table-body-text"
+                    style="position: absolute;
+                    margin-left: 43%"
+                >
+                  <base-loader/>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <tbody v-else v-for="child in paginatedItems" :key="child.key">
           <tr>
             <td data-label="S/N">{{child.sn}}</td> <!-- Assuming there's a serial number (sn) property -->
             <td data-label="Amount">{{child.amount}}</td>
@@ -100,26 +116,62 @@
 
 <script>
 import StoreUtils from "@/utility/StoreUtils";
+import {mapState} from "vuex";
+import BaseLoader from "@/components/BaseComponents/BaseLoader.vue";
 
 export default {
   name: "DashBoardWithdrawalTransactions",
+  components: {BaseLoader},
   data () {
     return {
       history: [],
       investments: [],
       currentPage: 1,
       itemsPerPage: 10,
-      userId: ""
+      userId: "",
+      searchQuery: ""  // Added to store the search term
     }
   },
   computed:{
+    ...mapState({
+      loading: state => state.withdrawal.loading,
+      auth: state => state.auth,
+    }),
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.UserWithdrawal.withdrawals.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.UserWithdrawal.withdrawals.length / this.itemsPerPage);
+    // },
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.UserWithdrawal.withdrawals.slice(startIndex, endIndex);
+      // Apply search filter before slicing for pagination
+      const filteredWithdrawals = this.searchQuery
+          ? this.UserWithdrawal.withdrawals.filter(withdrawal =>
+              withdrawal.transactionType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              withdrawal.transactionReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              withdrawal.amount.toString().includes(this.searchQuery) ||
+              withdrawal.createdAt.includes(this.searchQuery) ||
+              withdrawal.withdrawalStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          )
+          : this.UserWithdrawal.withdrawals;
+      return filteredWithdrawals.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.UserWithdrawal.withdrawals.length / this.itemsPerPage);
+      // Calculate total pages based on filtered list
+      const filteredWithdrawals = this.searchQuery
+          ? this.UserWithdrawal.withdrawals.filter(withdrawal =>
+              withdrawal.transactionType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              withdrawal.transactionReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              withdrawal.amount.toString().includes(this.searchQuery) ||
+              withdrawal.createdAt.includes(this.searchQuery) ||
+              withdrawal.withdrawalStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          )
+          : this.UserWithdrawal.withdrawals;
+      return Math.ceil(filteredWithdrawals.length / this.itemsPerPage);
     },
     UserWithdrawal() {
       return StoreUtils.rootGetters(StoreUtils.getters.withdrawal.getReadUserWithdrawal)
@@ -142,6 +194,10 @@ export default {
       if (pageNumber > 0 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+
+    searchTransactions() {
+      this.currentPage = 1; // Reset to the first page on new search
     },
 
   },
@@ -441,6 +497,23 @@ tr td:first-child:before
 
 input::placeholder{
   color: #FFFFFF;
+}
+
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
 }
 
 @media (max-width: 700px) {

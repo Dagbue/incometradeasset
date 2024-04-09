@@ -481,6 +481,16 @@ export default {
   /*position: relative;*/
   /*align-items: center;*/
   /*justify-content: center;*/
+  background-color: #3C4A57FF;
+  display: inline-block;
+  width: 55%;
+  padding-bottom: 3%;
+  padding-top: 0.5%;
+  margin-top: 3%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 }
 
 
@@ -518,7 +528,7 @@ export default {
   padding-top: 1%;
   padding-bottom: 1%;
   margin-top: 3%;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .wrapper .form {
@@ -540,10 +550,10 @@ export default {
   padding: 12px 16px;
   height: 48px;
   border-radius: 8px;
-  color: #ffffff;
+  color: #071333;
   border: 0.5px solid #e4e8ee;
   box-shadow: none;
-  background-color: #000000;
+  background-color: #ffffff;
   width: 100%;
 }
 
@@ -565,11 +575,11 @@ export default {
   padding: 12px 16px;
   height: 48px;
   border-radius: 5px;
-  color: #ffffff;
+  color: #071333;
   border: 0.5px solid #e4e8ee;
   box-shadow: none;
   width: 100%;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .wrapper .form-group select:focus {
@@ -577,7 +587,7 @@ export default {
 }
 
 .wrapper .form-group select::placeholder {
-  color: #ffffff;
+  color: #071333;
   font-weight: 400;
   font-size: 14px;
 }

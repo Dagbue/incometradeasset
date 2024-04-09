@@ -151,7 +151,7 @@ export default {
   margin-top: 4%;
   /*float: left;*/
   /*margin-left: 20px;*/
-  background-color: #0f171c;
+  background-color: #3C4A57FF;
   padding: 30px 40px;
   width: 55%;
   display: block;
@@ -165,12 +165,12 @@ export default {
 }
 
 .form-input{
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 5px ;
   width: 590px;
   height: 35px;
-  color: white;
+  color: #071333;
   padding: 5px 20px;
 }
 

@@ -3,16 +3,22 @@
     <div class="body">
       <h2>List of Users</h2>
       <div class="row trans-mgt">
+
         <div class="form-group fg--search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-          <input type="text" class="input" placeholder="Search User List..."/>
+          <button type="submit" @click.prevent="filterUsers"><i class="fa fa-search"></i></button>
+          <input  type="text" class="input" placeholder="Search User List..." v-model="searchQuery" @input="filterUsers"/>
         </div>
-        <div class="row filter_group">
-          <!--          <div class="blue">Download transactions</div>-->
-          <div class="action-content">
-            <img src="@/assets/Filterslines.svg"  alt="Export"/>
-            <p>Filter</p>
-          </div>
+
+
+        <div class="pageNumbers">
+          <p>show</p>
+          <select v-model="itemsPerPage">
+            <option :value="10">10</option>
+            <option :value="25">25</option>
+            <option :value="50">50</option>
+            <option :value="100">100</option>
+          </select>
+          <p>entries</p>
         </div>
       </div>
     </div>
@@ -47,7 +53,21 @@
             <th>Action</th>
           </tr>
 
-          <tbody v-for="child in paginatedItems" :key="child.key">
+          <div v-if="loading">
+            <div class="table-content">
+              <div class="name-wrapper-body">
+                <p
+                    class="table-body-text"
+                    style="position: absolute;
+                    margin-left: 46%"
+                >
+                  <base-loader2/>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <tbody v-else v-for="child in paginatedItems" :key="child.key">
           <tr>
             <td data-label="First Name">{{child.firstName}}</td>
             <td data-label="Last Name">{{child.lastName}}</td>
@@ -106,9 +126,11 @@
 import StoreUtils from "@/utility/StoreUtils";
 import {mapState} from "vuex";
 import router from "@/router";
+import BaseLoader2 from "@/components/BaseComponents/tables/BaseLoader2.vue";
 
 export default {
   name: "DashBoardListOfUsersView",
+  components: {BaseLoader2},
   data()  {
     return {
       contacts: [],
@@ -116,16 +138,43 @@ export default {
       currentPage: 1,
       itemsPerPage: 9,
       accStatus: "verified",
+      searchQuery: "", // Data property to hold the search input
     }
   },
   computed:{
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.allUsers.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.allUsers.length / this.itemsPerPage);
+    // },
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.allUsers.slice(startIndex, endIndex);
+      // Filter users based on searchQuery before slicing for pagination
+      const filteredUsers = this.searchQuery.trim() ?
+          this.allUsers.filter(user =>
+              user.firstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.lastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.userStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.allUsers;
+      return filteredUsers.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.allUsers.length / this.itemsPerPage);
+      // Recalculate total pages based on filtered users
+      const filteredUsers = this.searchQuery.trim() ?
+          this.allUsers.filter(user =>
+              user.firstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.lastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              user.userStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.allUsers;
+      return Math.ceil(filteredUsers.length / this.itemsPerPage);
     },
     allUsers() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getReadAllUsers)
@@ -155,6 +204,11 @@ export default {
         this.currentPage = pageNumber;
       }
     },
+
+    filterUsers() {
+      this.currentPage = 1; // Reset to the first page when filtering
+    },
+
 
     async updateUser(child) {
       await StoreUtils.commit(StoreUtils.mutations.auth.updateAdminUserId, {
@@ -211,11 +265,20 @@ h2{
   font-weight: 700;
   font-size: 19px;
   line-height: 25px;
-  color: #ffffff;
+  color: #071333;
 }
 .row{
   display: flex;
-
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.pageNumbers{
+  display: flex;
+  gap: 5px;
+  align-content: center;
+  align-items: center;
+  padding-right: 2%;
 }
 .trans-mgt{
   margin-top: 17px;
@@ -260,14 +323,14 @@ h2{
   padding: 10px;
   padding-left: 15px;
   display: block;
-  background: #0f171c;
+  background: #ffffff;
   border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 6px;
 }
 
 .fg--search input::placeholder {
-  color: #FFFFFF;
+  color: #071333;
 }
 
 .fg--search button {
@@ -284,7 +347,7 @@ h2{
 }
 
 .fa-search{
-  color: #ffffff;
+  color: #071333;
   margin-right: 10px;
 }
 table {
@@ -297,16 +360,16 @@ table {
 }
 
 tr{
-  border: 0.5px solid #3C4A57FF;
+  border: 1px solid #E3EBF6;
 }
 
 th {
-  background-color: #F9FBFD;
+  background-color: #0f171c;
   padding: 5px;
   letter-spacing: 0.5px;
   font-weight: 500;
   font-size: 13px;
-  color: #0f171c;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -317,7 +380,7 @@ td {
   align-content: center;
   padding: 5px;
   /*letter-spacing: 1px;*/
-  color: #ffffff;
+  color: #0f171c;
   font-weight: 200;
   font-size: 14px;
 }
@@ -332,7 +395,7 @@ td {
   font-weight: 600;
   font-size: 18px;
   line-height: 20px;
-  color: #ffffff;
+  color: #071333;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
 }
@@ -342,7 +405,7 @@ td {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  color: #ffffff;
+  color: #071333;
   padding-bottom: 1.25%;
 }
 
@@ -377,7 +440,7 @@ td {
   gap: 8px;
   width: 88px;
   height: 36px;
-  background: #0f171c;
+  background: #ffffff;
   border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 4px;
@@ -389,7 +452,7 @@ td {
 }
 
 .action-content p {
-  color: #ffffff;
+  color: #071333;
   font-size: 13px;
 }
 
@@ -477,10 +540,10 @@ select {
   width: 100px;
   height: 30px;
   background: transparent;
-  color: #ffffff;
+  color: #071333;
   /*border: 1px solid #1570EF;*/
-  border: 1px solid #E3EBF6;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border: 1px solid #3C4A57FF;
+  /*box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);*/
   border-radius: 4px;
 }
 
@@ -489,9 +552,26 @@ select {
 }
 
 .page-indicator{
-  color: #ffffff;
+  color: #071333;
   font-weight: 200;
   font-size: 13px;
+}
+
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
 }
 
 @media (max-width: 700px) {
@@ -539,6 +619,16 @@ select {
 @media (max-width: 500px) {
   .filter_group{
     display: none;
+  }
+
+  .row{
+    display: block;
+  }
+
+  .pageNumbers{
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-right: unset;
   }
 
   .fg--search {

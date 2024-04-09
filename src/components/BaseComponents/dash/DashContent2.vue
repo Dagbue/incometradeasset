@@ -50,31 +50,31 @@ export default {
 
 <style scoped>
 .bx-menu{
-  color: #FFFFFF;
+  color: #071333;
   font-size: 25px;
   display: none;
 }
-.home-content{
-  position: fixed;
-  left: 225px;
-  background-color: #000000;
-  width: calc(100% - 215px);
-  height: 100vh;
-  transition: all 0.5s ease;
-  margin: 0 10px;
-  cursor: pointer;
-  overflow-y: scroll;
-}
-.section-1{
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
-  /*padding-right: 3%;*/
-  background-color: #0f171c;
-}
+/*.home-content{*/
+/*  position: fixed;*/
+/*  left: 225px;*/
+/*  background-color: #ffffff;*/
+/*  width: calc(100% - 215px);*/
+/*  height: 100vh;*/
+/*  transition: all 0.5s ease;*/
+/*  margin: 0 10px;*/
+/*  cursor: pointer;*/
+/*  overflow-y: scroll;*/
+/*}*/
+/*.section-1{*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  align-content: center;*/
+/*  align-items: center;*/
+/*  padding-top: 0.5%;*/
+/*  padding-bottom: 0.5%;*/
+/*  !*padding-right: 3%;*!*/
+/*  background-color: #0f171c;*/
+/*}*/
 .section-1-part-1{
   width: 50%;
   padding-left: 0.5%;
@@ -88,6 +88,43 @@ export default {
   width: 50%;
   padding-right: 2.5%;
 }
+/*.vl{*/
+/*  border-left: 1.5px solid #E7E8F0;*/
+/*  height: 35px;*/
+/*  margin-left: 1%;*/
+/*  margin-right: 1%;*/
+/*}*/
+/*.profile-name{*/
+/*  padding-left: 1%;*/
+/*  font-weight: 500;*/
+/*  font-size: 14px;*/
+/*  line-height: 16px;*/
+/*  letter-spacing: 0.01em;*/
+/*  color: #ffffff;*/
+/*}*/
+
+
+.home-content{
+  position: fixed;
+  left: 225px;
+  background-color: #F9FAFB;
+  width: calc(100% - 215px);
+  height: 100vh;
+  transition: all 0.5s ease;
+  margin: 0 10px;
+  cursor: pointer;
+  overflow-y: scroll;
+}
+.section-1{
+  display: flex;
+  justify-content: right;
+  align-content: center;
+  align-items: center;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-right: 3%;
+  background-color: #FFFFFF;
+}
 .vl{
   border-left: 1.5px solid #E7E8F0;
   height: 35px;
@@ -100,7 +137,7 @@ export default {
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.01em;
-  color: #ffffff;
+  color: #58596C;
 }
 
 @media (max-width: 990px) {

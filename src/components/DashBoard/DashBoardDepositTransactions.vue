@@ -3,10 +3,14 @@
     <div class="body">
 <!--      <h2>Transactions</h2>-->
       <div class="row trans-mgt">
+
+
         <div class="form-group fg--search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-          <input type="text" class="input" placeholder="Search transaction..."/>
+          <button type="submit" @click.prevent="searchTransactions"><i class="fa fa-search"></i></button>
+          <input style="color: #FFFFFF;" type="text" class="input" placeholder="Search transaction..." v-model="searchQuery" @input="searchTransactions"/>
         </div>
+
+
         <div class="row filter_group">
           <!--          <div class="blue">Download transactions</div>-->
           <div class="action-content">
@@ -21,41 +25,10 @@
               <img src="@/assets/empty.svg" alt="empty" class="empty-state">
               <p class="empty-state-text-1">You have nothing to see</p>
               <p class="empty-state-text-2">This is where your Deposits will appear</p>
-              <!--        <p class="empty-state-text-3">-->
-              <!--          <i class='bx bx-plus' ></i>-->
-              <!--          Transaction-->
-              <!--        </p>-->
             </div>
 
+
       <div class="table" v-if="this.UserDeposit.deposits.length >0">
-<!--        <table>-->
-<!--          <tr>-->
-<!--            <th>S/N</th>-->
-<!--            <th>Amount</th>-->
-<!--            <th>Transaction Type</th>-->
-<!--            <th>Transaction Reference</th>-->
-<!--            <th>Date</th>-->
-<!--            <th>Status</th>-->
-<!--          </tr>-->
-
-<!--          <tbody v-for="child in paginatedItems" :key="child.key">-->
-<!--          <tr>-->
-<!--            <td></td>-->
-<!--            <td>{{child.amount}}</td>-->
-<!--            <td>{{child.transactionType}}</td>-->
-<!--            <td>{{child.transactionReference}}</td>-->
-<!--            <td>{{child.createdAt | formatDate}}</td>-->
-<!--            <td>-->
-<!--              <div>-->
-<!--                <p class="status-won" v-if="child.depositStatus === 'approved'">{{child.depositStatus | lowercase}}</p>-->
-<!--                <p class="status-lost" v-if="child.depositStatus === 'declined'">{{child.depositStatus | lowercase}}</p>-->
-<!--                <p class="status-pending" v-if="child.depositStatus === 'PENDING'">{{child.depositStatus | lowercase}}</p>-->
-<!--              </div>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-
-<!--        </table>-->
         <table>
           <tr>
             <th>S/N</th>
@@ -66,22 +39,39 @@
             <th>Status</th>
           </tr>
 
-          <tbody v-for="child in paginatedItems" :key="child.key">
-          <tr>
-            <td data-label="S/N">{{child.index}}</td> <!-- Assuming 'child.index' is your serial number or similar -->
-            <td data-label="Amount">{{child.amount}}</td>
-            <td data-label="Transaction Type">{{child.transactionType}}</td>
-            <td data-label="Transaction Reference">{{child.transactionReference}}</td>
-            <td data-label="Date">{{child.createdAt | formatDate}}</td>
-            <td data-label="Status">
-              <div>
-                <p class="status-won" v-if="child.depositStatus === 'approved'">{{child.depositStatus | lowercase}}</p>
-                <p class="status-lost" v-if="child.depositStatus === 'declined'">{{child.depositStatus | lowercase}}</p>
-                <p class="status-pending" v-if="child.depositStatus === 'PENDING'">{{child.depositStatus | lowercase}}</p>
+
+          <div v-if="loading">
+            <div class="table-content">
+              <div class="name-wrapper-body">
+                <p
+                    class="table-body-text"
+                    style="position: absolute;
+                    margin-left: 43%"
+                >
+                  <base-loader/>
+                </p>
               </div>
-            </td>
-          </tr>
-          </tbody>
+            </div>
+          </div>
+
+          <tbody v-else v-for="child in paginatedItems" :key="child.key">
+            <tr>
+              <td data-label="S/N">{{child.index}}</td> <!-- Assuming 'child.index' is your serial number or similar -->
+              <td data-label="Amount">{{child.amount}}</td>
+              <td data-label="Transaction Type">{{child.transactionType}}</td>
+              <td data-label="Transaction Reference">{{child.transactionReference}}</td>
+              <td data-label="Date">{{child.createdAt | formatDate}}</td>
+              <td data-label="Status">
+                <div>
+                  <p class="status-won" v-if="child.depositStatus === 'approved'">{{child.depositStatus | lowercase}}</p>
+                  <p class="status-lost" v-if="child.depositStatus === 'declined'">{{child.depositStatus | lowercase}}</p>
+                  <p class="status-pending" v-if="child.depositStatus === 'PENDING'">{{child.depositStatus | lowercase}}</p>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+
+
         </table>
         <div class="pagination">
           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
@@ -97,26 +87,62 @@
 
 <script>
 import StoreUtils from "@/utility/StoreUtils";
+import {mapState} from "vuex";
+import BaseLoader from "@/components/BaseComponents/BaseLoader.vue";
 
 export default {
   name: "DashBoardDepositTransactions",
+  components: {BaseLoader},
   data () {
     return {
       history: [],
       investments: [],
       currentPage: 1,
       itemsPerPage: 10,
-      userId: ""
+      userId: "",
+      searchQuery: ""  // Data property to hold the search input
     }
   },
   computed:{
+    ...mapState({
+      loading: state => state.deposit.loading,
+      auth: state => state.auth,
+    }),
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.UserDeposit.deposits.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.UserDeposit.deposits.length / this.itemsPerPage);
+    // },
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.UserDeposit.deposits.slice(startIndex, endIndex);
+      // Filter deposits based on searchQuery first, then slice for pagination
+      const filteredDeposits = this.searchQuery
+          ? this.UserDeposit.deposits.filter(deposit =>
+              deposit.transactionType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              deposit.transactionReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              deposit.amount.toString().includes(this.searchQuery) ||
+              deposit.createdAt.includes(this.searchQuery) ||
+              deposit.status.toLowerCase().includes(this.searchQuery.toLowerCase())
+          )
+          : this.UserDeposit.deposits;
+      return filteredDeposits.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.UserDeposit.deposits.length / this.itemsPerPage);
+      // Calculate total pages based on filtered deposits
+      const filteredDeposits = this.searchQuery
+          ? this.UserDeposit.deposits.filter(deposit =>
+              deposit.transactionType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              deposit.transactionReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              deposit.amount.toString().includes(this.searchQuery) ||
+              deposit.createdAt.includes(this.searchQuery) ||
+              deposit.status.toLowerCase().includes(this.searchQuery.toLowerCase())
+          )
+          : this.UserDeposit.deposits;
+      return Math.ceil(filteredDeposits.length / this.itemsPerPage);
     },
     UserDeposit() {
       return StoreUtils.rootGetters(StoreUtils.getters.deposit.getReadUserDeposit)
@@ -139,6 +165,10 @@ export default {
       if (pageNumber > 0 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+
+    searchTransactions() {
+      this.currentPage = 1; // Reset to first page on new search
     },
 
   },
@@ -438,6 +468,23 @@ tr td:first-child:before
 
 input::placeholder{
   color: #FFFFFF;
+}
+
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
 }
 
 @media (max-width: 700px) {

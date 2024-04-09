@@ -7,6 +7,15 @@ Vue.filter('capitalize', function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1)
 })
 
+Vue.filter('titleCase', function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.toLowerCase().split(' ').map(function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+});
+
+
 Vue.filter('lowercase', function (value) {
     if (!value) return ''
     value = value.toString().toLowerCase()

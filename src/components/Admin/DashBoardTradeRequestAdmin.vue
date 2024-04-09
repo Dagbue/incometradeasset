@@ -3,17 +3,31 @@
     <div class="body">
       <h2>Trade Requests</h2>
       <div class="row trans-mgt">
+<!--        <div class="form-group fg&#45;&#45;search">-->
+<!--          <button type="submit"><i class="fa fa-search"></i></button>-->
+<!--          <input type="text" class="input" placeholder="Search Trade Requests..."/>-->
+<!--        </div>-->
         <div class="form-group fg--search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-          <input type="text" class="input" placeholder="Search Trade Requests..."/>
+          <button type="submit" @click.prevent="filterTrades"><i class="fa fa-search"></i></button>
+          <input type="text" class="input" placeholder="Search Trade Requests..." v-model="searchQuery" @input="filterTrades"/>
         </div>
-        <div class="row filter_group">
-          <!--          <div class="blue">Download transactions</div>-->
-          <div class="action-content">
-            <img src="@/assets/Filterslines.svg"  alt="Export"/>
-            <p>Filter</p>
-          </div>
+        <div class="pageNumbers">
+          <p>show</p>
+          <select v-model="itemsPerPage">
+            <option :value="10">10</option>
+            <option :value="25">25</option>
+            <option :value="50">50</option>
+            <option :value="100">100</option>
+          </select>
+          <p>entries</p>
         </div>
+<!--        <div class="row filter_group">-->
+<!--          &lt;!&ndash;          <div class="blue">Download transactions</div>&ndash;&gt;-->
+<!--          <div class="action-content">-->
+<!--            <img src="@/assets/Filterslines.svg"  alt="Export"/>-->
+<!--            <p>Filter</p>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
     <div class="section-5">
@@ -44,7 +58,21 @@
             <th>Action</th>
           </tr>
 
-          <tbody v-for="child in paginatedItems" :key="child.key">
+          <div v-if="loading">
+            <div class="table-content">
+              <div class="name-wrapper-body">
+                <p
+                    class="table-body-text"
+                    style="position: absolute;
+                    margin-left: 45%"
+                >
+                  <base-loader2/>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <tbody v-else v-for="child in paginatedItems" :key="child.key">
           <tr>
             <td data-label="Trade ID">{{child.tradeReference}}</td>
             <td data-label="User">{{child.firstName}} {{child.lastName}}</td>
@@ -87,9 +115,12 @@
 
 import StoreUtils from "@/utility/StoreUtils";
 import router from "@/router";
+import BaseLoader2 from "@/components/BaseComponents/tables/BaseLoader2.vue";
+import {mapState} from "vuex";
 
 export default {
   name: "DashBoardTradeRequestAdmin",
+  components: {BaseLoader2},
   data () {
     return {
       SelectEmail: "",
@@ -98,18 +129,51 @@ export default {
       statusUpdate2:"lost",
       depositValue: 0,
       currentPage: 1,
-      itemsPerPage: 15,
+      itemsPerPage: 8,
+      searchQuery: "", // Data property to hold the search input
     }
   },
   computed:{
+    ...mapState({
+      loading: state => state.trade.loading,
+      auth: state => state.auth,
+    }),
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.allTrades.trades.slice(startIndex, endIndex);
+      // Filter trades based on searchQuery before slicing for pagination
+      const filteredTrades = this.searchQuery.trim() ?
+          this.allTrades.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.firstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.lastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.allTrades.trades;
+      return filteredTrades.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.allTrades.trades.length / this.itemsPerPage);
+      // Recalculate total pages based on filtered trades
+      const filteredTrades = this.searchQuery.trim() ?
+          this.allTrades.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.firstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.lastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.allTrades.trades;
+      return Math.ceil(filteredTrades.length / this.itemsPerPage);
     },
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.allTrades.trades.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.allTrades.trades.length / this.itemsPerPage);
+    // },
     allTrades() {
       return StoreUtils.rootGetters(StoreUtils.getters.trade.getAllTrade)
     },
@@ -118,6 +182,10 @@ export default {
 
 
   methods: {
+    filterTrades() {
+      // Reset to the first page when filtering
+      this.currentPage = 1;
+    },
     async next(child) {
       await StoreUtils.commit(StoreUtils.mutations.auth.updateAdminUserId, {
         tradeId: child.tradeId,
@@ -187,6 +255,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: #FFFFFF;
 }
 .status-won{
   background-color: #10d876;
@@ -197,6 +266,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: #FFFFFF;
 }
 .status-lost{
   background-color: #E50202;
@@ -207,6 +277,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: #FFFFFF;
 }
 .body{
   padding: 32px;
@@ -215,11 +286,20 @@ h2{
   font-weight: 700;
   font-size: 19px;
   line-height: 25px;
-  color: #ffffff;
+  color: #071333;
 }
 .row{
   display: flex;
-
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.pageNumbers{
+  display: flex;
+  gap: 5px;
+  align-content: center;
+  align-items: center;
+  padding-right: 2%;
 }
 .trans-mgt{
   margin-top: 17px;
@@ -264,14 +344,14 @@ h2{
   padding: 10px;
   padding-left: 15px;
   display: block;
-  background: #0f171c;
+  background: #FFFFFF;
   border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 6px;
 }
 
 .fg--search input::placeholder {
-  color: #FFFFFF;
+  color: #071333;
 }
 
 .fg--search button {
@@ -288,7 +368,7 @@ h2{
 }
 
 .fa-search{
-  color: #ffffff;
+  color: #071333;
   margin-right: 10px;
 }
 table {
@@ -298,6 +378,7 @@ table {
 .table{
   margin-left: 2%;
   margin-right: 3%;
+  margin-bottom: 10px;
 }
 
 tr{
@@ -305,12 +386,12 @@ tr{
 }
 
 th {
-  background-color: #F9FBFD;
-  padding: 5px;
+  background-color: #0f171c;
+  padding: 10px;
   letter-spacing: 0.5px;
   font-weight: 500;
   font-size: 13px;
-  color: #0f171c;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -321,7 +402,7 @@ td {
   align-content: center;
   padding: 5px;
   /*letter-spacing: 1px;*/
-  color: #ffffff;
+  color: #071333;
   font-weight: 200;
   font-size: 13px;
   /*border-bottom: 1px solid #E3EBF6;*/
@@ -337,7 +418,7 @@ td {
   font-weight: 600;
   font-size: 18px;
   line-height: 20px;
-  color: #ffffff;
+  color: #071333;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
 }
@@ -347,7 +428,7 @@ td {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  color: #ffffff;
+  color: #071333;
   padding-bottom: 1.25%;
 }
 
@@ -382,7 +463,7 @@ td {
   gap: 8px;
   width: 88px;
   height: 36px;
-  background: #0f171c;
+  background: #FFFFFF;
   border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 4px;
@@ -394,7 +475,7 @@ td {
 }
 
 .action-content p {
-  color: #ffffff;
+  color: #071333;
   font-size: 13px;
 }
 
@@ -491,7 +572,7 @@ select {
   width: 100px;
   height: 30px;
   background: transparent;
-  color: #ffffff;
+  color: #071333;
   /*border: 1px solid #1570EF;*/
   border: 1px solid #E3EBF6;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
@@ -503,7 +584,7 @@ select {
 }
 
 .page-indicator{
-  color: #ffffff;
+  color: #071333;
   font-weight: 200;
   font-size: 13px;
 }
@@ -512,6 +593,23 @@ select {
 /*  counter-increment: Serial;      !* Increment the Serial counter *!*/
 /*  content:counter(Serial); !* Display the counter *!*/
 /*}*/
+
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
+}
 
 @media (max-width: 700px) {
   .table{
@@ -558,6 +656,16 @@ select {
 @media (max-width: 500px) {
   .filter_group{
     display: none;
+  }
+
+  .row{
+    display: block;
+  }
+
+  .pageNumbers{
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-right: unset;
   }
 
   .fg--search {

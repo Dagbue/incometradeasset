@@ -12,7 +12,7 @@
           <div class="vl"></div>
           <img v-if="userInfo.displayPicture === ''" src="@/assets/Avatar.svg" alt="logo"  class="avatar"/>
           <img v-else :src="userInfo.displayPicture" alt="displayPicture"  class="displayPicture"/>
-          <p class="profile-name">{{this.userFirstName}} {{this.userLastName}}</p>
+          <p class="profile-name">{{this.userFirstName | titleCase}} {{this.userLastName | titleCase}}</p>
         </div>
 
       </div>
@@ -209,6 +209,14 @@ export default {
     font-size: 12px;
     line-height: unset;
     letter-spacing: unset;
+  }
+
+  .avatar{
+    width: 15%;
+  }
+  .section-1-part-2{
+    gap: 5px;
+    width: 100%;
   }
 }
 

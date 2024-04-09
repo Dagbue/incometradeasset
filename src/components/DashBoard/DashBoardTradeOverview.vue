@@ -3,10 +3,12 @@
     <div class="body">
       <h2>Trade Overview</h2>
       <div class="row trans-mgt">
+
         <div class="form-group fg--search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-          <input type="text" class="input" placeholder="Search trades..."/>
+          <button type="submit" @click.prevent="filterTrades"><i class="fa fa-search"></i></button>
+          <input style="color: #FFFFFF;" type="text" class="input" placeholder="Search trades..." v-model="searchQuery" @input="filterTrades"/>
         </div>
+
         <div class="row filter_group">
           <!--          <div class="blue">Download transactions</div>-->
           <div class="action-content">
@@ -42,7 +44,21 @@
             <th>Trade Status</th>
           </tr>
 
-          <tbody v-for="child in paginatedItems" :key="child.key">
+          <div v-if="loading">
+            <div class="table-content">
+              <div class="name-wrapper-body">
+                <p
+                    class="table-body-text"
+                    style="position: absolute;
+                    margin-left: 46%"
+                >
+                  <base-loader/>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <tbody v-else v-for="child in paginatedItems" :key="child.key">
           <tr>
             <td data-label="Trade ID">{{child.tradeReference}}</td>
             <td data-label="Trade Type">{{child.tradeType}}</td>
@@ -95,9 +111,11 @@
 
 import StoreUtils from "@/utility/StoreUtils";
 import {mapState} from "vuex";
+import BaseLoader from "@/components/BaseComponents/BaseLoader.vue";
 
 export default {
   name: "DashBoardTradeOverview",
+  components: {BaseLoader},
   data () {
     return {
       history: [],
@@ -106,17 +124,42 @@ export default {
       itemsPerPage: 10,
       userId: "",
       userInfo: "",
+      searchQuery: "", // Data property to hold the search input
     }
   },
   computed:{
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
-      return this.readUserTrade.trades.slice(startIndex, endIndex);
+      // Filter trades based on searchQuery before slicing for pagination
+      const filteredTrades = this.searchQuery.trim() ?
+          this.readUserTrade.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.readUserTrade.trades;
+      return filteredTrades.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.readUserTrade.trades.length / this.itemsPerPage);
+      // Recalculate total pages based on filtered trades
+      const filteredTrades = this.searchQuery.trim() ?
+          this.readUserTrade.trades.filter(trade =>
+              trade.tradeReference.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeType.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.symbolTraded.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              trade.tradeStatus.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) : this.readUserTrade.trades;
+      return Math.ceil(filteredTrades.length / this.itemsPerPage);
     },
+    // paginatedItems() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.readUserTrade.trades.slice(startIndex, endIndex);
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.readUserTrade.trades.length / this.itemsPerPage);
+    // },
     UserInfo() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getUserInfo)
     },
@@ -143,6 +186,11 @@ export default {
       if (pageNumber > 0 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+
+    filterTrades() {
+      // Reset to the first page when filtering
+      this.currentPage = 1;
     },
 
   },
@@ -456,6 +504,24 @@ td {
 input::placeholder{
   color: #FFFFFF;
 }
+
+.name-wrapper-body {
+  width: 12%;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+}
+.table-content {
+  height: 35px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, .13);*/
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-content: center;
+}
+
 @media (max-width: 700px) {
   .table{
     margin-left: unset;
@@ -519,9 +585,13 @@ input::placeholder{
     margin-right: auto;
     width: 90%;
   }
+  .empty-state-text-1{
+    font-size: 16px;
+    line-height: 18px;
+  }
 
   .empty-state{
-    width: 35%;
+    width: 30%;
   }
 }
 

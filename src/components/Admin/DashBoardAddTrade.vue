@@ -619,9 +619,10 @@ export default {
   border: 0.5px solid #3C4A57FF;
   box-shadow: none;
   width: 430px;
-  background: #000000;
+  background: #ffffff;
   margin-top: 1.5%;
-  color: #ffffff;
+  color: #071333;
+  border-radius: 8px;
 }
 
 .form-group input:focus {
@@ -647,13 +648,13 @@ export default {
   border: 0.5px solid #3C4A57FF;
   box-shadow: none;
   width: 430px;
-  background: #000000;
+  background: #ffffff;
   margin-top: 1.5%;
-  color: #ffffff;
+  color: #071333;
 }
 
 option{
-  color: #667085;
+  color: #071333;
 }
 
 .form-group select:focus {
@@ -674,8 +675,9 @@ option{
   border: 0.5px solid #3C4A57FF;
   padding: 22px 25px;
   border-radius: 5px;
-  background: #0f171c;
+  background: #3C4A57FF;
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .label{

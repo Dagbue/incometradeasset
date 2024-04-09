@@ -16,6 +16,7 @@ export const state = {
   readUserById: null,
   readAllUsers: [],
   bitcoinRate: null,
+  isModalOpened: false,
 };
 
 export const getters = {
@@ -43,6 +44,9 @@ export const getters = {
   },
   getBitcoinRate: (state) => {
     return state.bitcoinRate;
+  },
+  getIsModalOpened: (state) => {
+    return state.isModalOpened;
   },
 };
 
@@ -73,6 +77,9 @@ export const mutations = {
   },
   updateBitcoinRate(state, payload){
     state.bitcoinRate = payload
+  },
+  updateIsModalOpened(state, payload){
+    state.isModalOpened = payload
   },
 };
 

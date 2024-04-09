@@ -101,7 +101,7 @@ export default {
       contacts: [],
       SelectEmail: "",
       currentPage: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 6,
     }
   },
   computed:{
@@ -186,7 +186,7 @@ h2{
   font-weight: 700;
   font-size: 19px;
   line-height: 25px;
-  color: #ffffff;
+  color: #071333;
 }
 .row{
   display: flex;
@@ -235,14 +235,14 @@ border: 0.5px solid #3C4A57FF;
   padding: 10px;
   padding-left: 15px;
   display: block;
-  background: #0f171c;
+  background: #ffffff;
 border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 6px;
 }
 
 .fg--search input::placeholder {
-  color: #FFFFFF;
+  color: #071333;
 }
 
 .fg--search button {
@@ -259,7 +259,7 @@ border: 0.5px solid #3C4A57FF;
 }
 
 .fa-search{
-  color: #ffffff;
+  color: #071333;
   margin-right: 10px;
 }
 table {
@@ -277,12 +277,12 @@ tr{
 
 th {
 
-  background-color: #F9FBFD;
+  background-color: #0f171c;
   padding: 10px;
   letter-spacing: 0.5px;
   font-weight: 500;
   font-size: 14px;
-  color: #0f171c;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -293,7 +293,7 @@ td {
   align-content: center;
   padding: 15px 8px;
   /*letter-spacing: 1px;*/
-  color: #ffffff;
+  color: #071333;
   font-weight: 200;
   font-size: 15px;
   /*border-bottom: 1px solid #E3EBF6;*/
@@ -354,7 +354,7 @@ td {
   gap: 8px;
   width: 88px;
   height: 36px;
-  background: #0f171c;
+  background: #FFFFFF;
 border: 0.5px solid #3C4A57FF;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 4px;
@@ -366,7 +366,7 @@ border: 0.5px solid #3C4A57FF;
 }
 
 .action-content p {
-  color: #ffffff;
+  color: #071333;
   font-size: 13px;
 }
 
@@ -439,7 +439,7 @@ border: 0.5px solid #3C4A57FF;
   width: 100px;
   height: 30px;
   background: transparent;
-  color: #ffffff;
+  color: #071333;
   /*border: 1px solid #1570EF;*/
   border: 1px solid #E3EBF6;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
@@ -451,7 +451,7 @@ border: 0.5px solid #3C4A57FF;
 }
 
 .page-indicator{
-  color: #ffffff;
+  color: #071333;
   font-weight: 200;
   font-size: 13px;
 }
