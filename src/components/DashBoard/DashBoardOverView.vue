@@ -29,7 +29,7 @@
 <!--    <p style="color: #FFFFFF;">{{isModalOpened}}</p>-->
 
     <p v-show="this.UserDetails.user.userStatus === 'unVerified'" class="text-2">Your account is not verified. Kindly
-      upload the front and back of a valid Id card to verify your account.</p>
+      contact support to verify your account.</p>
 
 <!--    <div style="color: white;" id="app">-->
 <!--      <h1>Dollar to Bitcoin Converter</h1>-->
@@ -63,7 +63,7 @@
             <div>
 <!--              <p class="content-1-text-2" v-if="approved2 === 'approved'">£ {{this.contacts.withdrawal}}</p>-->
 <!--              <p class="content-1-text-2" v-else-if="approved2 === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount + UserDetails.user.totalWithdrawals | formatAmount2}}</p>
+              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount - UserDetails.user.totalWithdrawals | formatAmount2}}</p>
             </div>
           </div>
           <div class="content-2">
@@ -952,7 +952,6 @@ export default {
       this.userInfo = JSON.parse(storedObject);
     }
   }
-
 }
 </script>
 
