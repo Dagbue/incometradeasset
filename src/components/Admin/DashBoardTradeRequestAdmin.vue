@@ -92,7 +92,13 @@
               </div>
             </td>
             <td data-label="Action">
-              <button class="btn" @click="next(child)">Edit</button>
+              <button  class="btn" @click="next(child)">Edit</button>
+<!--              <a-->
+<!--                  @mouseover="appendItemsToUrl(child)"-->
+<!--                  @click="appendItemsToUrl(child)"-->
+<!--                 href="https://www.incometradeasset.com/trade-request-admin-update"-->
+<!--                 class="btn" target="_blank"-->
+<!--              >Edit</a>-->
               <button class="btn-2">Delete</button>
             </td>
           </tr>
@@ -182,6 +188,56 @@ export default {
 
 
   methods: {
+
+    appendItemsToUrl(child) {
+      // Assuming you want to append two query parameters named 'item' and 'item2'
+      const item = child.tradeId;
+      const item2 = child.userId;
+
+      // Use the $router.push method to navigate to the same route with appended query parameters
+      this.$router.push({
+        path: this.$route.path, // Keep the current path
+        query: {
+          ...this.$route.query, // Keep existing query parameters
+          item: item, // Append the new query parameter 'item'
+          item2: item2 // Append the new query parameter 'item2'
+        }
+      });
+    },
+
+    // appendItemsToUrl(child) {
+    //   // Assuming you want to append two query parameters named 'item' and 'item2'
+    //   const item = child.tradeId;
+    //   const item2 = child.userId;
+    //
+    //   const baseUrl = "https://www.incometradeasset.com/trade-request-admin-update";
+    //   // Construct the new URL with appended query parameters
+    //   const newUrl = `${baseUrl}?item=${item}&item2=${item2}`;
+    //
+    //   // Use the $router.push method to navigate to the new URL
+    //   window.location.href = newUrl;
+    // },
+
+    // appendItemsToUrl(child) {
+    //   // Assuming you want to append two query parameters named 'item' and 'item2'
+    //   const item = child.tradeId;
+    //   const item2 = child.userId;
+    //
+    //   // Use the $router.push method to navigate to the same route with appended query parameters
+    //   this.$router.push({
+    //     path: this.$route.path, // Keep the current path
+    //     query: {
+    //       ...this.$route.query, // Keep existing query parameters
+    //       item: item, // Append the new query parameter 'item'
+    //       item2: item2 // Append the new query parameter 'item2'
+    //     }
+    //   });
+    // },
+
+    openNewPage() {
+        window.open('https://example.com', '_blank');
+      },
+
     filterTrades() {
       // Reset to the first page when filtering
       this.currentPage = 1;

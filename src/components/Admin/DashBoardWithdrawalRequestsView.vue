@@ -126,7 +126,7 @@ export default {
       statusUpdate2:"declined",
       depositValue: 0,
       currentPage: 1,
-      itemsPerPage: 15,
+      itemsPerPage: 10,
       searchQuery: "", // Data property to hold the search input
     }
   },

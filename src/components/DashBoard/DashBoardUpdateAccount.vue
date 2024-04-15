@@ -30,12 +30,12 @@
 
             <div class="space">
               <label>First Name</label>
-              <input type="text" v-model="firstName" required="required"  class="form-input"/>
+              <input type="text" v-model="firstName"   class="form-input"/>
             </div>
 
             <div class="space">
               <label>Last Name</label>
-              <input type="text" v-model="lastName" required="required" class="form-input"/>
+              <input type="text" v-model="lastName"  class="form-input"/>
             </div>
 
           </div>
@@ -44,12 +44,12 @@
 
             <div class="space">
               <label>Email</label>
-              <input type="text" v-model="email" required="required" class="form-input"/>
+              <input type="text" v-model="email"  class="form-input"/>
             </div>
 
             <div class="space">
               <label>Country</label>
-              <input type="text" v-model="country" required="required" class="form-input"/>
+              <input type="text" v-model="country"  class="form-input"/>
             </div>
 
           </div>
@@ -63,53 +63,53 @@
 
             <div class="space">
               <label>Phone Number</label>
-              <input type="text" v-model="phoneNumber" required="required" class="form-input"/>
+              <input type="text" v-model="phoneNumber"  class="form-input"/>
             </div>
 
           </div>
 
 
-<!--          <div v-if="this.url === ''" class="separate">-->
-<!--            <div class="form-group">-->
-<!--              <label class="id">Identification Card (Upload front of ID card for verification)</label>-->
-<!--              <input-->
-<!--                  type="file"-->
-<!--                  id="files"-->
-<!--                  name="files"-->
-<!--                  @change="uploadFile"-->
-<!--                  accept="image/*"-->
-<!--                  ref="file"-->
-<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
-<!--                  required-->
-<!--              />-->
-<!--            </div>-->
+          <div v-if="this.url === ''" class="separate">
+            <div class="form-group">
+              <label class="id">Identification Card (Upload front of ID card for verification)</label>
+              <input
+                  type="file"
+                  id="files"
+                  name="files"
+                  @change="uploadFile"
+                  accept="image/*"
+                  ref="file"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
+            </div>
 
-<!--            <div class="form-group">-->
-<!--              <label class="id">Identification Card (Upload back of ID card for verification)</label>-->
-<!--              <input-->
-<!--                  type="file"-->
-<!--                  id="files2"-->
-<!--                  name="files"-->
-<!--                  @change="uploadFile2"-->
-<!--                  accept="image/*"-->
-<!--                  ref="file2"-->
-<!--                  placeholder="Identification Card (Upload ID card for verification)"-->
-<!--                  required-->
-<!--              />-->
-<!--            </div>-->
-<!--          </div>-->
+            <div class="form-group">
+              <label class="id">Identification Card (Upload back of ID card for verification)</label>
+              <input
+                  type="file"
+                  id="files2"
+                  name="files"
+                  @change="uploadFile2"
+                  accept="image/*"
+                  ref="file2"
+                  placeholder="Identification Card (Upload ID card for verification)"
+                  required
+              />
+            </div>
+          </div>
 
-<!--          <div v-else class="separate left">-->
-<!--            <div style="display:block;" class="form-group">-->
-<!--              <p style="text-align: left" class="id">Front ID card</p>-->
-<!--              <a style="text-align: left;font-size: 19px;float: left" :href="url" >view</a>-->
-<!--            </div>-->
+          <div v-else class="separate left">
+            <div style="display:block;" class="form-group">
+              <p style="text-align: left" class="id">Front ID card</p>
+              <a style="text-align: left;font-size: 19px;float: left" :href="url" >view</a>
+            </div>
 
-<!--            <div style="display:block;" class="form-group">-->
-<!--              <p style="text-align: left;" class="id mobile">Back ID card</p>-->
-<!--              <a style="text-align: left;font-size: 19px;float: left" :href="url2" >view</a>-->
-<!--            </div>-->
-<!--          </div>-->
+            <div style="display:block;" class="form-group">
+              <p style="text-align: left;" class="id mobile">Back ID card</p>
+              <a style="text-align: left;font-size: 19px;float: left" :href="url2" >view</a>
+            </div>
+          </div>
 
 
           <div class="btn-alpha">
@@ -255,8 +255,8 @@ export default {
       this.country = this.userInfo.country;
       this.phoneNumber = this.userInfo.phoneNumber;
       this.address = this.userInfo.address;
-      // this.url = this.userInfo.frontId;
-      // this.url2 = this.userInfo.backId;
+      this.url = this.userInfo.frontId;
+      this.url2 = this.userInfo.backId;
     },
 
     updateDetails() {
