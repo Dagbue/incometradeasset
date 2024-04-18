@@ -35,11 +35,11 @@
             HOW CAN I MAKE SURE YOUR COMPANY IS A REAL AND NOT A FAKE ONE
           </summary>
           <p>
-            Assets Management Limited is officially incorporated with the UK
+            Income Trade Asset is officially incorporated with the UK
             Companies Office. verify registration: (click here)
-            <a href="https://find-and-update.company-information.service.gov.uk/company/11557864">
-              https://find-and-update.company-information.service.gov.uk/company/11557864
-            </a>
+<!--            <a href="https://find-and-update.company-information.service.gov.uk/company/11557864">-->
+<!--              https://find-and-update.company-information.service.gov.uk/company/11557864-->
+<!--            </a>-->
           </p>
         </details>
         <details>

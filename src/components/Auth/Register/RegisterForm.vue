@@ -402,6 +402,7 @@ export default {
       uploadmodel2: S3Request.prototype.uploadBase64(),
       url2: "",
       randomString: "",
+      randomString2: "",
     };
   },
 
@@ -447,7 +448,7 @@ export default {
         displayPicture: "",
         walletAddress: "",
         walletName: "",
-        twoFactorAuthenticationCode: "",
+        twoFactorAuthenticationCode: this.randomString2,
         userStatus: "unVerified",
         role: "Customer",
         country: this.model.country,
@@ -464,6 +465,16 @@ export default {
         result += characters.charAt(randomIndex);
       }
       this.randomString = result;
+    },
+
+    generateRandomString2() {
+      const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      let result = '';
+      for (let i = 0; i < 5; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+      }
+      this.randomString2 = result;
     },
 
     uploadFile() {
@@ -530,10 +541,12 @@ export default {
 
   created() {
     this.generateRandomString();
+    this.generateRandomString2();
   },
 
   mounted() {
     this.generateRandomString();
+    this.generateRandomString2();
   }
 
 }
