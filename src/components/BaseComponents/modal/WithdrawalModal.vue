@@ -14,7 +14,7 @@
           <p class="text-2">Your Request Has Been Sent For Processing!!</p>
           <p class="text-3">Kindly Note:For Faster Response you can contact support at
             <span>
-              <a href="mailto:support@incometradeasets.com" class="para-last">support@incometradeasets.com</a>
+              <a href="mailto:support@incometradeasset.com" class="para-last">support@incometradeasset.com</a>
             </span>
           </p>
         </div>
