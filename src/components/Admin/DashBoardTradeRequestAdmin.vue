@@ -172,14 +172,26 @@ export default {
           ) : this.allTrades.trades;
       return Math.ceil(filteredTrades.length / this.itemsPerPage);
     },
+
     // paginatedItems() {
-    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    //   const endIndex = startIndex + this.itemsPerPage;
-    //   return this.allTrades.trades.slice(startIndex, endIndex);
+    //   return this.allTrades.trades.filter(trade =>
+    //       Object.values(trade).some(value =>
+    //           value.toString().toLowerCase().includes(this.searchQuery.toLowerCase())
+    //       )
+    //   ).slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     // },
+    //
     // totalPages() {
-    //   return Math.ceil(this.allTrades.trades.length / this.itemsPerPage);
+    //   const filteredTradeCount = this.allTrades.trades.filter(trade =>
+    //       Object.values(trade).some(value =>
+    //           value.toString().toLowerCase().includes(this.searchQuery.toLowerCase())
+    //       )
+    //   ).length;
+    //   return Math.ceil(filteredTradeCount / this.itemsPerPage);
     // },
+
+
+
     allTrades() {
       return StoreUtils.rootGetters(StoreUtils.getters.trade.getAllTrade)
     },

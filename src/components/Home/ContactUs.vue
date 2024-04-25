@@ -12,7 +12,7 @@
       </div>
       <div class="seperate mobile">
         <i class='bx bxs-home' ></i>&nbsp;&nbsp;
-      <p class="download-sub">Suite 1 2 Station Court, Townmead Road Fulham, London, SW6 2PY</p>
+      <p class="download-sub">71-75 Uxbridge Road, London, England, W5 5SL</p>
       </div>
       <div class="app-store-container">
       </div>
@@ -44,7 +44,7 @@ export default {
   border-radius: 10px;
 }
 .download-app-intro{
-  padding-top: 20px;
+  padding-top: 55px;
 }
 
 
@@ -62,7 +62,7 @@ export default {
 
 i{
   padding-top: 1.5%;
-  font-size: 25px;
+  font-size: 26px;
   color: #fff;
 }
 
@@ -71,7 +71,6 @@ i{
   font-size:18px;
   line-height: 28px;
   padding-top: 1.5%;
-  width: 75%;
 }
 
 img{

@@ -4,15 +4,26 @@
       <img src="@/assets/successcheck.svg" alt="fether">
     </div>
 
-    <div class="text-area">
-      <h3>Login success🥳</h3>
-      <p>You have successfully Logged in to your<br/>
-        Income Trade Asset account</p>
-    </div>
+    <form @submit.prevent="signIn">
 
-    <div class="submit">
-      <button class="submit-btn"  @click="signIn">Proceed to DashBoard</button>
-    </div>
+      <div class="text-area">
+        <h3>Login success🥳</h3>
+        <p>You have successfully Logged in to your<br/>
+          Income Trade Asset account</p>
+      </div>
+
+      <div class="submit">
+        <!--      <button class="submit-btn"  @click="signIn">Proceed to DashBoard</button>-->
+        <base-button
+            :loading="loading"
+            style="
+                    width: 400px;"
+        >
+          Proceed to DashBoard
+        </base-button>
+      </div>
+
+    </form>
 
   </div>
 </template>
@@ -23,20 +34,22 @@ import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
 import router from "@/router";
 import axios from "axios";
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 
 
 export default {
   name: "SignInSuccess",
+  components: {BaseButton},
   data() {
     return {
       userId: "",
       userInfo: "",
       bitcoinRate: null,
+      loading: "false"
     };
   },
   computed:{
     ...mapState({
-      loading: state => state.auth.loading,
       auth: state => state.auth,
     }),
     userDetails() {
@@ -70,12 +83,29 @@ export default {
     },
 
     fetchBitcoinRate() {
+      // Set loading to true when the request starts
+      this.loading = true;
+
       axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
           .then(response => {
             this.bitcoinRate = response.data.bpi.USD.rate_float;
+            // Set loading to false when the data is successfully fetched
+            this.loading = false;
           })
-          .catch(error => console.error(error));
-    },
+          .catch(error => {
+            console.error(error);
+            // Set loading to false also if there is an error
+            this.loading = false;
+          });
+    }
+
+    // fetchBitcoinRate() {
+    //   axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+    //       .then(response => {
+    //         this.bitcoinRate = response.data.bpi.USD.rate_float;
+    //       })
+    //       .catch(error => console.error(error));
+    // },
   },
   created() {
     this.fetchBitcoinRate()
