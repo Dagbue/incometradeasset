@@ -1237,10 +1237,25 @@ export default {
       await StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
         userId: localStorage.getItem('userId'),
       });
+      this.clearForm();
       this.getCurrentDate();
       this.getCurrentDateTime();
       this.generateRandomString();
       this.generateRandomString2();
+    },
+
+    clearForm(){
+      this.tradeTime = "";
+      this.symbolTraded = "";
+      this.amountTrade = "";
+      this.expectedPayout = "";
+      this.leverage = "";
+      this.endPrice = "";
+      this.marketType = "";
+      this.endTime = "";
+      this.tradeStatus = "";
+      this.tradeReference = "";
+      this.tradeType = "";
     },
 
     getCurrentDate() {
@@ -1252,8 +1267,6 @@ export default {
       // Save the formatted date to the data property
       this.currentDate2 = formattedDate;
     },
-
-
     getCurrentDateTime() {
       const today = new Date();
 
@@ -1263,7 +1276,6 @@ export default {
       // Save the formatted date and time to the data property
       this.currentDate = formattedDateTime;
     },
-
     generateRandomString() {
       const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
       let result = '';
@@ -1273,7 +1285,6 @@ export default {
       }
       this.randomString = result;
     },
-
     generateRandomString2() {
       const characters = '0123456789';
       let result = '';

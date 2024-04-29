@@ -16,8 +16,7 @@
         <!--      <button class="submit-btn"  @click="signIn">Proceed to DashBoard</button>-->
         <base-button
             :loading="loading"
-            style="
-                    width: 400px;"
+            style="width: 400px;"
         >
           Proceed to DashBoard
         </base-button>
