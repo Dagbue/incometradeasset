@@ -180,6 +180,7 @@
                 <!--              </div>-->
               </div>
             </li>
+
             <li class="link" @click="toggleMobileNav2">
               <router-link  to="/login" class="auth-2">Login</router-link>
             </li>
