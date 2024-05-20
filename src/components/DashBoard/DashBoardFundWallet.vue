@@ -66,6 +66,7 @@
                 v-model="depositMethod"
                 aria-required="required"
                 data-name="Field"
+                @change="getList"
             >
               <option selected disabled value="">Deposit Method List</option>
               <!--              <option :value="null" disabled>Select Digital Currency</option>-->
@@ -74,6 +75,47 @@
               <option value="BankTransfer">Bank Transfer</option>
             </select>
           </div>
+
+
+          <p v-if="this.depositMethod === 'Bitcoin' || this.depositMethod === 'Ethereum' ||  this.depositMethod === 'BankTransfer'"
+             class="text-3">Transfer desired amount to the details displayed below and have your balance funded</p>
+
+
+          <div>
+            <div v-if="this.depositMethod === 'Bitcoin' ">
+              <p class="text-4">Wallet Name : {{depositMethod}}</p>
+              <p class="text-5">Wallet Address : {{this.bitcoinAddress}}</p>
+            </div>
+
+            <div v-if="this.depositMethod === 'Ethereum' ">
+              <p class="text-4">Wallet Name : {{depositMethod}}</p>
+              <p class="text-5">Wallet Address : {{this.ethereumAddress}}</p>
+            </div>
+
+            <div v-if="this.depositMethod === 'BankTransfer' ">
+              <p class="text-4">Bank Name : {{this.bankName}}</p>
+              <p class="text-5">Bank Address : {{this.accountNumber}}</p>
+              <p class="text-5">Bank Routing Number : {{this.routingNumber}}</p>
+            </div>
+
+            <div v-if="this.depositMethod === 'Bitcoin' " class="qr-code">
+              <vue-qrcode :value="bitcoinAddress"></vue-qrcode>
+            </div>
+
+            <div v-if="this.depositMethod === 'Ethereum'" class="qr-code">
+              <vue-qrcode :value="ethereumAddress"></vue-qrcode>
+            </div>
+          </div>
+          <br/>
+
+          <p v-if="this.depositMethod === 'Bitcoin' || this.depositMethod === 'Ethereum' ||  this.depositMethod === 'BankTransfer'"
+              class="text-3">Note: After making your deposit,kindly send a screenshot/proof of deposit to
+            <span class="note-span">
+              <a style="color: rgba(219,101,123,0.6);" href="mailto:support@incometradeasets.com" class="para-last">support@incometradeasets.com</a>
+            </span> for documentation and to boost the funding process
+          </p>
+
+
 
           <div class="interac-funding-steps">
             <div class="margin-bottom margin-small">
@@ -113,7 +155,7 @@
                 <div class="setup-title-wrapper"><img src="@/assets/bank.svg" loading="lazy" alt="">
                   <div class="setup-title">
                     <div class="text-block-51">
-                      Click Proceed to begin transactions
+                      Click Proceed to Process transactions
                       <!--                    <strong>payment@rubieswire.com</strong>-->
                     </div>
                   </div>
@@ -127,13 +169,13 @@
 
         <div class="margin-top margin-medium">
           <div class="payment-email-wrapper">
-            <div class="payment-email">
-<!--              <div  class="text-block-62"></div>-->
-              <div style="font-size: 15px;"  class="text-block-61">Selected Method :
-                <span style="padding-left: 10px;">{{depositMethod}}</span>
-              </div>
-              <!--          <div class="text-block-62">Selected Currency would be displayed here</div>-->
-            </div>
+<!--            <div class="payment-email">-->
+<!--&lt;!&ndash;              <div  class="text-block-62"></div>&ndash;&gt;-->
+<!--              <div style="font-size: 15px;"  class="text-block-61">Selected Method :-->
+<!--                <span style="padding-left: 10px;">{{depositMethod}}</span>-->
+<!--              </div>-->
+<!--              &lt;!&ndash;          <div class="text-block-62">Selected Currency would be displayed here</div>&ndash;&gt;-->
+<!--            </div>-->
             <div class="copy-button">
 <!--              <p  class="button">Proceed</p>-->
               <base-button
@@ -141,7 +183,7 @@
                     border: 0.5px solid #5d78ff;
                     background-color: #5d78ff;"
                   class="button"
-                  :loading="loading"
+                  :loading="loading || loading2"
               >Proceed</base-button>
             </div>
           </div>
@@ -164,17 +206,24 @@ import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import DepositRequest from "@/model/request/DepositRequest";
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
+import VueQrcode from '@xkeshi/vue-qrcode';
+import Swal from "sweetalert2";
 
 
 export default {
   name: "DashBoardFundWallet",
   components: {
     BaseButton,
-    FundWalletModal
+    FundWalletModal,
+    VueQrcode // Register the component
   },
   computed:{
+    readPaymentWalletById() {
+      return StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+    },
     ...mapState({
       loading: state => state.deposit.loading,
+      loading2: state => state.paymentWallet.loading,
       auth: state => state.auth,
     }),
   },
@@ -192,7 +241,12 @@ export default {
       ],
       userId: "",
       userInfo: "",
-      randomString: ""
+      randomString: "",
+      accountNumber: '',
+      bankName: '',
+      bitcoinAddress: '',
+      ethereumAddress: '',
+      routingNumber: '',
     };
   },
   methods: {
@@ -211,12 +265,18 @@ export default {
         depositStatus: "pending",
         additionalComment : this.model.additionalComment
       })
-      await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-        walletId: 1,
-      })
-      StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
-      this.selectedItem = this.depositMethod;
-      this.dialogIsVisible = true;
+      // await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+      //   walletId: 1,
+      // })
+      // StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+      // this.selectedItem = this.depositMethod;
+      // this.dialogIsVisible = true;
+      await Swal.fire({
+        icon: 'success',
+        title: 'Pending',
+        text: 'Deposit Request Pending',
+      });
+      await router.push('/over-view')
     },
 
     generateRandomString() {
@@ -227,12 +287,40 @@ export default {
         result += characters.charAt(randomIndex);
       }
       this.randomString = result;
+    },
+
+    populateForm() {
+      this.bitcoinAddress = this.readPaymentWalletById.paymentWallet.bitcoinAddress;
+      this.ethereumAddress = this.readPaymentWalletById.paymentWallet.ethereumAddress;
+      this.bankName = this.readPaymentWalletById.paymentWallet.bankName;
+      this.accountNumber = this.readPaymentWalletById.paymentWallet.accountNumber;
+      this.routingNumber = this.readPaymentWalletById.paymentWallet.routingNumber;
+    },
+
+    async getList() {
+      await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+        walletId: 1,
+      });
+
+      await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+      await this.populateForm();
     }
+
+
 
   },
 
   created() {
+    this.generateRandomString()
+    this.populateForm()
+
+    StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+      walletId: 1,
+    })
+    StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
+
     this.userId = localStorage.getItem('userId')
+
 
     // Retrieve the object from local storage
     const storedObject = localStorage.getItem('userInfo');
@@ -244,6 +332,12 @@ export default {
 
   mounted() {
     this.generateRandomString()
+    this.populateForm()
+
+    StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
+      walletId: 1,
+    })
+    StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
 
     this.userId = localStorage.getItem('userId')
 
@@ -435,7 +529,7 @@ option{
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: right;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -479,6 +573,34 @@ hr {
   border-top: 1px solid #ffffff;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.text-3{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6c757d;
+  padding-top: 1.5%;
+  padding-bottom: 2%;
+}
+
+.text-4{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  padding-top: 3%;
+  padding-bottom: 1%;
+}
+
+.text-5{
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #ffffff;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  word-wrap: break-word; /* or overflow-wrap: break-word; */
 }
 
 @media (max-width: 700px) {
