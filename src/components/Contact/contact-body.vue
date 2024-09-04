@@ -11,10 +11,10 @@
         </p>
         <h2 class="contact-text-header-3">Headquarters</h2>
         <p class="contact-text-para-2">
-          71-75 Uxbridge Road, London, England, W5 5SL
+          3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001
         </p>
-<!--        <p class="contact-text-para-3">Telephone: +1 (510) 256-9690</p>-->
-        <p class="contact-text-para-4">E-mail: support@incometradeasset.com</p>
+        <p class="contact-text-para-3">Telephone: +1 (561) 437-0598</p>
+        <p class="contact-text-para-4">E-mail: support@coinmatrixinvestment.com</p>
       </div>
 
       <div id="contact-form" class="contact-form">

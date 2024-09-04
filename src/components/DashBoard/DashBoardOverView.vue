@@ -1097,7 +1097,6 @@ export default {
       tradeTime: "",
       tradeType: "",
       leverage: "",
-
       dollars: 0,
       bitcoin: null,
       // bitcoinRate: null,

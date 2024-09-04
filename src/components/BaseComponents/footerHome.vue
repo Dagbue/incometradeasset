@@ -12,14 +12,13 @@
           <div class="footer-link-container">
             <h3 class="footer-title">About Us</h3>
             <p class="footer-link width">
-              Established on September 7, 2018, Income Trade Assets has its headquarters at 71-75 Uxbridge Road,
-              London, England, with the official registration under company number 11557864. Our company takes pride
-              in being a trusted and innovative digital asset trading platform tailored for a global clientele,
-              leveraging the cutting-edge technology of Bittrex. We are committed to delivering a secure and reliable
-              platform that offers advanced solutions in various financial domains, including Financial Administration,
-              Risk Management, Investment Services, and Return Provisioning. Our mission is to empower our
-              international customers with state-of-the-art tools and expertise for successful trading
-              and financial management.
+              Founded on September 7, 2018, Coin Matrix Investment is headquartered at 3902 W VALLEY #206 AUBURN DC, WASHINGTON,
+              WA 98001, and holds official registration under company number 11557864. Renowned as a trusted and forward-thinking
+              digital asset trading platform, our company caters to a global clientele, utilizing the cutting-edge technology of
+              Bittrex. We take pride in delivering a secure and reliable platform that offers advanced solutions across various
+              financial domains, including Financial Administration, Risk Management, Investment Services, and Return Provisioning.
+              Our overarching mission is to empower our international customers with state-of-the-art tools and expertise,
+              facilitating successful crypto trading and financial management.
             </p>
           </div>
 
@@ -36,22 +35,22 @@
           <div class=" stay-connected">
             <h3 class="footer-title">Stay connected</h3>
             <div class="socials-container">
-<!--              <div class="social-logo">-->
-<!--                <div class="last-div">-->
-<!--                  <i class='bx bxs-phone' ></i>-->
-<!--                  <p class="last-div-para"><a href="https://wa.me/15102569690?text="  target="_blank">+1 (510) 256-9690</a></p>-->
-<!--                </div>-->
-<!--              </div>-->
+              <div class="social-logo">
+                <div class="last-div">
+                  <i class='bx bxs-phone' ></i>
+                  <p class="last-div-para"><a href="https://wa.me/15614370598?text="  target="_blank">+1 (561) 437-0598</a></p>
+                </div>
+              </div>
               <div class="social-logo">
                 <div class="last-div">
                   <i class='bx bxs-map' ></i>
-                  <p class="last-div-para">71-75 Uxbridge Road, London, England, W5 5SL</p>
+                  <p class="last-div-para">3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001</p>
                 </div>
               </div>
               <div class="social-logo">
                 <div class="last-div">
                   <i class='bx bx-mail-send' style='color:#ffffff'></i>
-                  <p class="last-div-para"><a href="mailto:support@incometradeasset.com">support@incometradeasset.com</a></p>
+                  <p class="last-div-para"><a href="mailto:support@coinmatrixinvestment.com">support@coinmatrixinvestment.com</a></p>
                 </div>
               </div>
             </div>
@@ -69,8 +68,8 @@
       </div>
       <hr/>
       <div class="copyright">
-        <p>Income Trade Assets.com Trading LLC is part of Income Trade Assets.com Group of companies with broker entities
-          that are authorised and regulated across multiple jurisdictions. Income Trade Assets.com Trading LLC has it's
+        <p>Coin Matrix Investment Trading LLC is part of Coin Matrix Investment.com Group of companies with broker entities
+          that are authorised and regulated across multiple jurisdictions. Coin Matrix Investment.com Trading LLC has it's
           business address at United States.</p>
         <br/>
         <p>The objects of the Company are all subject matters not forbidden by International Business Companies
@@ -104,8 +103,8 @@
 
       </div>
       <div class="copyright">
-        <p>ITA Markets is, depending on the context, a reference to ITA Markets Germany GmbH, ITA Markets UK plc or
-          ITA Spreadbet plc. ITA Markets Germany GmbH is a company licensed and regulated by the Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin) under registration number 154814. ITA Markets UK Plc and ITA Spreadbet plc are registered in the Register of Companies of the Financial Conduct Authority under registration numbers 173730 and 170627.</p>
+        <p>CMI Markets is, depending on the context, a reference to CMI Markets Germany GmbH, CMI Markets UK plc or
+          CMI Spreadbet plc. CMI Markets Germany GmbH is a company licensed and regulated by the Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin) under registration number 154814. CMI Markets UK Plc and CMI Spreadbet plc are registered in the Register of Companies of the Financial Conduct Authority under registration numbers 173730 and 170627.</p>
         <br/>
         <p>Telephone calls and online chat conversations may be recorded and monitored. Apple, iPad, and iPhone
           are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of
@@ -116,7 +115,7 @@
       </div>
       <hr/>
       <div class="copyright">
-        <p>All rights reserved. Copyright © 2015 - 2024</p>
+        <p>All rights reserved. Copyright © 2024</p>
       </div>
     </div>
   </div>
@@ -245,7 +244,6 @@ a {
 }
 a:hover{
   color: #ffffff;
-  //font-size: 22px;
   font-weight: 700;
 }
 
@@ -266,6 +264,7 @@ a:hover{
   padding-left: 10px;
   line-height: 1.3;
   color: #ffffff;
+  width: 80%;
 }
 .footer-title{
   color: #ffffff;

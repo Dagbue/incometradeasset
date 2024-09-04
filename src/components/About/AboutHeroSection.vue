@@ -4,7 +4,7 @@
     <main>
 
       <div class="main-intro">
-    <h1> Why choose <br> Income Trade <br> Asset </h1>
+    <h1> Why choose <br> Coin Matrix <br> Investment </h1>
     <p> Maximize your trading success with our superior, <br> market conditions, offering you the optimal <br> advantage for financial excellence.</p>
     <p class="btn">Register</p>
   </div>

@@ -1,13 +1,13 @@
 <template>
   <div class="alpha">
 
-    <p class="section-header-1">What is Income Trade Asset Know more about us</p>
+    <p class="section-header-1">What is Coin Matrix Investment Know more about us</p>
     <p class="section-header">An award winning Stock and Commodities Broker</p>
 
-    <p class="text-1">Income Trade Asset is an award-winning broker for stocks and commodities, catering to both
+    <p class="text-1">Coin Matrix Investment is an award-winning broker for stocks and commodities, catering to both
       retail and institutional clients. It offers optimal trading conditions, supporting scalpers and users of
-      expert advisors without limiting access to liquidity. This has made it a preferred broker globally. Income
-      Trade Asset emphasizes on equipping its clients with advanced trading tools across various markets. It provides
+      expert advisors without limiting access to liquidity. This has made it a preferred broker globally. Coin Matrix
+      Investment emphasizes on equipping its clients with advanced trading tools across various markets. It provides
       the MetaTrader 4 and MetaTrader 5 platforms, accommodating both new and experienced derivative traders with
       competitive spreads and exceptional multi-lingual support. Additionally, it enables flexible trading in Forex,
       CFDs, Cryptocurrencies, Commodities, Indices, and Binary Options through these platforms.</p>
@@ -91,14 +91,14 @@ export default {
 }
 
 .btn-1:hover{
-  background: #ffcf01;
-  border: 1.5px solid #ffcf01;
+  background: #ccaa16;
+  border: 1.5px solid #ccaa16;
   color: #ffffff;
 }
 
 .btn-2{
-  background: #ffcf01;
-  border: 1.5px solid #ffcf01;
+  background: #ccaa16;
+  border: 1.5px solid #ccaa16;
   color: #ffffff;
   padding: 10px 25px;
   margin-right: 3%;

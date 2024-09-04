@@ -9,10 +9,10 @@
       <section>
         <details>
           <summary>
-            WHAT IS INCOME TRADE ASSET
+            WHAT IS COIN MATRIX INVESTMENT
           </summary>
           <p>
-            Income Trade Asset is an officially registered company and conducts
+            Coin Matrix Investment is an officially registered company and conducts
             business under the laws of the UK Government. The company is involved
             in Stocks, options CFD , Forex and crypto. Also trading other valuable
             commodities/assets which we offer to our clients to earn from using a
@@ -35,7 +35,7 @@
             HOW CAN I MAKE SURE YOUR COMPANY IS A REAL AND NOT A FAKE ONE
           </summary>
           <p>
-            Income Trade Asset is officially incorporated with the UK
+            Coin Matrix Investment is officially incorporated with the USA
             Companies Office. verify registration: (click here)
 <!--            <a href="https://find-and-update.company-information.service.gov.uk/company/11557864">-->
 <!--              https://find-and-update.company-information.service.gov.uk/company/11557864-->

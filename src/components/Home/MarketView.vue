@@ -58,7 +58,7 @@ export default {
 .header-select{
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -77,8 +77,8 @@ export default {
   transition: all 0.25s ease;
 }
 .btn:hover{
-  background-color: #ffcf01;
-  border: 1px solid #ffcf01;
+  background-color: #ccaa16;
+  border: 1px solid #ccaa16;
   color: #FFFFFF;
 }
 
@@ -87,21 +87,23 @@ export default {
   text-align: center;
   color: #071333;
   padding-bottom: 15px;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-2{
   font-size: 16px;
   text-align: center;
   color: #0f171c;
-  padding-bottom: 4%;
-}
-
-.header{
+  padding-bottom: 2%;
   width: 60%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 
 @media (max-width: 990px) {
 

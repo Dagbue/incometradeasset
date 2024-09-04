@@ -8,10 +8,10 @@
       <section>
         <details>
           <summary>
-            WHAT IS INCOME TRADE ASSET
+            WHAT IS COIN MATRIX INVESTMENT
           </summary>
           <p>
-            Income Trade Asset is an officially registered company and conducts
+            Coin Matrix Investment is an officially registered company and conducts
             business under the laws of the UK Government. The company is involved
             in Stocks, options CFD , Forex and crypto. Also trading other valuable
             commodities/assets which we offer to our clients to earn from using a
@@ -34,11 +34,11 @@
             HOW CAN I MAKE SURE YOUR COMPANY IS A REAL AND NOT A FAKE ONE
           </summary>
           <p>
-            Assets Management Limited is officially incorporated with the UK
+            Coin Matrix Investment is officially incorporated with the USA
             Companies Office. verify registration: (click here)
-            <a href="https://find-and-update.company-information.service.gov.uk/company/11557864">
-              https://find-and-update.company-information.service.gov.uk/company/11557864
-            </a>
+<!--            <a href="https://find-and-update.company-information.service.gov.uk/company/11557864">-->
+<!--              https://find-and-update.company-information.service.gov.uk/company/11557864-->
+<!--            </a>-->
           </p>
         </details>
         <details>
@@ -78,7 +78,7 @@
             What are instant deposits and withdrawals?
           </summary>
           <p>
-            he term “instant” indicates that a transaction will be carried out within a few seconds without manual
+            The term “instant” indicates that a transaction will be carried out within a few seconds without manual
             processing by our financial department specialists. Please note that although it's instantly processed
             on our side, your deposit or withdrawal requests may take some time to be processed on the payment
             system provider's side.
@@ -86,10 +86,10 @@
         </details>
         <details>
           <summary>
-            How long do ITA withdrawals take via bank card?
+            How long do CMI withdrawals take via bank card?
           </summary>
           <p>
-            On ITA' side all withdrawal requests are processed instantly. Your withdrawal request is then sent to
+            On CMI' side all withdrawal requests are processed instantly. Your withdrawal request is then sent to
             our card processors and your bank, and the whole process can take from 1 to 30 business days for the funds
             to be reflected in your bank account depending on the bank and country you are located in.
           </p>
@@ -139,10 +139,10 @@
       <section>
         <details>
           <summary>
-            Is ITA PCI DSS compliant?
+            Is CMI PCI DSS compliant?
           </summary>
           <p>
-            ITA is independently audited and meets all PCI DSS (Payment Card Industry Data Security Standard)
+            CMI is independently audited and meets all PCI DSS (Payment Card Industry Data Security Standard)
             requirements for secure payments. This includes efficient data management, bespoke security with providers,
             data encryption, network monitoring, and regular vulnerability scans, safeguarding users against potential
             data breaches and fraud during bank card transactions.
@@ -152,7 +152,7 @@
           <summary>
             What security types are available?
           </summary>
-          <p>ITA accounts offer several security types to verify the identity of the account owner and protect
+          <p>CMI accounts offer several security types to verify the identity of the account owner and protect
             sensitive information. These security types include phone, email, and TOTP
             (available only in certain countries). Each account action requires a six-digit code, sent to the chosen
             security type, to be entered for confirmation. Only one security type can be active at a time, but changes
@@ -167,10 +167,10 @@
           </summary>
           <p>
             Be mindful while engaging in secure trading. Guard against fraud by not sharing sensitive details like
-            passwords, IDs, or ITA security types. ITA reps never ask for such info via text, email, or social
-            media. Don't leave your Personal Area unattended, carry out ITA activities outside the Personal Area,
+            passwords, IDs, or CMI security types. CMI reps never ask for such info via text, email, or social
+            media. Don't leave your Personal Area unattended, carry out CMI activities outside the Personal Area,
             or transfer funds to unknown accounts. Beware of unknown links and don't share passwords. If you suspect
-            fraud, contact ITA immediately via live chat or email. Be cautious of unexpected ITA messages; when
+            fraud, contact CMI immediately via live chat or email. Be cautious of unexpected CMI messages; when
             in doubt, reach out to support. If you've unintentionally shared private information, change your password
             immediately.
           </p>
@@ -188,10 +188,10 @@
 <!--      <section>-->
 <!--        <details>-->
 <!--          <summary>-->
-<!--            Is ITA PCI DSS compliant?-->
+<!--            Is CMI PCI DSS compliant?-->
 <!--          </summary>-->
 <!--          <p>-->
-<!--            ITA is independently audited and meets all PCI DSS (Payment Card Industry Data Security Standard)-->
+<!--            CMI is independently audited and meets all PCI DSS (Payment Card Industry Data Security Standard)-->
 <!--            requirements for secure payments. This includes efficient data management, bespoke security with providers,-->
 <!--            data encryption, network monitoring, and regular vulnerability scans, safeguarding users against potential-->
 <!--            data breaches and fraud during bank card transactions.-->
@@ -201,7 +201,7 @@
 <!--          <summary>-->
 <!--            What security types are available?-->
 <!--          </summary>-->
-<!--          <p>ITA accounts offer several security types to verify the identity of the account owner and protect-->
+<!--          <p>CMI accounts offer several security types to verify the identity of the account owner and protect-->
 <!--            sensitive information. These security types include phone, email, and TOTP-->
 <!--            (available only in certain countries). Each account action requires a six-digit code, sent to the chosen-->
 <!--            security type, to be entered for confirmation. Only one security type can be active at a time, but changes-->
@@ -216,10 +216,10 @@
 <!--          </summary>-->
 <!--          <p>-->
 <!--            Be mindful while engaging in secure trading. Guard against fraud by not sharing sensitive details like-->
-<!--            passwords, IDs, or ITA security types. ITA reps never ask for such info via text, email, or social-->
-<!--            media. Don't leave your Personal Area unattended, carry out ITA activities outside the Personal Area,-->
+<!--            passwords, IDs, or CMI security types. CMI reps never ask for such info via text, email, or social-->
+<!--            media. Don't leave your Personal Area unattended, carry out CMI activities outside the Personal Area,-->
 <!--            or transfer funds to unknown accounts. Beware of unknown links and don't share passwords. If you suspect-->
-<!--            fraud, contact ITA immediately via live chat or email. Be cautious of unexpected ITA messages; when-->
+<!--            fraud, contact CMI immediately via live chat or email. Be cautious of unexpected CMI messages; when-->
 <!--            in doubt, reach out to support. If you've unintentionally shared private information, change your password-->
 <!--            immediately.-->
 <!--          </p>-->

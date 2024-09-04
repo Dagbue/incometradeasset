@@ -1,7 +1,7 @@
 <template>
   <div class="alpha">
     <p class="section-header-1">There’s a time and a place for risk</p>
-    <p class="section-header">Your funds and data are always secure. With Income Trade Asset you’re protected
+    <p class="section-header">Your funds and data are always secure. With Coin Matrix Investment you’re protected
       by industry-leading protocols.</p>
 
 

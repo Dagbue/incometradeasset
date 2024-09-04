@@ -1,6 +1,5 @@
 <template>
-  <div class="alpha">
-        <div class="tables">
+  <div class="tables">
           <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
 <!--            <div class="tradingview-widget-copyright">-->
@@ -10,7 +9,6 @@
 <!--            </div>-->
         </div>
         </div>
-  </div>
 </template>
 
 <script>
@@ -39,7 +37,8 @@ export default {
 
 <style scoped>
 .tables{
-  margin-left: 7%;
-  margin-right: 7%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1%;
 }
 </style>

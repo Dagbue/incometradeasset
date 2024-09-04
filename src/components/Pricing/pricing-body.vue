@@ -3,14 +3,13 @@
 
   <div class="section-alpha-1">
     <p class="section-header-1">Choose an Investment Plan</p>
-    <p class="section-header">You don't have an account yet? start trading with Income Trade
-      Assets. </p>
+    <p class="section-header">You don't have an account yet? start trading with Coin Matrix Investment. </p>
   </div>
 
   <div class="section-alpha">
 
     <div class="third-section top">
-      <p class="text-1">ECN</p>
+      <p class="text-1">Basic</p>
       <p class="text-2">10<span class="text-2-inner">%</span></p>
       <!--        <p class="text-2">4 Months</p>-->
       <p class="text-3">4 Months</p>
@@ -20,7 +19,7 @@
       </div>
 
       <div class="separate">
-        <p>$30,000 MINIMUM DEPOSIT</p>
+        <p>$500 MINIMUM DEPOSIT</p>
         <i class='bx bxs-info-circle'></i>
       </div>
 
@@ -46,7 +45,7 @@
     </div>
 
     <div class="third-section top">
-      <p class="text-1">Fix API</p>
+      <p class="text-1">Standard</p>
       <p class="text-2">20<span class="text-2-inner">%</span></p>
       <!--        <p class="text-2">4 Months</p>-->
       <p class="text-3">8 Months</p>
@@ -56,7 +55,7 @@
       </div>
 
       <div class="separate">
-        <p>$50,000 MINIMUM DEPOSIT</p>
+        <p>$10,000 MINIMUM DEPOSIT</p>
         <i class='bx bxs-info-circle'></i>
       </div>
 
@@ -82,7 +81,7 @@
     </div>
 
     <div class="third-section top">
-      <p class="text-1">Standard</p>
+      <p class="text-1">Premium</p>
       <p class="text-2">30<span class="text-2-inner">%</span></p>
       <!--        <p class="text-2">4 Months</p>-->
       <p class="text-3">12 Months</p>
@@ -92,7 +91,7 @@
       </div>
 
       <div class="separate">
-        <p>$1,000 MINIMUM DEPOSIT</p>
+        <p>$50,000 MINIMUM DEPOSIT</p>
         <i class='bx bxs-info-circle'></i>
       </div>
 
@@ -117,41 +116,41 @@
       </div>
     </div>
 
-    <div class="third-section top">
-      <p class="text-1">Premium</p>
-      <p class="text-2">30<span class="text-2-inner">%</span></p>
-      <!--        <p class="text-2">4 Months</p>-->
-      <p class="text-3">24 Months</p>
+<!--    <div class="third-section top">-->
+<!--      <p class="text-1">Premium</p>-->
+<!--      <p class="text-2">30<span class="text-2-inner">%</span></p>-->
+<!--      &lt;!&ndash;        <p class="text-2">4 Months</p>&ndash;&gt;-->
+<!--      <p class="text-3">24 Months</p>-->
 
-      <div class="btn" >
-        <p>Invest Now</p>
-      </div>
+<!--      <div class="btn" >-->
+<!--        <p>Invest Now</p>-->
+<!--      </div>-->
 
-      <div class="separate">
-        <p>$5,000 MINIMUM DEPOSIT</p>
-        <i class='bx bxs-info-circle'></i>
-      </div>
+<!--      <div class="separate">-->
+<!--        <p>$5,000 MINIMUM DEPOSIT</p>-->
+<!--        <i class='bx bxs-info-circle'></i>-->
+<!--      </div>-->
 
-      <div class="separate">
-        <p>ENHANCED SECURITY</p>
-        <i class='bx bxs-info-circle'></i>
-      </div>
+<!--      <div class="separate">-->
+<!--        <p>ENHANCED SECURITY</p>-->
+<!--        <i class='bx bxs-info-circle'></i>-->
+<!--      </div>-->
 
-      <div class="separate">
-        <p>1.8% DAILY</p>
-        <i class='bx bxs-info-circle'></i>
-      </div>
+<!--      <div class="separate">-->
+<!--        <p>1.8% DAILY</p>-->
+<!--        <i class='bx bxs-info-circle'></i>-->
+<!--      </div>-->
 
-      <div class="separate">
-        <p>GUARANTEED ROI</p>
-        <i class='bx bxs-info-circle'></i>
-      </div>
+<!--      <div class="separate">-->
+<!--        <p>GUARANTEED ROI</p>-->
+<!--        <i class='bx bxs-info-circle'></i>-->
+<!--      </div>-->
 
-      <div class="separate">
-        <p>24/7 SUPPORT</p>
-        <i class='bx bxs-info-circle'></i>
-      </div>
-    </div>
+<!--      <div class="separate">-->
+<!--        <p>24/7 SUPPORT</p>-->
+<!--        <i class='bx bxs-info-circle'></i>-->
+<!--      </div>-->
+<!--    </div>-->
 
   </div>
 
@@ -267,9 +266,9 @@ export default {
 }
 
 .btn p:hover{
-  background-color: #ffcf01;
+  background-color: #ccaa16;
   color: #ffffff;
-  border: 1px solid #ffcf01;
+  border: 1px solid #ccaa16;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);

@@ -7,7 +7,7 @@
             <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
           </router-link>
           <h2>
-            Create New Income Trade Asset Account
+            Create New Coin Matrix Investment Account
           </h2>
 <!--          <p>-->
 <!--            NB: Investors are not allowed to keep their trade account dormant 2-->
@@ -342,7 +342,7 @@
                   required
               />
               <label for="remember-me" class="checkbox-text"
-              >I Agree to Income Trade Assets
+              >I Agree to Coin Matrix Investment's
                 <a  class="terms" @click="showDialog">Terms And Conditions</a></label
               >
             </div>
@@ -556,24 +556,14 @@ export default {
 form {
   margin: 0 auto;
   max-width: 50rem;
-  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
-//box-shadow:  30px 30px 100px #bebebe,
-//-50px -50px 100px #ffffff;
-//padding: 2rem;
-//background-color: #ffffff;
 }
 
 .alpha{
-//background-color: #F6F6F7;
-//background-image: url(https://www.interactivebrokers.com/images/web/why-ibkr-global-market-access-background.png), linear-gradient(#F6F6F7 17.14%, #DFE2E7 95.69%);
-//background-repeat: no-repeat;
-//background-size: 60%, cover;
-//background-position: bottom right, top left;
-//padding-bottom: 8.5%;
+
 }
 
 .company-logo{
-  width: 23%;
+  width: 28%;
   margin-top: 4%;
 }
 
@@ -596,7 +586,6 @@ form {
 }
 
 .wrapper {
-//padding: 50px 25px 0;
   max-width: 800px;
   width: 100%;
   margin: auto;
@@ -746,7 +735,6 @@ form {
 .checkbox-text {
   padding-left: 8px;
   font-size: 14px;
-  color: #818a91;
 }
 
 .forgot-password {
@@ -785,7 +773,7 @@ form {
 
 .create-link {
   padding-left: 5px;
-  text-decoration: none;
+  text-decoration: underline;
   color: #D23535;
 }
 
@@ -860,7 +848,6 @@ input::placeholder {
 
 .terms{
   color: #D23535;
-  opacity: 0.5;
   text-decoration: underline;
 }
 

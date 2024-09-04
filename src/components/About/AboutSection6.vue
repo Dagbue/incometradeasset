@@ -1,7 +1,7 @@
 <template>
   <div class="section-alpha">
 
-    <p class="section-header-1">Why Income Trade Asset</p>
+    <p class="section-header-1">Why Coin Matrix Investment</p>
     <p class="section-header">We believe in fair trading and offer better-than-market conditions for all.</p>
     <div class="section-content">
 
@@ -10,17 +10,19 @@
           <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/instant_withdrawals_96c97dca73.svg" class="about-image" alt="assets-image"/>
           <h3>Instant withdrawals</h3>
           <p>Remain in control of your funds. Simply choose your preferred payment method, make a withdrawal
-            request, and enjoy instant automatic approval.*</p>
+            request, and enjoy instant automatic approval.</p>
         </div>
         <div class="box">
           <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/exness_fast_execution_57c7f263d9.svg" class="about-image" alt="assets-image"/>
           <h3>Ultra-fast execution</h3>
-          <p>Stay ahead of trends with lightning-fast execution. Get your orders executed in milliseconds on all available platforms at Income Trade Asset.</p>
+          <p>Stay ahead of trends with lightning-fast execution. Get your orders executed in milliseconds on all
+            available platforms at Income Trade Asset.</p>
         </div>
         <div class="box">
           <img src="https://d33vw3iu5hs0zi.cloudfront.net/media/exness_stop_out_protection_3058b9de65.svg" class="about-image" alt="assets-image"/>
           <h3>Stop Out Protection</h3>
-          <p>Enjoy our unique Stop Out Protection feature. Delay and sometimes completely avoid stop outs while trading with Income Trade Asset.</p>
+          <p>Enjoy our unique Stop Out Protection feature. Delay and sometimes completely avoid stop outs while
+            trading with Coin Matrix Investment.</p>
         </div>
       </div>
 

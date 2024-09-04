@@ -17,7 +17,7 @@
       <div class="topmost-header-1">
         <p class="topmost-header-text">
           <i class='bx bxs-map' ></i>
-          71-75 Uxbridge Road, London, England, W5 5SL
+          3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001
         </p>
         <p class="topmost-header-text">
           <i class='bx bxs-time-five' ></i>Mon – Sat: 9:00am–18:00pm.
@@ -263,7 +263,7 @@ export default {
 }
 
 .logo {
-  width: 12.5%;
+  width: 13.5%;
   margin-left: 8%;
   margin-top: 1.1%;
   margin-bottom: 1.1%;
@@ -324,8 +324,8 @@ export default {
   font-size: 15px;
 }
 .auth:hover{
-  background-color: #ffcf01;
-  border: 1px solid #ffcf01;
+  background-color: #ccaa16;
+  border: 1px solid #ccaa16;
   color: #FFFFFF;
 }
 

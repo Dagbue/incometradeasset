@@ -9,7 +9,7 @@
       <div class="text-area">
         <h3>Login success🥳</h3>
         <p>You have successfully Logged in to your<br/>
-          Income Trade Asset account</p>
+          Coin Matrix Investment account</p>
       </div>
 
       <div class="submit">

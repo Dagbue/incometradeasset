@@ -2,17 +2,17 @@
   <div class="download-app-container">
     <div class="download-app-intro">
       <p class="download-intro">Ready to work with us</p>
-<!--     <div class="seperate">-->
-<!--       <i class='bx bxs-phone'></i>&nbsp;&nbsp;-->
-<!--       <p class="download-sub">+44 3300010876</p>-->
-<!--     </div>-->
+     <div class="seperate">
+       <i class='bx bxs-phone'></i>&nbsp;&nbsp;
+       <p class="download-sub">+1 (561) 437-0598</p>
+     </div>
       <div class="seperate">
         <i class='bx bx-mail-send' ></i>&nbsp;&nbsp;
-        <p class="download-sub">support@incometradeasset.com</p>
+        <p class="download-sub">support@coinmatrixinvestment.com</p>
       </div>
       <div class="seperate mobile">
         <i class='bx bxs-home' ></i>&nbsp;&nbsp;
-      <p class="download-sub">71-75 Uxbridge Road, London, England, W5 5SL</p>
+      <p class="download-sub">3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001</p>
       </div>
       <div class="app-store-container">
       </div>
@@ -44,7 +44,7 @@ export default {
   border-radius: 10px;
 }
 .download-app-intro{
-  padding-top: 55px;
+  padding-top: 45px;
 }
 
 
@@ -71,6 +71,7 @@ i{
   font-size:18px;
   line-height: 28px;
   padding-top: 1.5%;
+  width: 80%;
 }
 
 img{

@@ -9,10 +9,10 @@
         <div class="item active">
           <img src="@/assets/background1.jpg" alt="" class="" />
           <div class="content">
-            <p>Exclusive Offer to Clients who are day trading with Income trade assets.</p>
+            <p>Exclusive Offer to Clients who are day trading with Coin Matrix Investment.</p>
             <h2 @click="onPostClick">Get Started</h2>
             <p>
-              Opening and funding a new ITA account provides a 0.25% margin rate discount on the first $100,000 of a
+              Opening and funding a new CMI account provides a 0.25% margin rate discount on the first $100,000 of a
               margin loan, enhancing the benefits of Individual or Joint Accounts. Begin the setup process by
               following the necessary steps.
             </p>
@@ -90,6 +90,7 @@
            lcw-marquee-2="movers"
            lcw-marquee-items="10" >
       </div>
+      <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22light%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 100%; margin-bottom: 1%;"></iframe>
     </div>
 
   </div>
@@ -337,8 +338,7 @@ export default {
 }
 
 .bitcoin{
-  margin-left: 5%;
-  margin-right: 5%;
+
 }
 .button-part{
   display: flex;

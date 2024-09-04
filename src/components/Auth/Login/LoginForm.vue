@@ -7,7 +7,7 @@
           <img src="@/assets/companylogo.svg" alt="logo" class="company-logo">
           </router-link>
           <h2>
-            Sign In With Your <br/> Income Trade Asset Account
+            Sign In with your <br/> Coin Matrix Investment Account
           </h2>
         </div>
 
@@ -114,25 +114,16 @@ export default {
 <style scoped>
 form {
   margin: 0 auto;
-  max-width: 45rem;
-  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
-  //box-shadow:  30px 30px 100px #bebebe,
-  //-50px -50px 100px #ffffff;
-  //padding: 2rem;
-  //background-color: #ffffff;
+  max-width: 46rem;
+
 }
 
 .alpha{
-  //background-color: #F6F6F7;
-  //background-image: url(https://www.interactivebrokers.com/images/web/why-ibkr-global-market-access-background.png), linear-gradient(#F6F6F7 17.14%, #DFE2E7 95.69%);
-  //background-repeat: no-repeat;
-  //background-size: 60%, cover;
-  //background-position: bottom right, top left;
-  //padding-bottom: 8.5%;
+
 }
 
 .company-logo{
-  width: 28%;
+  width: 30%;
   margin-top: 15%;
 }
 

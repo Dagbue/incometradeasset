@@ -348,7 +348,7 @@ export default {
   margin-top: 12%;
 }
 .company-logo{
-      width: 15%;
+      width: 17%;
       /*margin-top: 20%;*/
 }
 
