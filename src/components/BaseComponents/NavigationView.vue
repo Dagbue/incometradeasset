@@ -115,7 +115,7 @@
       <div class="mobile">
         <div>
           <ul class="dropdown-nav" v-show="mobileNav">
-            <img alt="company logo" src="@/assets/inverse.svg" class="logo2" @click="home" />
+            <img alt="company logo" src="@/assets/companylogo-inverse.svg" class="logo2" @click="home" />
 
             <li class="link" @click="toggleMobileNav2">
               <div class="dropdown-navigation">
