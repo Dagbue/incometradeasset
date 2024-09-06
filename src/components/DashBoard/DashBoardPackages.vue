@@ -13,18 +13,20 @@
 
     <div class="section-alpha">
 
+
+
       <div class="third-section top">
-        <p class="text-1">ECN</p>
+        <p class="text-1">Basic</p>
         <p class="text-2">10<span class="text-2-inner">%</span></p>
         <!--        <p class="text-2">4 Months</p>-->
         <p class="text-3">4 Months</p>
 
         <div class="btn" >
-          <p @click="showDialog">Invest Now</p>
+          <p @click="showDialog" >Invest Now</p>
         </div>
 
         <div class="separate">
-          <p>$30,000 MINIMUM DEPOSIT</p>
+          <p>$500 MINIMUM DEPOSIT</p>
           <i class='bx bxs-info-circle'></i>
         </div>
 
@@ -50,17 +52,17 @@
       </div>
 
       <div class="third-section top">
-        <p class="text-1">Fix API</p>
+        <p class="text-1">Standard</p>
         <p class="text-2">20<span class="text-2-inner">%</span></p>
         <!--        <p class="text-2">4 Months</p>-->
         <p class="text-3">8 Months</p>
 
         <div class="btn" >
-          <p @click="showDialog">Invest Now</p>
+          <p @click="showDialog" >Invest Now</p>
         </div>
 
         <div class="separate">
-          <p>$50,000 MINIMUM DEPOSIT</p>
+          <p>$10,000 MINIMUM DEPOSIT</p>
           <i class='bx bxs-info-circle'></i>
         </div>
 
@@ -85,23 +87,18 @@
         </div>
       </div>
 
-
-    </div>
-
-    <div class="section-alpha">
-
       <div class="third-section top">
-        <p class="text-1">Standard</p>
+        <p class="text-1">Premium</p>
         <p class="text-2">30<span class="text-2-inner">%</span></p>
         <!--        <p class="text-2">4 Months</p>-->
         <p class="text-3">12 Months</p>
 
         <div class="btn" >
-          <p @click="showDialog">Invest Now</p>
+          <p @click="showDialog" >Invest Now</p>
         </div>
 
         <div class="separate">
-          <p>$1,000 MINIMUM DEPOSIT</p>
+          <p>$50,000 MINIMUM DEPOSIT</p>
           <i class='bx bxs-info-circle'></i>
         </div>
 
@@ -126,41 +123,11 @@
         </div>
       </div>
 
-      <div class="third-section top">
-        <p class="text-1">Premium</p>
-        <p class="text-2">30<span class="text-2-inner">%</span></p>
-        <!--        <p class="text-2">4 Months</p>-->
-        <p class="text-3">24 Months</p>
 
-        <div class="btn" >
-          <p @click="showDialog">Invest Now</p>
-        </div>
+    </div>
 
-        <div class="separate">
-          <p>$5,000 MINIMUM DEPOSIT</p>
-          <i class='bx bxs-info-circle'></i>
-        </div>
+    <div class="section-alpha">
 
-        <div class="separate">
-          <p>ENHANCED SECURITY</p>
-          <i class='bx bxs-info-circle'></i>
-        </div>
-
-        <div class="separate">
-          <p>1.8% DAILY</p>
-          <i class='bx bxs-info-circle'></i>
-        </div>
-
-        <div class="separate">
-          <p>GUARANTEED ROI</p>
-          <i class='bx bxs-info-circle'></i>
-        </div>
-
-        <div class="separate">
-          <p>24/7 SUPPORT</p>
-          <i class='bx bxs-info-circle'></i>
-        </div>
-      </div>
 
     </div>
 
@@ -211,7 +178,7 @@ export default {
   color: #ffffff;
   font-weight: bold;
   text-align: center;
-  padding-top: 2%;
+  padding-top: 5%;
 }
 .section-alpha{
   display: flex;

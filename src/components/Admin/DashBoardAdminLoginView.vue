@@ -93,9 +93,6 @@ export default {
 form {
   margin: 0 auto;
   max-width: 40rem;
-  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);*/
- box-shadow:  30px 30px 100px #bebebe,
- -50px -50px 100px #ffffff;
  padding: 2rem;
  background-color: #ffffff;
   margin-top: 8%;

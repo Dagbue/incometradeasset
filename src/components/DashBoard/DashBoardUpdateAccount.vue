@@ -15,7 +15,7 @@
 
       <div class="referral-part">
         <input type="text" v-model="reflink" class="link-box"/>
-        <button class="link-button" @click="copyToClipboard('https://incometradeasset.com/register')">Copy Link</button>
+        <button class="link-button" @click="copyToClipboard('https://coinmatrixinvestment.com/register')">Copy Link</button>
       </div>
     </div>
 
@@ -151,7 +151,7 @@ export default {
       country:"",
       address: "",
       phoneNumber: "",
-      reflink: "https://incometradeasset.com/register",
+      reflink: "https://coinmatrixinvestment.com/register",
       userId: "",
       userInfo: "",
       base64: "",

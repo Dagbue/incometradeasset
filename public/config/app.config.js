@@ -2,7 +2,7 @@
   window.__env = window.__env || {};
 
   window.__env.api = {
-    baseUrl: "https://investo-uno-app-boixn.ondigitalocean.app",
+    baseUrl: "https://investo-uno-app-nuice.ondigitalocean.app",
     uploadS3BaseUrl: "https://m2nz1o078e.execute-api.us-east-1.amazonaws.com/prod/",
     timeout: 80000,
   };

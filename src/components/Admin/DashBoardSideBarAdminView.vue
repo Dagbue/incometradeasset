@@ -4,7 +4,7 @@
     <div class="sidebar" v-show="!mobile">
 
       <div class="logo">
-        <img src="@/assets/inverse.svg" alt="logo" class="afo-logo" />
+        <img src="@/assets/companylogo-inverse.svg" alt="logo" class="afo-logo" />
       </div>
 
       <ul class="nav-list" >
@@ -250,7 +250,7 @@ export default {
   display: flex;
 }
 .afo-logo{
-  width: 70%;
+  width: 90%;
 }
 .afo-logo-2{
   width: 80%;

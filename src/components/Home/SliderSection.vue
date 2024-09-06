@@ -83,13 +83,13 @@
     </div>
 
     <div class="bitcoin">
-      <div class="livecoinwatch-widget-5"
-           lcw-base="USD"
-           lcw-color-tx="#999999"
-           lcw-marquee-1="coins"
-           lcw-marquee-2="movers"
-           lcw-marquee-items="10" >
-      </div>
+<!--      <div class="livecoinwatch-widget-5"-->
+<!--           lcw-base="USD"-->
+<!--           lcw-color-tx="#999999"-->
+<!--           lcw-marquee-1="coins"-->
+<!--           lcw-marquee-2="movers"-->
+<!--           lcw-marquee-items="10" >-->
+<!--      </div>-->
       <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22light%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 100%; margin-bottom: 1%;"></iframe>
     </div>
 

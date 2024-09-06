@@ -5,8 +5,8 @@
 
       <div class="settings-alpha">
         <div class="settings-links">
-          <router-link to="/deposit-transactions" class="account-links">Deposit History</router-link>
-          <router-link to="/withdrawal-transactions" class="account-links">Withdrawal History</router-link>
+          <router-link to="/deposit-transactions" class="account-links">Deposit</router-link>
+          <router-link to="/withdrawal-transactions" class="account-links">Withdrawal</router-link>
           <router-view v-slot="{ Component }">
             <transition name="route" mode="out-in">
               <component :is="Component"></component>

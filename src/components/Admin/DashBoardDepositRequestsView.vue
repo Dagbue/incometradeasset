@@ -457,7 +457,7 @@ td {
   font-weight: 600;
   font-size: 18px;
   line-height: 20px;
-  color: #ffffff;
+  color: #071333;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
 }
@@ -467,7 +467,7 @@ td {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  color: #ffffff;
+  color: #071333;
   padding-bottom: 1.25%;
 }
 
