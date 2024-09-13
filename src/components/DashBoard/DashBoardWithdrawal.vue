@@ -69,39 +69,91 @@
                   placeholder="Select Digital Currency"
                   aria-placeholder="Select Digital Currency"
               >
-                <option selected disabled value="">Digital Currency List</option>
+                <option selected disabled value="">Digital Currency</option>
                 <!--              <option :value="null" disabled>Select Digital Currency</option>-->
                 <option value="Bitcoin">Bitcoin</option>
                 <option value="Ethereum">Ethereum</option>
-                <!--          <option value="USDT">USDT</option>-->
+                <option value="bankWire">International Bank Wire</option>
               </select>
             </div>
 
 
-            <div class="interac-funding-steps">
-              <div class="margin-bottom margin-small">
-                <div class="text-block-60">STEP 3</div>
-              </div>
+            <div v-show="this.withdrawalmethod !== 'bankWire'">
+              <div class="interac-funding-steps">
+                <div class="margin-bottom margin-small">
+                  <div class="text-block-60">STEP 3</div>
+                </div>
 
-              <div>
-                <a>
-                  <br/>
-                  <div class="setup-title-wrapper"><img src="@/assets/bank.svg" loading="lazy" alt="">
-                    <div class="setup-title">
-                      <div class="text-block-51">
-                        Enter Wallet address
-                        <!--                    <strong>payment@rubieswire.com</strong>-->
+                <div>
+                  <a>
+                    <br/>
+                    <div class="setup-title-wrapper"><img src="@/assets/bank.svg" loading="lazy" alt="">
+                      <div class="setup-title">
+                        <div class="text-block-51">
+                          Enter Wallet address
+                          <!--                    <strong>payment@rubieswire.com</strong>-->
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
+
+
               </div>
 
+              <div class="input-form-2">
+                <input type="text" v-model="model.walletAddress" class="input-form-3" placeholder="Address" required name="Amount" />
+              </div>
             </div>
 
-            <div class="input-form-2">
-              <input type="text" v-model="model.walletAddress" class="input-form-3" placeholder="Address" required name="Amount" />
+
+            <div v-show="this.withdrawalmethod === 'bankWire'">
+              <div class="interac-funding-steps">
+                <div class="margin-bottom margin-small">
+                  <div class="text-block-60">STEP 3</div>
+                </div>
+
+                <div>
+                  <a>
+                    <br/>
+                    <div class="setup-title-wrapper"><img src="@/assets/bank.svg" loading="lazy" alt="">
+                      <div class="setup-title">
+                        <div class="text-block-51">
+                          Enter Bank Details
+                          <!--                    <strong>payment@rubieswire.com</strong>-->
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+
+              </div>
+
+              <div class=" down input-form-2">
+                <input type="text"  class="input-form-3" placeholder="Full Name" required name="fullName" />
+              </div>
+              <div class=" down input-form-2">
+                <input type="text"  class="input-form-3" placeholder="State" required name="state" />
+              </div>
+              <div class=" down input-form-2">
+                <input type="text"  class="input-form-3" placeholder="Bank Name" required name="bankName" />
+              </div>
+              <div class=" down input-form-2">
+                <input type="text" class="input-form-3" placeholder="Account Number" required name="accountNumber" />
+              </div>
+              <div class=" down input-form-2">
+                <input type="text"  class="input-form-3" placeholder="Routing Number" required name="routingNumber" />
+              </div>
+              <div class=" down input-form-2">
+                <input type="text"  class="input-form-3" placeholder="Swift code" required name="swiftCode" />
+              </div>
             </div>
+
+
+
+
+
 
           </div>
 
@@ -476,6 +528,10 @@ hr {
   border-top: 1px solid #ffffff;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.down{
+  margin-bottom: 15px;
 }
 
 @media (max-width: 700px) {

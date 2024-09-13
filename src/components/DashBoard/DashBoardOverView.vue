@@ -1533,9 +1533,9 @@ i{
 }
 
 .fund-wallet:hover{
-  background: #ffcf01;
-  color: #ffffff;
-  border: 1px solid #ffcf01;
+  background: #ffffff;
+  color: #0f171c;
+  border: 1px solid #ffffff;
   /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);*/
 }
 

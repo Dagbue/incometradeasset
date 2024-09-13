@@ -90,7 +90,7 @@ export default {
   methods:{
     async update() {
       await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.updatePaymentWallet, {
-        walletId: 1,
+        walletId: 2,
         bitcoinAddress: this.bitcoinAddress,
         ethereumAddress: this.ethereumAddress,
         bankName: this.bankName,
@@ -99,7 +99,7 @@ export default {
       })
 
       await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-        walletId: 1,
+        walletId: 2,
       })
 
       await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
@@ -108,7 +108,7 @@ export default {
     },
     press(){
       StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-        walletId: 1,
+        walletId: 2,
       })
 
       StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
@@ -125,7 +125,7 @@ export default {
   },
   async created() {
     await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-      walletId: 1,
+      walletId: 2,
     })
     await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
 
@@ -135,7 +135,7 @@ export default {
 
   async mounted() {
     await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-      walletId: 1,
+      walletId: 2,
     })
 
     await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)

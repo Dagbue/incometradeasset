@@ -43,6 +43,12 @@
               </div>
               <div class="social-logo">
                 <div class="last-div">
+                  <i class='bx bxs-phone' ></i>
+                  <p class="last-div-para"><a href="https://wa.me/15614370598?text="  target="_blank">+1 (352) 219-5904</a></p>
+                </div>
+              </div>
+              <div class="social-logo">
+                <div class="last-div">
                   <i class='bx bxs-map' ></i>
                   <p class="last-div-para">3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001</p>
                 </div>

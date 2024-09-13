@@ -14,6 +14,7 @@
           3902 W VALLEY #206 AUBURN DC, WASHINGTON, WA 98001
         </p>
         <p class="contact-text-para-3">Telephone: +1 (561) 437-0598</p>
+        <p class="contact-text-para-3">Telephone: +1 (352) 219-5904</p>
         <p class="contact-text-para-4">E-mail: support@coinmatrixinvestment.com</p>
       </div>
 

@@ -23,7 +23,8 @@ class AuthenticationRequest {
     userStatus: null,
     role: null,
     country: null,
-    address: null
+    address: null,
+    selectedCurrency: null,
   };
 
   updateUser = {

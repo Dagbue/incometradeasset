@@ -55,9 +55,9 @@ export default {
   font-size: 14px;
 }
 .account-links:hover{
-  background-color: #af910d;
-  border:1px solid #af910d;
-  color: #fff;
+  background-color: #ffffff;
+  border:1px solid #ffffff;
+  color: #0f171c;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

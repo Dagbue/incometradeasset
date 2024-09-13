@@ -332,6 +332,15 @@
               <input type="text" placeholder="Address" v-model="model.address" required name="firstName" />
             </div>
 
+            <div class="form-group">
+              <select name="selectedCurrency" v-model="model.selectedCurrency"   id="selectedCurrency" required >
+                <option :value="null" disabled>Choose Currency</option>
+                <option value="Dollars">Dollars</option>
+                <option value="Euros">Euros</option>
+                <option value="Pounds">Pounds</option>
+              </select>
+            </div>
+
             <div class="form-group-2">
               <input
                   type="checkbox"

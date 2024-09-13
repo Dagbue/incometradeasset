@@ -7,6 +7,10 @@
        <p class="download-sub">+1 (561) 437-0598</p>
      </div>
       <div class="seperate">
+        <i class='bx bxs-phone'></i>&nbsp;&nbsp;
+        <p class="download-sub">+1 (352) 219-5904</p>
+      </div>
+      <div class="seperate">
         <i class='bx bx-mail-send' ></i>&nbsp;&nbsp;
         <p class="download-sub">support@coinmatrixinvestment.com</p>
       </div>
@@ -44,7 +48,7 @@ export default {
   border-radius: 10px;
 }
 .download-app-intro{
-  padding-top: 45px;
+  padding-top: 25px;
 }
 
 

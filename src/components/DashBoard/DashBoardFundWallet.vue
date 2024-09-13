@@ -98,13 +98,13 @@
               <p class="text-5">Bank Routing Number : {{this.routingNumber}}</p>
             </div>
 
-            <div v-if="this.depositMethod === 'Bitcoin' " class="qr-code">
-              <vue-qrcode :value="bitcoinAddress"></vue-qrcode>
-            </div>
+<!--            <div v-if="this.depositMethod === 'Bitcoin' " class="qr-code">-->
+<!--              <vue-qrcode :value="bitcoinAddress"></vue-qrcode>-->
+<!--            </div>-->
 
-            <div v-if="this.depositMethod === 'Ethereum'" class="qr-code">
-              <vue-qrcode :value="ethereumAddress"></vue-qrcode>
-            </div>
+<!--            <div v-if="this.depositMethod === 'Ethereum'" class="qr-code">-->
+<!--              <vue-qrcode :value="ethereumAddress"></vue-qrcode>-->
+<!--            </div>-->
           </div>
           <br/>
 
@@ -206,7 +206,7 @@ import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 import DepositRequest from "@/model/request/DepositRequest";
 import {mapState} from "vuex";
 import StoreUtils from "@/utility/StoreUtils";
-import VueQrcode from '@xkeshi/vue-qrcode';
+// import VueQrcode from '@xkeshi/vue-qrcode';
 import Swal from "sweetalert2";
 
 
@@ -215,7 +215,7 @@ export default {
   components: {
     BaseButton,
     FundWalletModal,
-    VueQrcode // Register the component
+    // VueQrcode
   },
   computed:{
     readPaymentWalletById() {
@@ -299,7 +299,7 @@ export default {
 
     async getList() {
       await StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-        walletId: 1,
+        walletId: 2,
       });
 
       await StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
@@ -315,7 +315,7 @@ export default {
     this.populateForm()
 
     StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-      walletId: 1,
+      walletId: 2,
     })
     StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
 
@@ -335,7 +335,7 @@ export default {
     this.populateForm()
 
     StoreUtils.dispatch(StoreUtils.actions.paymentWallet.readPaymentWalletById, {
-      walletId: 1,
+      walletId: 2,
     })
     StoreUtils.rootGetters(StoreUtils.getters.paymentWallet.getReadPaymentWalletById)
 
