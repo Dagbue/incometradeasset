@@ -33,7 +33,7 @@
 
     <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 99%; margin-bottom: 1%;"></iframe>
 
-<!--    <p style="color: #FFFFFF;">{{isModalOpened}}</p>-->
+<!--    <p style="color: #FFFFFF;">{{UserDetails}}</p>-->
 
     <p v-show="this.UserDetails.user.userStatus === 'unVerified'" class="text-2">Your account is not verified. Kindly
       upload a valid government Id to verify your account.
@@ -51,27 +51,11 @@
 
         <div class="section-3-content">
           <div class="content-1">
-            <p class="content-1-text-1">BTC Balance</p>
-            <div>
-<!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.deposit}}</p>-->
-<!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >{{bitcoin}}</p>
-            </div>
-          </div>
-          <div class="content-2">
-            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
-          </div>
-        </div>
-
-        <div class="vl-2"></div>
-
-        <div class="section-3-content">
-          <div class="content-1">
             <p class="content-1-text-1">Main Balance</p>
             <div>
 <!--              <p class="content-1-text-2" v-if="approved2 === 'approved'">£ {{this.contacts.withdrawal}}</p>-->
 <!--              <p class="content-1-text-2" v-else-if="approved2 === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount - UserDetails.user.totalWithdrawals | formatAmount2}}</p>
+              <p class="content-1-text-2" >$ {{UserDetails.user.totalDepositedAmount + UserDetails.user.profit + UserDetails.user.bonus - UserDetails.user.totalWithdrawals | formatAmount2}}</p>
             </div>
           </div>
           <div class="content-2">
@@ -99,11 +83,98 @@
 
         <div class="section-3-content">
           <div class="content-1">
+            <p class="content-1-text-1">Withdrawals</p>
+            <div>
+              <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.deposit}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >$ {{UserDetails.user.totalWithdrawals | formatAmount2}}</p>
+            </div>
+          </div>
+          <div class="content-2">
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
+          </div>
+        </div>
+
+        <div class="vl-2"></div>
+
+
+        <div class="section-3-content">
+          <div class="content-1">
+            <p class="content-1-text-1">Current Plan</p>
+            <div>
+              <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.bonusMain}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >{{UserDetails.user.currentPlan}}</p>
+            </div>
+          </div>
+          <div class="content-2">
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="law">
+      <div class="section-3">
+
+        <div class="section-3-content">
+          <div class="content-1">
+            <p class="content-1-text-1">Profits</p>
+            <div>
+              <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.deposit}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >$ {{UserDetails.user.profit | formatAmount2}}</p>
+            </div>
+          </div>
+          <div class="content-2">
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
+          </div>
+        </div>
+
+        <div class="vl-2"></div>
+
+        <div class="section-3-content">
+          <div class="content-1">
+            <p class="content-1-text-1">Bonus</p>
+            <div>
+              <!--              <p class="content-1-text-2" v-if="approved2 === 'approved'">£ {{this.contacts.withdrawal}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved2 === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >$ {{UserDetails.user.bonus | formatAmount2}}</p>
+            </div>
+          </div>
+          <div class="content-2">
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
+          </div>
+        </div>
+
+        <div class="vl-2"></div>
+
+        <div class="section-3-content">
+          <div class="content-1">
+            <p class="content-1-text-1">BTC Balance</p>
+            <div>
+              <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.profits}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >{{bitcoin}}</p>
+            </div>
+          </div>
+          <div class="content-2">
+            <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
+          </div>
+        </div>
+
+        <div class="vl-2"></div>
+
+        <div class="section-3-content">
+          <div class="content-1">
             <p class="content-1-text-1">Currency</p>
             <div>
-<!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.bonusMain}}</p>-->
-<!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
-              <p class="content-1-text-2" >Dollars</p>
+              <!--              <p class="content-1-text-2" v-if="approved === 'approved'">£ {{this.contacts.bonusMain}}</p>-->
+              <!--              <p class="content-1-text-2" v-else-if="approved === 'Pending'">£ ...</p>-->
+              <p class="content-1-text-2" >{{UserDetails.user.currency}}</p>
             </div>
           </div>
           <div class="content-2">

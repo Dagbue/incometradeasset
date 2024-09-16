@@ -454,6 +454,8 @@ export default {
         phoneNumber: this.model.phoneNumber,
         totalWithdrawals: 0.00,
         btcBalance: 0.00,
+        profit: 0.00,
+        bonus: 0.00,
         displayPicture: "",
         walletAddress: "",
         walletName: "",
@@ -461,7 +463,9 @@ export default {
         userStatus: "unVerified",
         role: "Customer",
         country: this.model.country,
-        address: this.model.address
+        address: this.model.address,
+        currency: this.model.selectedCurrency,
+        currentPlan: ""
       })
       // await this.$router.push("/email-auth")
     },

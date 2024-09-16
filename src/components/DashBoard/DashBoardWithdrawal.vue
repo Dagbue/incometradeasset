@@ -131,22 +131,22 @@
               </div>
 
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Full Name" required name="fullName" />
+                <input type="text"  class="input-form-3" placeholder="Full Name"  name="fullName" />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="State" required name="state" />
+                <input type="text"  class="input-form-3" placeholder="State"  name="state" />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Bank Name" required name="bankName" />
+                <input type="text"  class="input-form-3" placeholder="Bank Name"  name="bankName" />
               </div>
               <div class=" down input-form-2">
-                <input type="text" class="input-form-3" placeholder="Account Number" required name="accountNumber" />
+                <input type="text" class="input-form-3" placeholder="Account Number"  name="accountNumber" />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Routing Number" required name="routingNumber" />
+                <input type="text"  class="input-form-3" placeholder="Routing Number"  name="routingNumber" />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Swift code" required name="swiftCode" />
+                <input type="text"  class="input-form-3" placeholder="Swift code"  name="swiftCode" />
               </div>
             </div>
 

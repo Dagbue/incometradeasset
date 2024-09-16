@@ -20,6 +20,7 @@
 
 
     <div style="color: white;" class="section-2-alpha">
+<!--      {{this.readUserById.user}}-->
       <div class="lawrence">
         <p class="text-1">UPDATE USER INFO</p>
         <p class="btn-2" @click="back">Back</p>
@@ -74,12 +75,26 @@
 
             <div class="space">
               <label>BTC Balance</label>
-              <input type="number" v-model="btcBalance"  class="form-input"/>
+              <input type="number" v-model="btcBalance" disabled class="form-input"/>
             </div>
 
             <div class="space">
               <label>Invested Amount</label>
               <input type="number" v-model="totalDepositedAmount"  class="form-input"/>
+            </div>
+
+          </div>
+
+          <div class="separate">
+
+            <div class="space">
+              <label>Profit</label>
+              <input type="number" v-model="profit"  class="form-input"/>
+            </div>
+
+            <div class="space">
+              <label>Bons</label>
+              <input type="number" v-model="bonus"  class="form-input"/>
             </div>
 
           </div>
@@ -94,6 +109,36 @@
             <div class="space">
               <label>Activation Code</label>
               <input type="text" v-model="twoFactorAuthenticationCode"  class="form-input"/>
+            </div>
+
+          </div>
+
+          <div class="separate">
+            <div  class="space">
+              <label>currency</label>
+              <p class="edit">current currency : {{currency}}</p>
+              <!--              <input type="text" v-model="userStatus" required="required" class="form-input"/>-->
+              <select v-model="currency"  class="form-input">
+                <option selected disabled value="">select currency</option>
+                <option :value="null" disabled>select currency</option>
+                <option value="Dollars">Dollars</option>
+                <option value="Euros">Euros</option>
+                <option value="Pound">Pound</option>
+              </select>
+            </div>
+
+
+            <div  class="space">
+              <label>current Plan</label>
+              <p class="edit">current Plan : {{currentPlan}}</p>
+              <!--              <input type="text" v-model="userStatus" required="required" class="form-input"/>-->
+              <select v-model="currentPlan"  class="form-input">
+                <option selected disabled value="">select Plan</option>
+                <option :value="null" disabled>select Plan</option>
+                <option value="Basic">Basic</option>
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+              </select>
             </div>
 
           </div>
@@ -120,10 +165,6 @@
           </div>
 
 
-<!--            <div style="margin-left: 3%;" class="space">-->
-<!--              <label>status</label>-->
-<!--              <input type="text" v-model="userStatus" required="required" class="form-input"/>-->
-<!--            </div>-->
 
 
 
@@ -169,6 +210,10 @@ export default {
       twoFactorAuthenticationCode: "",
       createdAt: "",
       userStatus: "",
+      profit: "",
+      bonus: "",
+      currency: "",
+      currentPlan: "",
     }
   },
   computed:{
@@ -210,6 +255,10 @@ export default {
       this.twoFactorAuthenticationCode = this.readUserById.user.twoFactorAuthenticationCode;
       this.createdAt = this.readUserById.user.createdAt;
       this.userStatus = this.readUserById.user.userStatus;
+      this.profit = this.readUserById.user.profit;
+      this.bonus = this.readUserById.user.bonus;
+      this.currency = this.readUserById.user.currency;
+      this.currentPlan = this.readUserById.user.currentPlan;
     },
 
     async updateDetails() {
@@ -227,6 +276,10 @@ export default {
         twoFactorAuthenticationCode: this.twoFactorAuthenticationCode,
         // createdAt: this.createdAt,
         userStatus: this.userStatus,
+        profit: this.profit,
+        bonus: this.bonus,
+        currency: this.currency,
+        currentPlan: this.currentPlan,
       })
       await StoreUtils.dispatch(StoreUtils.actions.auth.allUsers)
       await StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
