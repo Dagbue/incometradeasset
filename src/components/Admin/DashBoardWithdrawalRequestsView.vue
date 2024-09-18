@@ -1,6 +1,7 @@
 <template>
   <div class="alpha">
     <div class="body">
+      <fund-wallet-modal2 @close="hideDialog" v-if="dialogIsVisible" :selected-item="selectedItem" />
       <h2>Withdrawal Requests</h2>
       <div class="row trans-mgt">
         <div class="form-group fg--search">
@@ -75,7 +76,10 @@
             <td data-label="Amount">{{child.amount}}</td>
             <td data-label="Payment Mode">{{child.transactionMethod}}</td>
             <td data-label="Date Applied">{{child.createdAt | formatDate}}</td>
-            <td data-label="Wallet Address">{{child.walletAddress}}</td>
+            <td data-label="Wallet Address">
+              <p v-if="child.transactionMethod === 'bankWire'">Null</p>
+              <p v-else >{{child.walletAddress}}</p>
+            </td>
             <td data-label="Status">
               <div>
                 <p v-if="child.withdrawalStatus === 'approved'" class="status-approved">{{child.withdrawalStatus | lowercase}}</p>
@@ -87,6 +91,7 @@
               <div v-if="child.withdrawalStatus === 'pending'">
                 <button class="btn" @click="approve(child)">Approve</button>
                 <button class="btn-2" @click="decline(child)">Decline</button>
+                <button @click="showDialog(child)" class="btn-3" v-show="child.transactionMethod === 'bankWire'">View</button>
               </div>
               <p class="status-declined-2" v-if="child.withdrawalStatus === 'declined'">Already Declined</p>
               <p class="status-approved-2" v-if="child.withdrawalStatus === 'approved'">Already Approved</p>
@@ -114,10 +119,11 @@
 import StoreUtils from "@/utility/StoreUtils";
 import {mapState} from "vuex";
 import BaseLoader2 from "@/components/BaseComponents/tables/BaseLoader2.vue";
+import FundWalletModal2 from "@/components/BaseComponents/modal/FundWalletModal2.vue";
 
 export default {
   name: "DashBoardWithdrawalRequestsView",
-  components: {BaseLoader2},
+  components: {FundWalletModal2, BaseLoader2},
   data () {
     return {
       SelectEmail: "",
@@ -128,6 +134,8 @@ export default {
       currentPage: 1,
       itemsPerPage: 10,
       searchQuery: "", // Data property to hold the search input
+      dialogIsVisible: false,
+      selectedItem: null,
     }
   },
   computed:{
@@ -170,6 +178,15 @@ export default {
 
 
   methods: {
+
+    hideDialog() {
+      this.dialogIsVisible = false;
+    },
+
+    showDialog(child) {
+      this.selectedItem = child;
+      this.dialogIsVisible = true;
+    },
 
     previousPage() {
       if (this.currentPage > 1) {
@@ -565,6 +582,29 @@ td {
 .btn-2:hover{
   background-color: #fb483a;
   border: 1px solid #fb483a;
+  color: #ffffff;
+}
+
+
+.btn-3{
+  /*margin-top: 3%;*/
+  color: #ffffff;
+  background-color: #3C4A57FF;
+  border: 1px solid #3C4A57FF;
+  padding: 4px 10px;
+  /*display: block;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  text-align: center;
+  width: 80px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in;
+  margin-left: 5px;
+}
+
+.btn-3:hover{
+  background-color: #3C4A57FF;
+  border: 1px solid #3C4A57FF;
   color: #ffffff;
 }
 

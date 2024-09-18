@@ -33,7 +33,7 @@
             </div>
 
             <div class="input-form-2">
-              <input type="number" v-model="model.amount" class="input-form-3" placeholder="Amount" required name="Amount" />
+              <input type="number" v-model="model.amount" class="input-form-3" placeholder="Amount"  />
             </div>
 
 
@@ -61,7 +61,6 @@
 
             <div class="input-form-2">
               <select
-                  required
                   class="input-form-3"
                   aria-required="required"
                   v-model="withdrawalmethod"
@@ -102,7 +101,7 @@
               </div>
 
               <div class="input-form-2">
-                <input type="text" v-model="model.walletAddress" class="input-form-3" placeholder="Address" required name="Amount" />
+                <input type="text" v-model="model.walletAddress" class="input-form-3" placeholder="Address"  />
               </div>
             </div>
 
@@ -131,22 +130,22 @@
               </div>
 
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Full Name"  name="fullName" />
+                <input type="text" v-model="bankFullName"  class="input-form-3" placeholder="Full Name"   />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="State"  name="state" />
+                <input type="text" v-model="bankState"  class="input-form-3" placeholder="State"  />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Bank Name"  name="bankName" />
+                <input type="text" v-model="bankName"  class="input-form-3" placeholder="Bank Name"   />
               </div>
               <div class=" down input-form-2">
-                <input type="text" class="input-form-3" placeholder="Account Number"  name="accountNumber" />
+                <input type="text" v-model="accountNumber" class="input-form-3" placeholder="Account Number"   />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Routing Number"  name="routingNumber" />
+                <input type="text" v-model="routingNumber"  class="input-form-3" placeholder="Routing Number"   />
               </div>
               <div class=" down input-form-2">
-                <input type="text"  class="input-form-3" placeholder="Swift code"  name="swiftCode" />
+                <input type="text" v-model="swiftCode" class="input-form-3" placeholder="Swift code"   />
               </div>
             </div>
 
@@ -220,7 +219,13 @@ export default {
       withdrawalmethod:"",
       userId: "",
       userInfo: "",
-      randomString: ""
+      randomString: "",
+      bankFullName: "",
+      bankState: "",
+      bankName: "",
+      accountNumber: "",
+      routingNumber: "",
+      swiftCode: "",
     };
   },
   computed:{
@@ -239,16 +244,50 @@ export default {
     },
 
     async showDialog() {
-      await StoreUtils.dispatch(StoreUtils.actions.withdrawal.withdrawalCreate, {
-        userId : this.userId,
-        amount : this.model.amount,
-        transactionMethod : this.withdrawalmethod,
-        transactionType : "withdrawal",
-        transactionReference : this.randomString,
-        additionalComment : this.model.additionalComment,
-        walletAddress : this.model.walletAddress
-      })
-      this.dialogIsVisible = true;
+
+
+      if ( this.withdrawalmethod === 'bankWire' ) {
+
+        await StoreUtils.dispatch(StoreUtils.actions.withdrawal.withdrawalCreate, {
+          userId : this.userId,
+          amount : this.model.amount,
+          transactionMethod : this.withdrawalmethod,
+          transactionType : "withdrawal",
+          transactionReference : this.randomString,
+          additionalComment : this.model.additionalComment,
+          walletAddress : "12345qwerty",
+          bankFullName : this.bankFullName,
+          bankState : this.bankState,
+          bankName : this.bankName,
+          accountNumber : this.accountNumber,
+          routingNumber : this.routingNumber,
+          swiftCode : this.swiftCode
+        })
+        this.dialogIsVisible = true;
+
+
+      } else {
+
+        await StoreUtils.dispatch(StoreUtils.actions.withdrawal.withdrawalCreate, {
+          userId : this.userId,
+          amount : this.model.amount,
+          transactionMethod : this.withdrawalmethod,
+          transactionType : "withdrawal",
+          transactionReference : this.randomString,
+          additionalComment : this.model.additionalComment,
+          walletAddress : this.model.walletAddress,
+
+          // bankFullName : this.bankFullName,
+          // bankState : this.bankState,
+          // bankName : this.bankName,
+          // accountNumber : this.accountNumber,
+          // routingNumber : this.routingNumber,
+          // swiftCode : this.swiftCode
+        })
+        this.dialogIsVisible = true;
+
+      }
+
 
 
     },
