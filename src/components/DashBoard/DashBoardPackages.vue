@@ -301,7 +301,7 @@ export default {
 
 
 .bx{
-  color: #ccaa16;
+  color: #ffffff;
 }
 @media (max-width: 990px) {
 

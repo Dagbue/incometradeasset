@@ -73,9 +73,9 @@ export default {
   margin: auto;
 }
 .account-links:hover{
-  background-color: #af910d;
-  border:1px solid #af910d;
-  color: #fff;
+  background-color: #FFFFFF;
+  border:1px solid #FFFFFF;
+  color: #0f171c;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -96,9 +96,9 @@ export default {
   margin: auto;
 }
 .account-links2:hover{
-  background-color: #af910d;
-  border:1px solid #af910d;
-  color: #fff;
+  background-color: #FFFFFF;
+  border:1px solid #FFFFFF;
+  color: #0f171c;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

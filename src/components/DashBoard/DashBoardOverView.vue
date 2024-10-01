@@ -1,12 +1,7 @@
 <template>
   <div class="alpha">
-<!--    <intro-message-modal v-show="this.isModalOpened === false" @close="hideDialog" v-if="dialogIsVisible" />-->
-
 
       <intro-message-modal  @close="hideDialog" v-if="isModalOpened === false && dialogIsVisible === true" />
-
-
-
 
     <div class="section-2">
 
@@ -33,18 +28,9 @@
 
     <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://www.tradingview-widget.com/embed-widget/ticker-tape/#%7B%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A46%2C%22utm_source%22%3A%22infiniteprotrades.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22infiniteprotrades.com%2Findex.php%2Fuser%2FtradeCrypto%22%7D" title="ticker tape TradingView widget" lang="en" style="user-select: none; box-sizing: border-box; display: block; height: 65px; width: 99%; margin-bottom: 1%;"></iframe>
 
-<!--    <p style="color: #FFFFFF;">{{UserDetails}}</p>-->
-
     <p v-show="this.UserDetails.user.userStatus === 'unVerified'" class="text-2">Your account is not verified. Kindly
       upload a valid government Id to verify your account.
       <a><router-link to="/update-account">Click here</router-link></a></p>
-
-<!--    <div style="color: white;" id="app">-->
-<!--      <h1>Dollar to Bitcoin Converter</h1>-->
-<!--      <input type="number" v-model="dollars" placeholder="Enter amount in dollars" />-->
-<!--      <button @click="convertToBitcoin">Convert</button>-->
-<!--      <p style="color:#ffffff;" v-if="bitcoin">Equivalent in Bitcoin: {{ bitcoin }}</p>-->
-<!--    </div>-->
 
     <div class="law">
       <div class="section-3">
@@ -97,7 +83,6 @@
 
         <div class="vl-2"></div>
 
-
         <div class="section-3-content">
           <div class="content-1">
             <p class="content-1-text-1">Current Plan</p>
@@ -111,8 +96,6 @@
             <img src="@/assets/wallet-number-icon.svg" alt="wallet-balance-icon"/>
           </div>
         </div>
-
-
 
       </div>
     </div>
@@ -1169,8 +1152,8 @@ export default {
       tradeType: "",
       leverage: "",
       dollars: 0,
-      bitcoin: null,
-      // bitcoinRate: null,
+      // bitcoin: null,
+      bitcoinRate: null,
       dialogIsVisible: false,
       searchQuery: "", // Data property to hold the search input
     }
@@ -1200,14 +1183,6 @@ export default {
           ) : this.readUserTrade.trades;
       return Math.ceil(filteredTrades.length / this.itemsPerPage);
     },
-    // paginatedItems() {
-    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    //   const endIndex = startIndex + this.itemsPerPage;
-    //   return this.readUserTrade.trades.slice(startIndex, endIndex);
-    // },
-    // totalPages() {
-    //   return Math.ceil(this.readUserTrade.trades.length / this.itemsPerPage);
-    // },
     UserInfo() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getUserInfo)
     },
@@ -1217,39 +1192,91 @@ export default {
     isModalOpened() {
       return StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
     },
+    readUserTrade() {
+      return StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
+    },
     ...mapState({
       loading: state => state.trade.loading,
       auth: state => state.auth,
-      readUserTrade: state => state.trade.readUserTrade,
-      bitcoinRate: state => state.auth.bitcoinRate,
+      // readUserTrade: state => state.trade.readUserTrade,
+      // bitcoinRate: state => state.auth.bitcoinRate,
     }),
+    bitcoin() {
+      if (this.UserDetails.user && this.bitcoinRate) {
+        return (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate).toFixed(8);
+      }
+      return 'Loading...'; // or any default value when data isn't available yet
+    }
+  },
+
+  watch: {
+    // Automatically calculate the bitcoin value when userDetails or bitcoinRate changes
+    UserDetails: {
+      deep: true, // Ensure that nested changes in UserDetails are also tracked
+      handler() {
+        this.convertToBitcoin();
+      }
+    },
+    bitcoinRate() {
+      this.convertToBitcoin();
+    }
   },
 
   methods: {
+
+    // This method prepares all the necessary data before the API call
+    async beforeAction() {
+      // Load the userId from localStorage
+      this.userId = localStorage.getItem('userId');
+      if (!this.userId) {
+        console.error("User ID is missing. Please log in.");
+        return;
+      }
+
+      // Generate the necessary data before making the API call
+      this.getCurrentDate();
+      this.getCurrentDateTime();
+      this.generateRandomString();
+      this.generateRandomString2();
+    },
+
     hideDialog() {
       this.dialogIsVisible = false;
     },
     showDialog() {
       this.dialogIsVisible = true;
     },
-    // fetchBitcoinRate() {
-    //   axios.get('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
-    //       .then(response => {
-    //         this.bitcoinRate = response.data.bpi.USD.rate_float;
-    //       })
-    //       .catch(error => console.error(error));
-    // },
+
 
     checkId(){
       this.dialogIsVisible = this.UserDetails.user.frontId === "";
     },
 
+
+    loadBitcoinRate() {
+      this.bitcoinRate = localStorage.getItem('bitcoinRate') || null;
+      if (!this.bitcoinRate) {
+        console.log('Bitcoin rate not found, please reload or check the storage.');
+      }
+    },
+    getUserDetails() {
+      // Call your Store dispatch or API to get the user details
+      StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+        userId: localStorage.getItem('userId')
+      });
+    },
+
+
     convertToBitcoin() {
-      if (!this.bitcoinRate.bitcoinRate) {
-        alert('Bitcoin rate not loaded. Please wait or try reloading the page.');
+      if (!this.bitcoinRate) {
+        console.log('Bitcoin rate not loaded. Please wait or try reloading the page.');
         return;
       }
-      this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate.bitcoinRate).toFixed(8);
+      if (this.UserDetails.user && this.UserDetails.user.totalDepositedAmount) {
+        this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate).toFixed(8);
+      } else {
+        console.log('User details are not available.');
+      }
     },
     onPostClick() {
       this.$router.push("/fund-wallet");
@@ -1289,9 +1316,20 @@ export default {
       this.screen1 = this.screen4
     },
 
+    // Call this method before the API call
     async placeTrade() {
+      // Ensure all required functions are called and userId is loaded
+      await this.beforeAction();
+
+      // Check if userId is available before proceeding
+      if (!this.userId) {
+        console.error("User ID not available. Cannot place trade.");
+        return;
+      }
+
+      // Now make the API call using the prepared data
       await StoreUtils.dispatch(StoreUtils.actions.trade.tradeCreate, {
-        userId: this.userId,
+        userId: localStorage.getItem('userId'),
         tradeTime: this.currentDate,
         symbolTraded: this.symbolTraded,
         amountTrade: this.amountTrade,
@@ -1301,12 +1339,16 @@ export default {
         marketType: this.screen1,
         endTime: this.currentDate2,
         tradeStatus: "pending",
-        tradeReference : this.randomString,
-        tradeType : this.tradeType
+        tradeReference: this.randomString,
+        tradeType: this.tradeType
       });
+
+      // Refresh trade history after the trade is placed
       await StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
         userId: localStorage.getItem('userId'),
       });
+
+      // Clear form and regenerate new data for future trades
       this.clearForm();
       this.getCurrentDate();
       this.getCurrentDateTime();
@@ -1326,25 +1368,22 @@ export default {
       this.tradeStatus = "";
       this.tradeReference = "";
       this.tradeType = "";
+      this.randomString = "";
+      this.randomString2 = "";
+      this.currentDate2 = "";
+      this.currentDate = "";
     },
 
+    // Function to get current date (YYYY-MM-DD format)
     getCurrentDate() {
       const today = new Date();
-
-      // Format the date as needed, for example: YYYY-MM-DD
-      const formattedDate = today.toISOString().split('T')[0];
-
-      // Save the formatted date to the data property
-      this.currentDate2 = formattedDate;
+      this.currentDate2 = today.toISOString().split('T')[0];
     },
+
+    // Function to get current date and time (YYYY-MM-DD HH:mm:ss format)
     getCurrentDateTime() {
       const today = new Date();
-
-      // Format the date as YYYY-MM-DD HH:mm:ss
-      const formattedDateTime = today.toISOString().slice(0, 19).replace("T", " ");
-
-      // Save the formatted date and time to the data property
-      this.currentDate = formattedDateTime;
+      this.currentDate = today.toISOString().slice(0, 19).replace("T", " ");
     },
     generateRandomString() {
       const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -1355,6 +1394,7 @@ export default {
       }
       this.randomString = result;
     },
+
     generateRandomString2() {
       const characters = '0123456789';
       let result = '';
@@ -1363,16 +1403,70 @@ export default {
         result += characters.charAt(randomIndex);
       }
       this.randomString2 = result;
-    }
+    },
   },
 
-  created() {
+  beforeMount() {
+    this.beforeAction();
+    // Make sure to trigger the same logic before the component is mounted
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      // Dispatch the API call if the userId exists
+      StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
+        userId: userId,
+      });
+    }
+
+    this.bitcoinRate = localStorage.getItem('bitcoinRate')
+    this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate).toFixed(8);
     this.getCurrentDate();
     this.getCurrentDateTime();
     this.generateRandomString();
     this.generateRandomString2();
     this.convertToBitcoin();
     this.checkId();
+    this.loadBitcoinRate(); // Ensure bitcoinRate is loaded when the component is created
+    this.getUserDetails();
+
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
+
+    StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
+
+    StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
+      userId : localStorage.getItem('userId'),
+    });
+
+    StoreUtils.dispatch(StoreUtils.actions.auth.readReadUserById, {
+      userId : localStorage.getItem('userId')
+    })
+
+    StoreUtils.rootGetters(StoreUtils.getters.auth.getReadUserById)
+
+    this.userId = localStorage.getItem('userId')
+
+    // Retrieve the object from local storage
+    const storedObject = localStorage.getItem('userInfo');
+
+    if (storedObject) {
+      this.userInfo = JSON.parse(storedObject);
+    }
+  },
+
+  created() {
+    this.beforeAction();
+    this.bitcoinRate = localStorage.getItem('bitcoinRate')
+    this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate).toFixed(8);
+    this.getCurrentDate();
+    this.getCurrentDateTime();
+    this.generateRandomString();
+    this.generateRandomString2();
+    this.convertToBitcoin();
+    this.checkId();
+    this.loadBitcoinRate(); // Ensure bitcoinRate is loaded when the component is created
+    this.getUserDetails();
+
 
     StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
     StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
@@ -1400,6 +1494,9 @@ export default {
   },
 
   mounted() {
+    this.beforeAction();
+    this.bitcoinRate = localStorage.getItem('bitcoinRate')
+    this.bitcoin = (this.UserDetails.user.totalDepositedAmount / this.bitcoinRate).toFixed(8);
     this.getCurrentDate();
     this.getCurrentDateTime();
     this.generateRandomString();
@@ -1407,9 +1504,13 @@ export default {
     this.convertToBitcoin();
     this.checkId();
 
+    this.loadBitcoinRate();
+    if (this.UserDetails.user && this.bitcoinRate) {
+      this.convertToBitcoin(); // Ensure bitcoin is calculated when mounted
+    }
+
     StoreUtils.rootGetters(StoreUtils.getters.auth.getBitcoinRate)
     StoreUtils.rootGetters(StoreUtils.getters.auth.getIsModalOpened)
-
     StoreUtils.rootGetters(StoreUtils.getters.trade.getReadUserTrade)
 
     StoreUtils.dispatch(StoreUtils.actions.trade.readUserTrade, {
